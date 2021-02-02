@@ -36,12 +36,17 @@ body {
 }
 
 .container {
-    margin-top: 50px;
+    margin-top: 5%;
 }
 
 h1 {
     color: #2E4057;
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
     font-size: 50px;
     font-weight: bold;
+}
+
+p {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+    font-size: 18px;
 }
