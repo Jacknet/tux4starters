@@ -1,4 +1,4 @@
-# Tux for Starters
+# Tux For Starters
 
 Providing a fun, accessible, and friendly tutorial web app for students to learn about operating Linux or other Unix-like system environments alongside their programming studies.
 
