@@ -3,8 +3,11 @@ body {
     background-color: #ffffff;
     color: #2E4057;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    padding-top:50px;
+    padding-bottom: 50px;
 }
 
+/* Navigation Bar */
 .navbar {
     background-color: #F9DC5C;
     color: #2E4057;
@@ -39,10 +42,24 @@ body {
     float: left;
 }
 
-.container {
-    margin-top: 5%;
+.navbar-toggle {
+    border-color: #2E4057;
+    background-color:#F9DC5C
+
 }
 
+.icon-bar {
+    background-color: #2E4057;
+}
+
+.navbar-collapse {
+    background-color: #F9DC5C;
+
+}
+
+
+
+/* Text */
 h1 {
     color: #2E4057;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
