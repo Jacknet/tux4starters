@@ -14,6 +14,10 @@ body {
     height: 50px;
 }
 
+#myNavbar{
+    background-color: #F9DC5C;
+    color: black;
+}
 .navbar a {
     color: #2E4057;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
