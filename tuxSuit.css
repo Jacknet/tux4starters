@@ -3,8 +3,8 @@ body {
     background-color: #ffffff;
     color: #2E4057;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-    padding-top:50px;
-    padding-bottom: 50px;
+    padding-top:100px;
+    padding-bottom: 100px;
 }
 
 /* Navigation Bar */
@@ -53,12 +53,10 @@ body {
 
 }
 
-
-
 /* Text */
 h1 {
     color: #2E4057;
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+    font-family: 'Open Sans Bold', Arial Bold, Helvetica, sans-serif !important;
     font-size: 50px;
     font-weight: bold;
 }
@@ -67,3 +65,38 @@ p {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
     font-size: 18px;
 }
+
+
+
+/* Button */
+
+.tuxButton {
+    background-color: #2E4057;
+    border-radius: 50px;
+    border: none;
+    color: #ffffff;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    height: 50px;
+    width: 200px;
+    text-decoration: none;
+    text-align: center;
+    transition-duration: 0.3s;
+}
+
+.tuxButton:hover {
+    background-color: #F9DC5C;
+    color: #2E4057;
+}
+
+/* Cute way of changing text if wanted  
+.tuxButton:hover span{
+    display: none;
+}
+
+.tuxButton:hover:before {
+    content: "Let's Go!";
+}
+*/
