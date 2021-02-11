@@ -61,11 +61,27 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>About</h1>
+                    <h1>Sign In</h1>
                     <br/>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae tellus aliquet nisi aliquet condimentum. Aliquam semper odio id accumsan interdum. Nulla imperdiet ante nec leo cursus ullamcorper. Donec consequat justo vel hendrerit vulputate. Etiam porttitor maximus neque, id efficitur neque pharetra in. Proin consequat placerat condimentum. Fusce vestibulum ligula ex, in imperdiet quam tempus vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer sodales ante vitae mollis cursus. Cras quis ligula in augue accumsan lacinia id eget augue. Curabitur non ullamcorper lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam sed tellus aliquam, tempor neque at, egestas ex. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent convallis pellentesque metus sit amet tempus. Integer quis odio dui.
-
-                    Fusce ut ex lacinia, congue orci in, scelerisque arcu. Donec ullamcorper dolor enim, id interdum ante vehicula nec. Quisque nec auctor quam. Praesent non lorem interdum, interdum massa eget, ultrices est. Duis scelerisque tortor sit amet enim tempor euismod. Nam faucibus augue malesuada feugiat luctus. Curabitur eu purus vel arcu interdum dapibus vitae a lectus. Aliquam ut dignissim lorem. Vivamus a euismod erat, viverra sagittis mauris.
+                    <form action="/action_page.php" method="post">
+                        <div class="imgcontainer">
+                          <img src="" alt="site logo" class="logo" >
+                        </div>
+                      
+                        <div class="container">
+                          <label for="username"><b>Username</b></label>
+                          <input type="text" placeholder="Enter Username" name="username" required>
+                            <br/>
+                          <label for="password"><b>Password</b></label>
+                          <input type="password" placeholder="Enter Password" name="password" required>
+                            <br/>
+                          <button type="submit">Login</button>
+                        </div>
+                      
+                        <div class="container">
+                          <span class="password"><a href="#">Forgot password?</a></span>
+                        </div>
+                      </form>
                 </div>
             </div>
         </div>
