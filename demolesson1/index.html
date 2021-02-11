@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tux For Starters - About</title>
+    <title>Tux For Starters - Demo Lesson</title>
     <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="tuxSuit.css">
+    <link rel="stylesheet" href="../tuxSuit.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="./parser.js"></script>
 </head>
 <body>
 
@@ -23,11 +24,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Tux For Starters</a>
+                <a class="navbar-brand" href="../index.html">Tux For Starters</a>
             </div>
             <div class="collapse navbar-collapse" id="mainBar">
                 <ul class="nav navbar-nav">
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="../about.html">About</a></li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
@@ -59,15 +60,20 @@
 
     <main>
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>About</h1>
-                    <br/>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae tellus aliquet nisi aliquet condimentum. Aliquam semper odio id accumsan interdum. Nulla imperdiet ante nec leo cursus ullamcorper. Donec consequat justo vel hendrerit vulputate. Etiam porttitor maximus neque, id efficitur neque pharetra in. Proin consequat placerat condimentum. Fusce vestibulum ligula ex, in imperdiet quam tempus vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer sodales ante vitae mollis cursus. Cras quis ligula in augue accumsan lacinia id eget augue. Curabitur non ullamcorper lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam sed tellus aliquam, tempor neque at, egestas ex. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent convallis pellentesque metus sit amet tempus. Integer quis odio dui.
-
-                    Fusce ut ex lacinia, congue orci in, scelerisque arcu. Donec ullamcorper dolor enim, id interdum ante vehicula nec. Quisque nec auctor quam. Praesent non lorem interdum, interdum massa eget, ultrices est. Duis scelerisque tortor sit amet enim tempor euismod. Nam faucibus augue malesuada feugiat luctus. Curabitur eu purus vel arcu interdum dapibus vitae a lectus. Aliquam ut dignissim lorem. Vivamus a euismod erat, viverra sagittis mauris.
-                </div>
-            </div>
+            <h1>Demo Lesson</h1>
+            <br/>
+            <p>
+                Using the terminal, get the HTML contents of <code>example.com</code> and only display the <code>h1</code> header.
+            </p>
+            <p>
+                <form id="inCmdForm" action="#" onsubmit="checkTest(document.getElementById('inCmdBox').value)">
+                    <input type="text" size="100%" id="inCmdBox" placeholder=">">
+                </form>
+            </p>
+            <p>
+                <textarea id="outCmdArea" rows="4" cols="100%" disabled></textarea>
+            </p>
+            <p id="suggestionsArea"></p>
         </div>
     </main>
 

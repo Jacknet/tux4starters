@@ -112,3 +112,8 @@ p {
     content: "Let's Go!";
 }
 */
+
+/* Lesson stuff for demo -JP */
+#outCmdArea {
+    resize: none;
+}
