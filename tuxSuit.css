@@ -117,3 +117,30 @@ p {
 #outCmdArea {
     resize: none;
 }
+
+/*Sign in styles */
+input,button{
+    width: 100%;
+    padding: 12px 20px;
+    display: block;
+}
+label{
+    text-align: center;
+    font-size: larger;
+}
+button{
+    background-color: #2E4057;
+    color:white;
+    margin-bottom: 5px;
+}
+button:hover {
+    opacity: 0.8;
+    
+  }
+.signup{
+float:right;
+}
+.col{
+    width:40%;
+    margin: auto;
+}
