@@ -116,6 +116,7 @@ p {
 /* Lesson stuff for demo -JP */
 #outCmdArea {
     resize: none;
+    width: 100%;
 }
 
 /*Sign in styles */
