@@ -145,3 +145,11 @@ float:right;
     width:40%;
     margin: auto;
 }
+
+
+/*help style*/
+textarea {
+    resize: none;
+    width: 100%;
+    height: 200pt;
+}

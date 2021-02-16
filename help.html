@@ -36,10 +36,10 @@
                             <li><a href="demolesson1/index.html?#"><span class="glyphicon glyphicon-play-circle"></span> Demo</a></li>
                         </ul>
                     </li>
-                    <li><a href="">Resources</a></li>
+                    <li><a href="resources.html">Resources</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="">Help</a></li>
+                    <li><a href="help.html">Help</a></li>
                     <li style="display:inline-block;">
                         <form class="navbar-form" action="">
                             <div class="input-group">
@@ -52,7 +52,7 @@
                             </div>
                         </form>
                     </li>
-                    <li><a href="">Sign In</a></li>
+                    <li><a href="signin.html">Sign In</a></li>
                 </ul>
             </div>
         </div>
@@ -65,26 +65,26 @@
                     </br>
                     <div class="help-container">
 
-                        <label for="problem">Please choose your issue below</label>
-                        <select id="problem" name="problem">
+                        <label for="problem">Select your issue from the dropdown: </label>
+                        <select id="problem" name="problem" required>
                             <option value="problem1">Problem 1</option>
                             <option value="problem2">Problem 2</option>
                             <option value="problem3">Problem 3</option>
                             <option value="problem4">Problem 4</option>
                             <option value="problem5">Problem 5</option>
-                        </select>
+                        </select><br><br>
 
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="firstName" required>
+                        <label for="fname">First Name:</label>
+                        <input type="text" id="fname" name="firstName" required><br>
 
-                        <label for="lname">Last Name</label>
-                        <input type="text" id="lname" name="lastName" required>
+                        <label for="lname">Last Name:</label>
+                        <input type="text" id="lname" name="lastName" required><br>
 
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" name="email" id="email" required>
+                        <label for="email"><b>Email:</b></label>
+                        <input type="text" name="email" id="email" required><br>
 
-                        <label for="subject">Please type your issus below</label>
-                        <textarea id="subject" name="subject" style="height:200px" required></textarea>
+                        <label for="subject">Please type your issus below:</label><br>
+                        <textarea id="subject" name="subject" rows="3" cols="20" required></textarea><br>
 
                         <input type="submit" value="Submit">
 
