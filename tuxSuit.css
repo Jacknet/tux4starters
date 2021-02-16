@@ -103,16 +103,6 @@ p {
     color: #2E4057;
 }
 
-/* Cute way of changing text if wanted  
-.tuxButton:hover span{
-    display: none;
-}
-
-.tuxButton:hover:before {
-    content: "Let's Go!";
-}
-*/
-
 /* Lesson stuff for demo -JP */
 #outCmdArea {
     resize: none;
