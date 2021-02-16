@@ -63,7 +63,7 @@ function demoOneExec(cmdIn) {
             document.getElementById('suggestionsArea').innerHTML = "Hmm... It appears that the command that will handle the piped output is not valid.<br/><br/>Make sure you are using the commands from the lesson.";   
         // If grep and pipe are present but no match parameter is given
         } else if ((pipeRegEx.exec(cmdIn) && cmd2RegEx.exec(cmdIn)) && !param2RegEx.exec(cmdIn)) {
-            document.getElementById('outCmdArea').innerHTML = "Usage: grep [OPTION]... PATTERNS [FILE]...\n(23) Failed writing body";
+            document.getElementById('outCmdArea').innerHTML = "Usage: grep [OPTION]... PATTERNS [FILE]...\nFailed writing body";
             document.getElementById('suggestionsArea').innerHTML = "Almost there! You need to make sure you match the heading tag.<br/><br/>The text we are looking for is in a <code>h1</code> tag.";
         // Otherwise if an unknown error occurs
         } else {
