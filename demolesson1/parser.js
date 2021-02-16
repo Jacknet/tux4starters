@@ -36,11 +36,11 @@ function demoOneExec(cmdIn) {
         if (param1RegEx.exec(cmdIn)) {
             // Set the header markup output and congratulate
             document.getElementById('outCmdArea').innerHTML = "<h1>Header One</h1>";
-            document.getElementById('suggestionsArea').innerHTML = "You got it! Congrats!<h1>* * *</h1>";
+            document.getElementById('suggestionsArea').innerHTML = "You got it! Congrats!<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
         } else {
             // Otherwise, set output with "bytes received" from curl and leave a hint for next time
             document.getElementById('outCmdArea').innerHTML = "Bytes received: 94\n<h1>Header One</h1>";
-            document.getElementById('suggestionsArea').innerHTML = "You got the header, but we can improve this command further to remove the \"Bytes received\" line.<br/><br/>Hint: Try using the <code>--silent</code> flag to get rid of the \"Bytes received\" part.<h1>* *</h1>";
+            document.getElementById('suggestionsArea').innerHTML = "You got the header! We can improve this command further to remove the \"Bytes received\" line.<br/><br/>Try using the <code>--silent</code> flag to get rid of that.<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
         }
     // If not right
     } else {
@@ -54,7 +54,12 @@ function demoOneExec(cmdIn) {
         } else if (!pipeRegEx.exec(cmdIn) && !cmd2RegEx.exec(cmdIn)) {
             // Set the whole HTML contents
             document.getElementById('outCmdArea').innerHTML = "<html>\n<head>\n<title>Example</title>\n</head>\n<body>\n<h1>Header One</h1>\n</body>\n</html>";
-            document.getElementById('suggestionsArea').innerHTML = "Welp, you got the whole site markup but we only need the header.<br/><br/>We just have to select the line containing \"Header One\", which is wrapped within the <code>h1</code> tag.<h1>*</h1>";
+            // If the first parameter is not provided
+            if (!param1RegEx.exec(cmdIn)) {
+                // Add in the "bytes received" bit to the output
+                document.getElementById('outCmdArea').innerHTML = "Bytes received: 94\n" + document.getElementById('outCmdArea').innerHTML;
+            }
+            document.getElementById('suggestionsArea').innerHTML = "Welp, you got the whole site markup but we only need the header.<br/><br/>We just have to select the line containing \"Header One\", which is wrapped within the <code>h1</code> tag.<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
         // If pipe is present but second command is not correct
         } else if (pipeRegEx.exec(cmdIn) && !cmd2RegEx.exec(cmdIn)) {
             // Treat it as an unknown command
