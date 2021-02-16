@@ -105,6 +105,7 @@ function demoOneExec(cmdIn) {
                 // Add in the "bytes received" bit to the output
                 document.getElementById('outCmdArea').innerHTML = "Bytes received: 94\n" + document.getElementById('outCmdArea').innerHTML;
             }
+            // Provide suggestion
             document.getElementById('suggestionsArea').innerHTML = "Welp, you got the whole site markup but we only need the header.<br/><br/>We just have to select the line containing \"Header One\", which is wrapped within the <code>h1</code> tag.<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
         // If pipe is present but second command is not correct
         } else if (pipeRegEx.exec(cmdIn) && !cmd2RegEx.exec(cmdIn)) {
@@ -114,10 +115,13 @@ function demoOneExec(cmdIn) {
             document.getElementById('suggestionsArea').innerHTML = "Hmm... It appears that the command that will handle the piped output is not valid.<br/><br/>Make sure you are using the commands from the lesson.";   
         // If grep and pipe are present but no match parameter is given
         } else if ((pipeRegEx.exec(cmdIn) && cmd2RegEx.exec(cmdIn)) && !param2RegEx.exec(cmdIn)) {
+            // State grep usage
             document.getElementById('outCmdArea').innerHTML = "Usage: grep [OPTION]... PATTERNS [FILE]...\nFailed writing body";
+            // Provide hint
             document.getElementById('suggestionsArea').innerHTML = "Almost there! You need to make sure you match the heading tag.<br/><br/>The text we are looking for is in a <code>h1</code> tag.";
         // Otherwise if an unknown error occurs
         } else {
+            // State that it's an unknown command and that something unexpected had occurred
             document.getElementById('outCmdArea').innerHTML = "Unknown command";
             document.getElementById('suggestionsArea').innerHTML = "Hmm... It appears that something wrong has occurred.<br/><br/>Check to see if you formatted your command correctly.";
         }
