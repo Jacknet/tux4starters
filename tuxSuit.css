@@ -147,3 +147,11 @@ p {
 .tuxSpace .signup{
     float:right;
 }
+
+
+/*help style*/
+textarea {
+    resize: none;
+    width: 100%;
+    height: 200pt;
+}
