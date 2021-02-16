@@ -15,7 +15,7 @@ var mainRegEx = /^\s*curl\s+(((-s)|(--silent))\s+)?((("|')(http(s)?:\/\/)?(www\.
 
 // Specific expressions
 // First command and parameter
-var cmd1RegEx = /^\s*curl\s+/;
+var cmd1RegEx = /^\s*curl/;
 var param1RegEx = /\s+((-s)|(--silent))/;
 // Site regular expression
 var siteRegEx = /\s+((("|')(http(s)?:\/\/)?(www\.)?example\.com\/?("|'))|((http(s)?:\/\/)?(www\.)?example\.com\/?))/;
@@ -60,11 +60,11 @@ function demoOneExec(cmdIn) {
             // Suggest that the command is not valid
             document.getElementById('suggestionsArea').innerHTML = "Hmm... It appears that this command is not valid.<br/><br/>Make sure you are using the commands from the lesson.";
         // If only "curl" is provided
-        } else if (/^\s*curl\s*$/.exec(cmdIn)) {
+        } else if (/^\s*curl\s*(((-)|(--))([A-Z]|[a-z])*)*\s*$/.exec(cmdIn)) {
             // Print curl usage
             document.getElementById('outCmdArea').innerHTML = "Usage: curl [options...] <url>";
             // Suggest the user to give curl a URL
-            document.getElementById('suggestionsArea').innerHTML = "Looks like you ran <code>curl</code> but have not provided anything to it.<br/><br/>Try giving it the URL that is stated in the prompt.";
+            document.getElementById('suggestionsArea').innerHTML = "Looks like you ran <code>curl</code> but have not provided a URL for it to use.<br/><br/>Try giving it the URL that is stated in the prompt.";
         // If curl is provided with an invalid site link
         } else if (!siteRegEx.exec(cmdIn)) {
             // Treat it as an unknown website
@@ -73,20 +73,25 @@ function demoOneExec(cmdIn) {
             var passedSpaceChk = false
             // For loop that will add the invalid command to the output
             for (var i = 0; i < cmdIn.length; i++) {
+                // If a parameter is spotted
+                if ((cmdIn[i] == "-")) {
+                    // Reset space check
+                    passedSpaceChk = false;
                 // Break if we finished printing the url
-                if ((cmdIn[i] == " ") && passedSpaceChk) {
+                } else if ((cmdIn[i] == " ") && passedSpaceChk) {
                     break;
                 // Else if passed space chk isnt marked yet after a space
                 } else if (cmdIn[i] == " ") {
                     // Do so now
                     passedSpaceChk = true;
-                    // And advance i by one iteration
-                    i += 1;
                 }
                 // If passed space chk is marked
                 if (passedSpaceChk) {
-                    // Print the invalid url
-                    document.getElementById('outCmdArea').innerHTML += cmdIn[i];
+                    // If not a space
+                    if (!(cmdIn[i] == " ")) {
+                        // Print character
+                        document.getElementById('outCmdArea').innerHTML += cmdIn[i];
+                    }
                 }                
             }
             // Ask the user that the URL is invalid
