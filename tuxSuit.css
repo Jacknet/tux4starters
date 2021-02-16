@@ -109,9 +109,16 @@ p {
 }
 
 /* Lesson stuff for demo -JP */
+
 #outCmdArea {
     resize: none;
     width: 100%;
+}
+
+#inCmdBox {
+    width: 100%;
+    padding: 12px 20px;
+    display: block;
 }
 
 /*tuxSpace styles for Help/Sign In*/
@@ -121,7 +128,6 @@ p {
     padding: 12px 20px;
     display: block;
 }
-
 
 .tuxSpace label{
     text-align: center;
@@ -136,8 +142,8 @@ p {
 
 .tuxSpace button:hover {
     opacity: 0.8;
-    
-  }
+}
+
 .tuxSpace .signup{
-float:right;
+    float:right;
 }
