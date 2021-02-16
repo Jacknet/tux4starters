@@ -7,6 +7,11 @@ body {
     padding-bottom: 100px;
 }
 
+.col{
+    width:40%;
+    margin: auto;
+}
+
 /* Navigation Bar */
 .navbar {
     background-color: #F9DC5C;
@@ -109,29 +114,30 @@ p {
     width: 100%;
 }
 
-/*Sign in styles */
-input,button{
+/*tuxSpace styles for Help/Sign In*/
+
+.tuxSpace input, .tuxSpace button{
     width: 100%;
     padding: 12px 20px;
     display: block;
 }
-label{
+
+
+.tuxSpace label{
     text-align: center;
     font-size: larger;
 }
-button{
+
+.tuxSpace button{
     background-color: #2E4057;
     color:white;
     margin-bottom: 5px;
 }
-button:hover {
+
+.tuxSpace button:hover {
     opacity: 0.8;
     
   }
-.signup{
+.tuxSpace .signup{
 float:right;
-}
-.col{
-    width:40%;
-    margin: auto;
 }
