@@ -168,7 +168,7 @@ function demoOneExec(cmdIn) {
         // If grep and pipe are present but no correct match parameter is given
         } else if ((pipeRegEx.exec(cmdIn) && cmd2RegEx.exec(cmdIn)) && !param2RegEx.exec(cmdIn)) {
             // If tag in angle brackets without quotation marks
-            if (/(([^"]<*.*>*[^"])|([^']<*.*>*[^']))/.exec(cmdIn)) {
+            if (/(([^"]*<+.*>*[^"]*)|([^']*<+.*>*[^']*)|([^"]*<*.*>+[^"]*)|([^']*<*.*>+[^']*))/.exec(cmdIn)) {
                 // State redirect error
                 document.getElementById('outCmdArea').innerHTML = "An error occurred while redirecting file";
                 // Provide hint
@@ -181,10 +181,25 @@ function demoOneExec(cmdIn) {
                     // Else increment counter
                     attemptCount++;
                 }
+            // If a match parameter other than h1 is provided
+            } else if (!(/grep\s*$/.exec(cmdIn))) {
+                // Print error
+                document.getElementById('outCmdArea').innerHTML = "Lesson error: Incorrect match case " + cmdIn.substring(cmdIn.indexOf("grep") + 4).replace(/\s/g,'');
+                // State issue
+                document.getElementById('suggestionsArea').innerHTML = "Looks like this lesson is expecting to match a certain tag.";
+                // If attempt counter is 3 or over
+                if (attemptCount >= 3) {
+                    // Append hint
+                    document.getElementById('suggestionsArea').innerHTML += "<br/><br/>We only have to match <code>h1</code>.";
+                } else {
+                    // Else increment counter
+                    attemptCount++;
+                }
+            // If nothing was provided
             } else {
                 // State grep usage
                 document.getElementById('outCmdArea').innerHTML = "Usage: grep [OPTION]... PATTERNS [FILE]...\nFailed writing body";
-                // Provide hint
+                // Provide what happened
                 document.getElementById('suggestionsArea').innerHTML = "Almost there! You need to make sure you match the heading tag.";
                 // If attempt counter is 3 or over
                 if (attemptCount >= 3) {
