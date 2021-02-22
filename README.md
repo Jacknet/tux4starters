@@ -9,4 +9,5 @@ A capstone project for the Bachelor of Science in Information Technology at the 
 ## External Libraries & Assets:
 * Bootstrap
 * JQuery
+* [Xterm.js](https://github.com/xtermjs/xterm.js)
 * More to come...
