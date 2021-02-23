@@ -116,16 +116,20 @@ p {
 }
 
 /* Lesson stuff for demo -JP */
-
+/* SIMULATED DEMO */
 #outCmdArea {
     resize: none;
     width: 100%;
 }
-
 #inCmdBox {
     width: 100%;
     padding: 12px 20px;
     display: block;
+}
+/* XTERM */
+#terminal {
+    border-radius: 6px;
+    border: 6px solid black;
 }
 
 /*tuxSpace styles for Help/Sign In*/
