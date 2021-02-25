@@ -41,28 +41,28 @@ function demoOneExec(cmdIn) {
     }
 
     // Clear any prior messages
-    $("#suggestionsArea").innerHTML = "";
+    $("#suggestionsArea")[0].innerHTML = "";
     
     // If the main regular expression is satistfied, then it is correct
     if (mainRegEx.exec(cmdIn)) {
         // If silent flag is declared
         if (param1RegEx.exec(cmdIn)) {
             // Output the header and congratulate
-            $("#suggestionsArea").innerHTML = "You got it! Congrats!<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            $("#suggestionsArea")[0].innerHTML = "You got it! Congrats!<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             return "\r\n<h1>Header One</h1>";
         } else {
             // Otherwise, set output with "bytes received" from curl and leave a hint for next time
-            $("#suggestionsArea").innerHTML = "You got the header! We can improve this command further to remove the \"Bytes received\" line.";
+            $("#suggestionsArea")[0].innerHTML = "You got the header! We can improve this command further to remove the \"Bytes received\" line.";
             // If attempt is 3 or over
             if (attemptCount >= 3) {
                 // Add hint
-                $("#suggestionsArea").innerHTML += "<br/><br/>Try using the <code>--silent</code> flag for <code>curl</code> to get rid of that.";
+                $("#suggestionsArea")[0].innerHTML += "<br/><br/>Try using the <code>--silent</code> flag for <code>curl</code> to get rid of that.";
             } else {
                 // Otherwise increment attempt counter
                 attemptCount++;
             }
             // Append star rating
-            $("#suggestionsArea").innerHTML += "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            $("#suggestionsArea")[0].innerHTML += "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             // Print result
             return "\r\nBytes received: 94\r\n<h1>Header One</h1>";
         }
@@ -82,7 +82,7 @@ function demoOneExec(cmdIn) {
                 outputErrStr += cmdIn[i];
             }
             // Suggest that the command is not valid
-            $("#suggestionsArea").innerHTML = "Hmm... It appears that this command is not valid.<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
+            $("#suggestionsArea")[0].innerHTML = "Hmm... It appears that this command is not valid.<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
             // If attempt counter less than 3
             if (attemptCount < 3) {
                 // Increment attempt counter
@@ -93,11 +93,11 @@ function demoOneExec(cmdIn) {
         // If only "curl" is provided
         } else if (/^\s*curl\s*(((-)|(--))([A-Z]|[a-z])*)*\s*$/.exec(cmdIn)) {
             // Suggest the user to give curl a URL
-            $("#suggestionsArea").innerHTML = "Looks like you ran <code>curl</code> but have not provided a URL for it to use.";
+            $("#suggestionsArea")[0].innerHTML = "Looks like you ran <code>curl</code> but have not provided a URL for it to use.";
             // If attempt counter is 3 or over
             if (attemptCount >= 3) {
                 // Add hint
-                $("#suggestionsArea").innerHTML += "<br/><br/>Give the command the <code>example.com</code> URL.";
+                $("#suggestionsArea")[0].innerHTML += "<br/><br/>Give the command the <code>example.com</code> URL.";
             } else {
                 // Otherwise increment attempt counter
                 attemptCount++;
@@ -134,11 +134,11 @@ function demoOneExec(cmdIn) {
                 }                
             }
             // Ask the user that the URL is invalid
-            $("#suggestionsArea").innerHTML = "The <code>curl</code> program couldn't connect to that website.";
+            $("#suggestionsArea")[0].innerHTML = "The <code>curl</code> program couldn't connect to that website.";
             // If attempt counter is 3 or over
             if (attemptCount >= 3) {
                 // Append hint
-                $("#suggestionsArea").innerHTML += "<br/><br/>Use the <code>example.com</code> website instead.";
+                $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <code>example.com</code> website instead.";
             } else {
                 // Else increment counter
                 attemptCount++;
@@ -155,27 +155,27 @@ function demoOneExec(cmdIn) {
                 outputErrStr = "Bytes received: 94\r\n" + outputErrStr;
             }
             // Provide suggestion
-            $("#suggestionsArea").innerHTML = "Welp, you got the whole site markup but we only need the header.";
+            $("#suggestionsArea")[0].innerHTML = "Welp, you got the whole site markup but we only need the header.";
             // If attempt counter is 3 or over
             if (attemptCount >= 3) {
                 // Append hint
-                $("#suggestionsArea").innerHTML += "<br/><br/>We just have to select the line containing \"Header One\", which is wrapped within the <code>h1</code> tag.";
+                $("#suggestionsArea")[0].innerHTML += "<br/><br/>We just have to select the line containing \"Header One\", which is wrapped within the <code>h1</code> tag.";
             } else {
                 // Else increment counter
                 attemptCount++;
             }
             // Append star rating
-            $("#suggestionsArea").innerHTML += "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
+            $("#suggestionsArea")[0].innerHTML += "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
             // Print result
             return outputErrStr;
         // If pipe is present but second command is not correct
         } else if (pipeRegEx.exec(cmdIn) && !cmd2RegEx.exec(cmdIn)) {
             // Suggest that the piper command is not valid
-            $("#suggestionsArea").innerHTML = "Hmm... It appears that the command that will handle the piped output is not valid.";
+            $("#suggestionsArea")[0].innerHTML = "Hmm... It appears that the command that will handle the piped output is not valid.";
             // If attempt counter is 3 or over
             if (attemptCount >= 3) {
                 // Append hint
-                $("#suggestionsArea").innerHTML += "<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
+                $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
             } else {
                 // Else increment counter
                 attemptCount++;
@@ -187,11 +187,11 @@ function demoOneExec(cmdIn) {
             // If tag in angle brackets without quotation marks
             if (/(([^"]*<+.*>*[^"]*)|([^']*<+.*>*[^']*)|([^"]*<*.*>+[^"]*)|([^']*<*.*>+[^']*))/.exec(cmdIn)) {
                 // Provide suggestion
-                $("#suggestionsArea").innerHTML = "Bare angle brackets are mistaken by the terminal as output redirect.";
+                $("#suggestionsArea")[0].innerHTML = "Bare angle brackets are mistaken by the terminal as output redirect.";
                 // If attempt counter is 3 or over
                 if (attemptCount >= 3) {
                     // Append hint
-                    $("#suggestionsArea").innerHTML += "<br/><br/>Make sure the <code>h1</code> tag is wrapped in quotation marks.";
+                    $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure the <code>h1</code> tag is wrapped in quotation marks.";
                 } else {
                     // Else increment counter
                     attemptCount++;
@@ -201,11 +201,11 @@ function demoOneExec(cmdIn) {
             // If a match parameter other than h1 is provided
             } else if (!(/grep\s*$/.exec(cmdIn))) {
                 // State issue
-                $("#suggestionsArea").innerHTML = "Looks like this lesson is expecting to match a certain tag.";
+                $("#suggestionsArea")[0].innerHTML = "Looks like this lesson is expecting to match a certain tag.";
                 // If attempt counter is 3 or over
                 if (attemptCount >= 3) {
                     // Append hint
-                    $("#suggestionsArea").innerHTML += "<br/><br/>We only have to match <code>h1</code>.";
+                    $("#suggestionsArea")[0].innerHTML += "<br/><br/>We only have to match <code>h1</code>.";
                 } else {
                     // Else increment counter
                     attemptCount++;
@@ -215,11 +215,11 @@ function demoOneExec(cmdIn) {
             // If nothing was provided
             } else {
                 // Provide what happened
-                $("#suggestionsArea").innerHTML = "Almost there! You need to make sure you match the heading tag.";
+                $("#suggestionsArea")[0].innerHTML = "Almost there! You need to make sure you match the heading tag.";
                 // If attempt counter is 3 or over
                 if (attemptCount >= 3) {
                     // Append hint
-                    $("#suggestionsArea").innerHTML += "<br/><br/>The line we are looking for is in a <code>h1</code> tag.";
+                    $("#suggestionsArea")[0].innerHTML += "<br/><br/>The line we are looking for is in a <code>h1</code> tag.";
                 } else {
                     // Else increment counter
                     attemptCount++;
@@ -230,7 +230,7 @@ function demoOneExec(cmdIn) {
         // Otherwise if an unknown error occurs
         } else {
             // State that it's an unknown command and that something unexpected had occurred
-            $("#suggestionsArea").innerHTML = "Hmm... It appears that something wrong has occurred.<br/><br/>Check to see if you formatted your command correctly.";
+            $("#suggestionsArea")[0].innerHTML = "Hmm... It appears that something wrong has occurred.<br/><br/>Check to see if you formatted your command correctly.";
             // If attempt counter less than 3
             if (attemptCount < 3) {
                 // Increment attempt counter
@@ -279,9 +279,22 @@ function xTermDemo() {
         // Switch statement that will check output
         switch (e) {
             case "\r": // Enter key
-                // Send current command buffer to exec code and write output
-                term.write(demoOneExec(cmdBuff));
-                // Continue to next case for prompt; no break
+                // If "clear" command was entered
+                if (cmdBuff == "clear") {
+                    // Clear terminal and break
+                    term.clear($("#terminal")[0]);
+                    while (!(cmdBuff == "")) {
+                        // Remove last char by slicing it off
+                        cmdBuff = cmdBuff.slice(0, -1);
+                        // Backspace
+                        term.write("\b \b");
+                    }
+                    break;
+                } else {
+                    // Else send current command buffer to exec code and write output
+                    term.write(demoOneExec(cmdBuff));
+                    // Continue to next case for prompt; no break
+                }
             case "\u0003": // Ctrl+C
                 // Clear buffer
                 cmdBuff = "";
@@ -298,6 +311,7 @@ function xTermDemo() {
                 }
                 break;
             default:
+                console.log(e);
                 // Add character to buffer and write to terminal
                 cmdBuff += e;
                 term.write(e);

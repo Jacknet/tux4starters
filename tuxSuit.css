@@ -126,6 +126,9 @@ p {
     padding: 12px 20px;
     display: block;
 }
+#suggestionsArea {
+    margin-top: 12px;
+}
 /* XTERM */
 #terminal {
     border-radius: 6px;
