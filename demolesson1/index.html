@@ -9,10 +9,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../tuxSuit.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../xterm/css/xterm.css" />
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="./parser.js"></script>
+    <script src="../xterm/lib/xterm.js"></script>
 </head>
 <body>
 
@@ -34,8 +38,8 @@
                             <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
                             <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
                             <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
-                            <li><a href="demolesson1/index.html?#"><span class="glyphicon glyphicon-play-circle"></span> Old Demo</a></li>
-                            <li><a href="demolesson1/indexA.html"><span class="glyphicon glyphicon-play-circle"></span> Xterm Demo</a></li>
+                            <li><a href="index.html?#"><span class="glyphicon glyphicon-play-circle"></span> Old Demo</a></li>
+                            <li><a href="indexA.html"><span class="glyphicon glyphicon-play-circle"></span> Xterm Demo</a></li>
                         </ul>
                     </li>
                     <li><a href="../resources.html">Resources</a></li>
@@ -64,20 +68,19 @@
         <div class="container">
             <h2>Demo Lesson</h2>
             <br/>
-            <p>
-                Using the terminal, get the HTML contents of <code>example.com</code> and only display the <code>h1</code> header.
-            </p>
-            <p>
-                Make sure to press <code>Enter</code> or <code>Return</code> to submit your command.
-            </p>
-            <p>
-                <form id="inCmdForm" action="#" onsubmit="demoOneExec(document.getElementById('inCmdBox').value)">
-                    <input type="text" id="inCmdBox" placeholder=">">
-                </form>
-            </p>
-            <p>
-                <textarea id="outCmdArea" rows="8" disabled></textarea>
-            </p>
+            <div id="terminal"></div>
+            <script>
+                var term = new Terminal();
+                term.open(document.getElementById('terminal'));
+                xTermDemo();
+
+                // PRIMITIVE TEST
+                // term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+                // term.write('lesson1@tux4starters $ ')
+                // document.addEventListener("keypress", function(e) {
+                //     term.write(String.fromCharCode(e.keyCode));              
+                // })
+            </script>
             <p id="suggestionsArea"></p>
         </div>
     </main>

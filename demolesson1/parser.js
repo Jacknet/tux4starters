@@ -3,12 +3,16 @@
     Authored by Joaquin under GPLv3
 */
 
+// INTENDED FOR EARLIER DEMO. DISREGARD THIS FOR NOW.
 // No-refresh patch for form
 // If "?#" is not present in the URL
-if(!(/\?#$/.exec(window.location.href))) {
-    // Make sure that gets added to the href
-    window.location.href = window.location.href + '?#';
-}
+// if(!(/\?#$/.exec(window.location.href))) {
+//     // Make sure that gets added to the href
+//     window.location.href = window.location.href + '?#';
+// }
+
+// Command buffer
+var cmdBuff = ""
 
 // Main Regular Expression
 var mainRegEx = /^\s*curl\s+(((-s)|(--silent))\s+)?((("|')(http(s)?:\/\/)?(www\.)?example\.com\/?("|'))|((http(s)?:\/\/)?(www\.)?example\.com\/?))\s+\|\s+grep\s+((("|')<?\/?h1>?("|'))|(\/?h1))\s*$/;
@@ -31,36 +35,36 @@ var attemptCount = 1;
 // Check function
 function demoOneExec(cmdIn) {
     // Clear any prior messages
-    document.getElementById('suggestionsArea').innerHTML = "";
+    document.getElementById("suggestionsArea").innerHTML = "";
     
     // If the main regular expression is satistfied, then it is correct
     if (mainRegEx.exec(cmdIn)) {
         // If silent flag is declared
         if (param1RegEx.exec(cmdIn)) {
             // Set the header markup output and congratulate
-            document.getElementById('outCmdArea').innerHTML = "<h1>Header One</h1>";
-            document.getElementById('suggestionsArea').innerHTML = "You got it! Congrats!<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            document.getElementById("outCmdArea").innerHTML = "<h1>Header One</h1>";
+            document.getElementById("suggestionsArea").innerHTML = "You got it! Congrats!<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
         } else {
             // Otherwise, set output with "bytes received" from curl and leave a hint for next time
-            document.getElementById('outCmdArea').innerHTML = "Bytes received: 94\n<h1>Header One</h1>";
-            document.getElementById('suggestionsArea').innerHTML = "You got the header! We can improve this command further to remove the \"Bytes received\" line.";
+            document.getElementById("outCmdArea").innerHTML = "Bytes received: 94\n<h1>Header One</h1>";
+            document.getElementById("suggestionsArea").innerHTML = "You got the header! We can improve this command further to remove the \"Bytes received\" line.";
             // If attempt is 3 or over
             if (attemptCount >= 3) {
                 // Add hint
-                document.getElementById('suggestionsArea').innerHTML += "<br/><br/>Try using the <code>--silent</code> flag for <code>curl</code> to get rid of that.";
+                document.getElementById("suggestionsArea").innerHTML += "<br/><br/>Try using the <code>--silent</code> flag for <code>curl</code> to get rid of that.";
             } else {
                 // Otherwise increment attempt counter
                 attemptCount++;
             }
             // Append star rating
-            document.getElementById('suggestionsArea').innerHTML += "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            document.getElementById("suggestionsArea").innerHTML += "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
         }
     // If not right
     } else {
         // If first or second command is not present
         if (!cmd1RegEx.exec(cmdIn)) {
             // Treat it as an unknown command
-            document.getElementById('outCmdArea').innerHTML = "Unknown command "
+            document.getElementById("outCmdArea").innerHTML = "Unknown command "
             // For loop that will add the invalid command to the output
             for (var i = 0; i < cmdIn.length; i++) {
                 // We just output the first part of the input, so break if theres a space
@@ -68,10 +72,10 @@ function demoOneExec(cmdIn) {
                     break;
                 }
                 // Add the char in to the output
-                document.getElementById('outCmdArea').innerHTML += cmdIn[i];
+                document.getElementById("outCmdArea").innerHTML += cmdIn[i];
             }
             // Suggest that the command is not valid
-            document.getElementById('suggestionsArea').innerHTML = "Hmm... It appears that this command is not valid.<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
+            document.getElementById("suggestionsArea").innerHTML = "Hmm... It appears that this command is not valid.<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
             // If attempt counter less than 3
             if (attemptCount < 3) {
                 // Increment attempt counter
@@ -80,13 +84,13 @@ function demoOneExec(cmdIn) {
         // If only "curl" is provided
         } else if (/^\s*curl\s*(((-)|(--))([A-Z]|[a-z])*)*\s*$/.exec(cmdIn)) {
             // Print curl usage
-            document.getElementById('outCmdArea').innerHTML = "Usage: curl [options...] <url>";
+            document.getElementById("outCmdArea").innerHTML = "Usage: curl [options...] <url>";
             // Suggest the user to give curl a URL
-            document.getElementById('suggestionsArea').innerHTML = "Looks like you ran <code>curl</code> but have not provided a URL for it to use.";
+            document.getElementById("suggestionsArea").innerHTML = "Looks like you ran <code>curl</code> but have not provided a URL for it to use.";
             // If attempt counter is 3 or over
             if (attemptCount >= 3) {
                 // Add hint
-                document.getElementById('suggestionsArea').innerHTML += "<br/><br/>Give the command the <code>example.com</code> URL.";
+                document.getElementById("suggestionsArea").innerHTML += "<br/><br/>Give the command the <code>example.com</code> URL.";
             } else {
                 // Otherwise increment attempt counter
                 attemptCount++;
@@ -94,7 +98,7 @@ function demoOneExec(cmdIn) {
         // If curl is provided with an invalid site link
         } else if (!siteRegEx.exec(cmdIn)) {
             // Treat it as an unknown website
-            document.getElementById('outCmdArea').innerHTML = "Could not resolve host: ";
+            document.getElementById("outCmdArea").innerHTML = "Could not resolve host: ";
             // Boolean flag that will indicate whether we already crossed "curl" (indicated by a space) through the loop
             var passedSpaceChk = false
             // For loop that will add the invalid command to the output
@@ -116,16 +120,16 @@ function demoOneExec(cmdIn) {
                     // If not a space
                     if (!(cmdIn[i] == " ")) {
                         // Print character
-                        document.getElementById('outCmdArea').innerHTML += cmdIn[i];
+                        document.getElementById("outCmdArea").innerHTML += cmdIn[i];
                     }
                 }                
             }
             // Ask the user that the URL is invalid
-            document.getElementById('suggestionsArea').innerHTML = "The <code>curl</code> program couldn't connect to that website.";
+            document.getElementById("suggestionsArea").innerHTML = "The <code>curl</code> program couldn't connect to that website.";
             // If attempt counter is 3 or over
             if (attemptCount >= 3) {
                 // Append hint
-                document.getElementById('suggestionsArea').innerHTML += "<br/><br/>Use the <code>example.com</code> website instead.";
+                document.getElementById("suggestionsArea").innerHTML += "<br/><br/>Use the <code>example.com</code> website instead.";
             } else {
                 // Else increment counter
                 attemptCount++;
@@ -133,34 +137,34 @@ function demoOneExec(cmdIn) {
         // If no pipe nor grep command is present
         } else if (!pipeRegEx.exec(cmdIn) && !cmd2RegEx.exec(cmdIn)) {
             // Set the whole HTML contents
-            document.getElementById('outCmdArea').innerHTML = "<html>\n<head>\n<title>Example</title>\n</head>\n<body>\n<h1>Header One</h1>\n</body>\n</html>";
+            document.getElementById("outCmdArea").innerHTML = "<html>\n<head>\n<title>Example</title>\n</head>\n<body>\n<h1>Header One</h1>\n</body>\n</html>";
             // If the first parameter is not provided
             if (!param1RegEx.exec(cmdIn)) {
                 // Add in the "bytes received" bit to the output
-                document.getElementById('outCmdArea').innerHTML = "Bytes received: 94\n" + document.getElementById('outCmdArea').innerHTML;
+                document.getElementById("outCmdArea").innerHTML = "Bytes received: 94\n" + document.getElementById("outCmdArea").innerHTML;
             }
             // Provide suggestion
-            document.getElementById('suggestionsArea').innerHTML = "Welp, you got the whole site markup but we only need the header.";
+            document.getElementById("suggestionsArea").innerHTML = "Welp, you got the whole site markup but we only need the header.";
             // If attempt counter is 3 or over
             if (attemptCount >= 3) {
                 // Append hint
-                document.getElementById('suggestionsArea').innerHTML += "<br/><br/>We just have to select the line containing \"Header One\", which is wrapped within the <code>h1</code> tag.";
+                document.getElementById("suggestionsArea").innerHTML += "<br/><br/>We just have to select the line containing \"Header One\", which is wrapped within the <code>h1</code> tag.";
             } else {
                 // Else increment counter
                 attemptCount++;
             }
             // Append star rating
-            document.getElementById('suggestionsArea').innerHTML += "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
+            document.getElementById("suggestionsArea").innerHTML += "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
         // If pipe is present but second command is not correct
         } else if (pipeRegEx.exec(cmdIn) && !cmd2RegEx.exec(cmdIn)) {
             // Treat it as an unknown command
-            document.getElementById('outCmdArea').innerHTML = "Unknown command " + cmdIn.substring(cmdIn.indexOf("|") + 1).replace(/\s/g,'');
+            document.getElementById("outCmdArea").innerHTML = "Unknown command " + cmdIn.substring(cmdIn.indexOf("|") + 1).replace(/\s/g,"");
             // Suggest that the piper command is not valid
-            document.getElementById('suggestionsArea').innerHTML = "Hmm... It appears that the command that will handle the piped output is not valid.";
+            document.getElementById("suggestionsArea").innerHTML = "Hmm... It appears that the command that will handle the piped output is not valid.";
             // If attempt counter is 3 or over
             if (attemptCount >= 3) {
                 // Append hint
-                document.getElementById('suggestionsArea').innerHTML += "<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
+                document.getElementById("suggestionsArea").innerHTML += "<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
             } else {
                 // Else increment counter
                 attemptCount++;
@@ -170,13 +174,13 @@ function demoOneExec(cmdIn) {
             // If tag in angle brackets without quotation marks
             if (/(([^"]*<+.*>*[^"]*)|([^']*<+.*>*[^']*)|([^"]*<*.*>+[^"]*)|([^']*<*.*>+[^']*))/.exec(cmdIn)) {
                 // State redirect error
-                document.getElementById('outCmdArea').innerHTML = "An error occurred while redirecting file";
+                document.getElementById("outCmdArea").innerHTML = "An error occurred while redirecting file";
                 // Provide hint
-                document.getElementById('suggestionsArea').innerHTML = "Bare angle brackets are mistaken by the terminal as output redirect.";
+                document.getElementById("suggestionsArea").innerHTML = "Bare angle brackets are mistaken by the terminal as output redirect.";
                 // If attempt counter is 3 or over
                 if (attemptCount >= 3) {
                     // Append hint
-                    document.getElementById('suggestionsArea').innerHTML += "<br/><br/>Make sure the <code>h1</code> tag is wrapped in quotation marks.";
+                    document.getElementById("suggestionsArea").innerHTML += "<br/><br/>Make sure the <code>h1</code> tag is wrapped in quotation marks.";
                 } else {
                     // Else increment counter
                     attemptCount++;
@@ -184,13 +188,13 @@ function demoOneExec(cmdIn) {
             // If a match parameter other than h1 is provided
             } else if (!(/grep\s*$/.exec(cmdIn))) {
                 // Print error
-                document.getElementById('outCmdArea').innerHTML = "Lesson error: Incorrect match case " + cmdIn.substring(cmdIn.indexOf("grep") + 4).replace(/\s/g,'');
+                document.getElementById("outCmdArea").innerHTML = "Lesson error: Incorrect match case " + cmdIn.substring(cmdIn.indexOf("grep") + 4).replace(/\s/g,"");
                 // State issue
-                document.getElementById('suggestionsArea').innerHTML = "Looks like this lesson is expecting to match a certain tag.";
+                document.getElementById("suggestionsArea").innerHTML = "Looks like this lesson is expecting to match a certain tag.";
                 // If attempt counter is 3 or over
                 if (attemptCount >= 3) {
                     // Append hint
-                    document.getElementById('suggestionsArea').innerHTML += "<br/><br/>We only have to match <code>h1</code>.";
+                    document.getElementById("suggestionsArea").innerHTML += "<br/><br/>We only have to match <code>h1</code>.";
                 } else {
                     // Else increment counter
                     attemptCount++;
@@ -198,13 +202,13 @@ function demoOneExec(cmdIn) {
             // If nothing was provided
             } else {
                 // State grep usage
-                document.getElementById('outCmdArea').innerHTML = "Usage: grep [OPTION]... PATTERNS [FILE]...\nFailed writing body";
+                document.getElementById("outCmdArea").innerHTML = "Usage: grep [OPTION]... PATTERNS [FILE]...\nFailed writing body";
                 // Provide what happened
-                document.getElementById('suggestionsArea').innerHTML = "Almost there! You need to make sure you match the heading tag.";
+                document.getElementById("suggestionsArea").innerHTML = "Almost there! You need to make sure you match the heading tag.";
                 // If attempt counter is 3 or over
                 if (attemptCount >= 3) {
                     // Append hint
-                    document.getElementById('suggestionsArea').innerHTML += "<br/><br/>The line we are looking for is in a <code>h1</code> tag.";
+                    document.getElementById("suggestionsArea").innerHTML += "<br/><br/>The line we are looking for is in a <code>h1</code> tag.";
                 } else {
                     // Else increment counter
                     attemptCount++;
@@ -213,8 +217,8 @@ function demoOneExec(cmdIn) {
         // Otherwise if an unknown error occurs
         } else {
             // State that it's an unknown command and that something unexpected had occurred
-            document.getElementById('outCmdArea').innerHTML = "Unknown command";
-            document.getElementById('suggestionsArea').innerHTML = "Hmm... It appears that something wrong has occurred.<br/><br/>Check to see if you formatted your command correctly.";
+            document.getElementById("outCmdArea").innerHTML = "Unknown command";
+            document.getElementById("suggestionsArea").innerHTML = "Hmm... It appears that something wrong has occurred.<br/><br/>Check to see if you formatted your command correctly.";
             // If attempt counter less than 3
             if (attemptCount < 3) {
                 // Increment attempt counter
@@ -222,4 +226,62 @@ function demoOneExec(cmdIn) {
             }
         }
     }
+}
+
+
+// Prototype Xterm code begins here
+
+// Function that will output initial prompt
+function prompt(term) {
+    term.write('\r\nlesson1@tux4starters $ ');
+}
+// Core xterm code
+function xTermDemo() {
+    // If terminal is already initialized
+    if (term._initialized) {
+        // End function
+        return;
+    }
+
+    // Set terminal initialize state to true
+    term._initialized = true;
+
+    // Set terminal prompt
+    term.prompt = () => {
+        term.write('\r\nlesson1@tux4starters $ ');
+    };
+
+    // Print welcome message
+    term.writeln("Tux For Starters");
+    // term.writeln("This is a local terminal emulation, without a real terminal in the back-end.");
+    // term.writeln("Type some keys and commands to play around.");
+    term.writeln("");
+
+    // Print out prompt
+    prompt(term);
+
+    // Set on data listener
+    term.onData(e => {
+        // Switch statement that will check output
+        switch (e) {
+            case '\r': // Enter key
+                // Send current command buffer to exec code and write output
+                //term.write(demoOneExec(cmdBuff));
+                // Continue to next case for prompt; no break
+            case '\u0003': // Ctrl+C
+                // Call for prompt reset
+                prompt(term);
+                break;
+            case '\u007F': // Backspace (DEL)
+                // Do not delete the prompt
+                if (term._core.buffer.x > 2) {
+                    term.write('\b \b');
+                }
+                break;
+            default:
+                // Add character to buffer and write to terminal
+                cmdBuff += e;
+                term.write(e);
+        }
+    });
 }
