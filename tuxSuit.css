@@ -116,7 +116,7 @@ p {
 }
 
 /* Lesson stuff for demo -JP */
-/* SIMULATED DEMO */
+/* SIMULATED DEMO (DEPRECATED)
 #outCmdArea {
     resize: none;
     width: 100%;
@@ -125,15 +125,21 @@ p {
     width: 100%;
     padding: 12px 20px;
     display: block;
+} */
+/* XTERM */
+code {
+    /* Use consistent color theme for code elements */
+    background-color:#2E4057;
+    color:#F9DC5C;
 }
-#suggestionsArea {
+#suggestionsArea, #terminal {
     margin-top: 12px;
 }
-/* XTERM */
 #terminal {
     border-radius: 6px;
     border: 6px solid black;
 }
+
 
 /*tuxSpace styles for Help/Sign In*/
 
@@ -161,7 +167,6 @@ p {
 .tuxSpace .signup{
     float:right;
 }
-
 
 /*help style*/
 textarea {

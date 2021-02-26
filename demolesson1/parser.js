@@ -68,28 +68,44 @@ function demoOneExec(cmdIn) {
         }
     // If not right
     } else {
-        // If first or second command is not present
+        // If first command is not right
         if (!cmd1RegEx.exec(cmdIn)) {
-            // Treat it as an unknown command
-            outputErrStr = "\r\nUnknown command "
-            // For loop that will add the invalid command to the output
-            for (var i = 0; i < cmdIn.length; i++) {
-                // We just output the first part of the input, so break if theres a space
-                if (cmdIn[i] === " ") {
-                    break;
+            // If it's the second command
+            if (cmd2RegEx.exec(cmdIn)) {
+                // Provide t
+                $("#suggestionsArea")[0].innerHTML = "Whoops! It looks like we can't use <code>grep</code> as the first command.";
+                // If attempt counter is 3 or over
+                if (attemptCount >= 3) {
+                    // Append hint
+                    $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure to start with <code>curl</code> and then figure out how we can feed its results to <code>grep</code>.";
+                } else {
+                    // Else increment counter
+                    attemptCount++;
                 }
-                // Add the char in to the output
-                outputErrStr += cmdIn[i];
+                // State grep usage
+                return "\r\nUsage: grep PATTERNS";
+            } else {
+                // Treat it as an unknown command
+                outputErrStr = "\r\nUnknown command "
+                // For loop that will add the invalid command to the output
+                for (var i = 0; i < cmdIn.length; i++) {
+                    // We just output the first part of the input, so break if theres a space
+                    if (cmdIn[i] === " ") {
+                        break;
+                    }
+                    // Add the char in to the output
+                    outputErrStr += cmdIn[i];
+                }
+                // Suggest that the command is not valid
+                $("#suggestionsArea")[0].innerHTML = "Hmm... It appears that this command is not valid.<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
+                // If attempt counter less than 3
+                if (attemptCount < 3) {
+                    // Increment attempt counter
+                    attemptCount++;
+                }
+                // Print result
+                return outputErrStr;
             }
-            // Suggest that the command is not valid
-            $("#suggestionsArea")[0].innerHTML = "Hmm... It appears that this command is not valid.<br/><br/>Make sure you are using the commands from the lesson. In this case, <code>curl</code> and <code>grep</code>.";
-            // If attempt counter less than 3
-            if (attemptCount < 3) {
-                // Increment attempt counter
-                attemptCount++;
-            }
-            // Print result
-            return outputErrStr;
         // If only "curl" is provided
         } else if (/^\s*curl\s*(((-)|(--))([A-Z]|[a-z])*)*\s*$/.exec(cmdIn)) {
             // Suggest the user to give curl a URL
@@ -152,7 +168,7 @@ function demoOneExec(cmdIn) {
             // If the first parameter is not provided
             if (!param1RegEx.exec(cmdIn)) {
                 // Add in the "bytes received" bit to the output
-                outputErrStr = "Bytes received: 94\r\n" + outputErrStr;
+                outputErrStr = "\r\nBytes received: 94" + outputErrStr;
             }
             // Provide suggestion
             $("#suggestionsArea")[0].innerHTML = "Welp, you got the whole site markup but we only need the header.";
@@ -225,7 +241,7 @@ function demoOneExec(cmdIn) {
                     attemptCount++;
                 }
                 // State grep usage
-                return "\r\nUsage: grep [OPTION]... PATTERNS [FILE]...\r\nFailed writing body";
+                return "\r\nUsage: grep PATTERNS\r\nFailed writing body";
             }
         // Otherwise if an unknown error occurs
         } else {
@@ -243,11 +259,11 @@ function demoOneExec(cmdIn) {
 }
 
 
-// Prototype Xterm code begins here
+// Xterm code begins here
 
 // Function that will output initial prompt
 function prompt(term) {
-    term.write("\r\nlesson1@tux4starters $ ");
+    term.write("\r\n\x1B[1;34mlesson1@tux4starters\x1B[0m $ ");
 }
 // Core xterm code
 function xTermDemo() {
@@ -262,15 +278,11 @@ function xTermDemo() {
 
     // Set terminal prompt
     term.prompt = () => {
-        term.write("\r\nlesson1@tux4starters $ ");
+        term.write("\r\n\x1B[1;34mlesson1@tux4starters\x1B[0m $ ");
     };
 
     // Print welcome message
-    term.writeln("Tux For Starters");
-    // term.writeln("This is a local terminal emulation, without a real terminal in the back-end.");
-    // term.writeln("Type some keys and commands to play around.");
-    // term.writeln("");
-
+    term.writeln("\x1B[1;33mTux For Starters\x1B[0m");
     // Print out prompt
     prompt(term);
 
@@ -311,10 +323,12 @@ function xTermDemo() {
                 }
                 break;
             default:
-                console.log(e);
-                // Add character to buffer and write to terminal
-                cmdBuff += e;
-                term.write(e);
+                // If input is not a control sequence (e.g. cursor keys)
+                if (!(e.includes("\x1B"))) {
+                    // Add character to buffer and write to terminal
+                    cmdBuff += e;
+                    term.write(e);
+                }
         }
     });
 }
