@@ -139,6 +139,17 @@ code {
     border-radius: 6px;
     border: 6px solid black;
 }
+@media only screen and (max-width: 640px) {
+    .xterm-screen, .xterm-text-layer, .xterm-selection-layer, .xterm-link-layer, .xterm-cursor-layer {
+        width: 100% !important;
+        height: 35vh !important;
+    }  
+}
+@media only screen and (max-width: 992px) {
+    .xterm-screen, .xterm-text-layer, .xterm-selection-layer, .xterm-link-layer, .xterm-cursor-layer {
+        width: 100% !important;
+    }
+}
 
 
 /*tuxSpace styles for Help/Sign In*/
