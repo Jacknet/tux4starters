@@ -63,7 +63,7 @@
 
     <main>
         
-        <div class="container">
+        <div class="container" id="questionContainer">
             <h2>Lesson - Multiple Choice TEMPLATE</h2>
             <div class="lessonContent">
                 <!---place your lesson content here-->
@@ -88,15 +88,16 @@
                 <p>which of the following commands will show you what files are contained in your current working directory?</p>
                 <br>
                 <form class="multipleChoice" action="" method="" >
-                    <input type="radio" name="command" value="cd">
+                    <input id="ans1" type="radio" name="command" value="cd">
                     <label for="male">&ensp;cd</label><br>
-                    <input type="radio" name="command" value="ls">
+                    <input id="ans2" type="radio" name="command" value="ls">
                     <label for="female">&ensp;ls</label><br>
-                    <input type="radio" name="command" value="pwd">
+                    <input id="ans3" type="radio" name="command" value="pwd">
                     <label for="other">&ensp;pwd</label>
                     <br>
                     <br>
-                    <input type="submit" value="Submit">
+                    <!--please pass the id of the correct answer when calling the function on click-->
+                    <input onclick="checkMultipleChoice('ans2')" type="submit" value="Submit">
                     
                 </form>
             </div>

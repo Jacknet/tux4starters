@@ -90,9 +90,61 @@ function termParse(cmdIn) {
 
 
 }
+//this function will take a string parameter (id of the correct radio button) which 
+//indicates what is the correct answer.
+// possible values can be ans1, ans2, ans3. 
+function checkMultipleChoice(correctAns){
 
-
-
+    var ans1 = document.getElementById("ans1");
+    var ans2 = document.getElementById("ans2");
+    var ans3 = document.getElementById("ans3");
+    //we check which radio button is checked and compare it to the value passed to 
+    //to this function
+    //then we call a function that will show the stars if correct or else
+    //show a hint after three failed attempts
+    if(ans1.checked == true && correctAns === "ans1"){
+        console.log("correct");
+        isSolved = true;
+        giveStarts(attemptCount);
+    }
+    else if(ans2.checked == true && correctAns === "ans2"){
+        console.log("correct");
+        isSolved = true;
+        giveStarts(attemptCount);
+    }
+    else if(ans3.checked == true && correctAns === "ans3"){
+        console.log("correct");
+        isSolved = true;
+        giveStarts(attemptCount);
+    }
+    else{
+        console.log("incorrect");
+        attemptCount++;
+        if(attemptCount >= 3){
+            giveHint();
+        }
+    }
+}
+function giveHint(){
+    $("#suggestionsArea")[0].innerHTML = "Suggestion stuff.";
+}
+function giveStarts(count){
+    // Clear any prior messages
+    $("#suggestionsArea")[0].innerHTML = "";
+    //show starts depending on how many tried it took them
+    //comented it out because its still buggy
+    //its not showing the right amount of stars;
+    switch(count){
+        case 1:
+            //$("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            case 2:
+            //$("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+        case 3:
+             //$("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
+        default: 
+            return;
+    }
+}
 /*
     Below is vital code to get stuff working properly.
 

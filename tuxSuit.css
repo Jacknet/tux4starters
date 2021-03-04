@@ -203,7 +203,7 @@ textarea {
     float: right;
     
 }
-.container {
+#questionContainer {
     background-color:rgb(189, 205, 211);
     border-radius: 10px;
 }
