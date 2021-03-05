@@ -1,6 +1,7 @@
 /*
     Tux For Starters - Parser Template Code
-    Authored by Joaquin under GPLv3
+    Parser code authored by Joaquin, multiple choice code by Mayank
+    Under GPLv3
 */
 
 // Instnatiate new terminal variable
@@ -90,61 +91,34 @@ function termParse(cmdIn) {
 
 
 }
-//this function will take a string parameter (id of the correct radio button) which 
-//indicates what is the correct answer.
-// possible values can be ans1, ans2, ans3. 
-function checkMultipleChoice(correctAns){
 
-    var ans1 = document.getElementById("ans1");
-    var ans2 = document.getElementById("ans2");
-    var ans3 = document.getElementById("ans3");
-    //we check which radio button is checked and compare it to the value passed to 
-    //to this function
-    //then we call a function that will show the stars if correct or else
-    //show a hint after three failed attempts
-    if(ans1.checked == true && correctAns === "ans1"){
-        console.log("correct");
+// This function will check the radio buttons and determine if the correct answer was chosen. 
+function checkMultipleChoice(){
+
+
+
+    // Get pointer of valid response
+    // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
+    var ansChoice = $("#ans2")[0];
+
+
+
+    // Check if the valid radio button is marked
+    if (ansChoice.checked) {
+        // Mark that the question has been solved
         isSolved = true;
-        giveStarts(attemptCount);
-    }
-    else if(ans2.checked == true && correctAns === "ans2"){
-        console.log("correct");
-        isSolved = true;
-        giveStarts(attemptCount);
-    }
-    else if(ans3.checked == true && correctAns === "ans3"){
-        console.log("correct");
-        isSolved = true;
-        giveStarts(attemptCount);
-    }
-    else{
-        console.log("incorrect");
+        // Show star rating based on attempts
+        giveStars(attemptCount);
+    } else {
+        // Increment attempt if invalid response is given
         attemptCount++;
-        if(attemptCount >= 3){
-            giveHint();
+        // Show a hint after three failed attempts
+        if (attemptCount >= 3) {
+            giveHint("Suggestion stuff.");
         }
     }
 }
-function giveHint(){
-    $("#suggestionsArea")[0].innerHTML = "Suggestion stuff.";
-}
-function giveStarts(count){
-    // Clear any prior messages
-    $("#suggestionsArea")[0].innerHTML = "";
-    //show starts depending on how many tried it took them
-    //comented it out because its still buggy
-    //its not showing the right amount of stars;
-    switch(count){
-        case 1:
-            //$("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-            case 2:
-            //$("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-        case 3:
-             //$("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
-        default: 
-            return;
-    }
-}
+
 /*
     Below is vital code to get stuff working properly.
 
@@ -152,6 +126,34 @@ function giveStarts(count){
     such as the instructions that will be outputted to
     the terminal, but a majority of this is best left as-is.
 */
+// Function that will assign a hint to the suggestion area
+function giveHint(hintMsg){
+    $("#suggestionsArea")[0].innerHTML = hintMsg;
+}
+
+// Function that will assign stars given the amount of attempts made
+function giveStars(count){
+    // Clear any prior messages
+    $("#suggestionsArea")[0].innerHTML = "";
+    // Switch that will add the appropriate star rating
+    switch (count){
+        case 1: // One attempt
+        case 2: // Two attempts
+            // Three stars if one or less attempts
+            $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            // Break switch
+            break;
+        case 3: // Three attempts
+        case 4: // Four attempts
+            // Two stars if three to four attempts
+            $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            // Break switch
+            break;
+        default: // Other number of attempts
+            // One star for five or more attempts
+            $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
+    }
+}
 // Function that will output initial prompt
 function prompt(term) {
     term.write("\r\n\x1B[1;34mlesson1@tux4starters\x1B[0m:" + currWd + "$ ");

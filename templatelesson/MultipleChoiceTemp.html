@@ -37,6 +37,7 @@
                             <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
                             <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
                             <li><a href="index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
+                            <li><a href="MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
                         </ul>
                     </li>
                     <li><a href="../resources.html">Resources</a></li>
@@ -64,9 +65,9 @@
     <main>
         
         <div class="container" id="questionContainer">
-            <h2>Lesson - Multiple Choice TEMPLATE</h2>
+            <h2>Lesson ## - Multiple Choice Template</h2>
             <div class="lessonContent">
-                <!---place your lesson content here-->
+                <!-- Place your lesson content here -->
                 
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae tellus aliquet nisi aliquet condimentum. Aliquam semper odio id accumsan interdum. 
@@ -83,28 +84,26 @@
     
             </div>
             <div class="questionContent">
-                <!--place your question and answers here-->
+                <!-- Place your questions and answers here -->
                 <h3>Question #1</h3>
-                <p>which of the following commands will show you what files are contained in your current working directory?</p>
+                <p>
+                    Which of the following commands will show you what files are contained in your current working directory?
+                </p>
                 <br>
-                <form class="multipleChoice" action="" method="" >
+                <!-- Multiple choice container -->
+                <div class="multipleChoice">
                     <input id="ans1" type="radio" name="command" value="cd">
-                    <label for="male">&ensp;cd</label><br>
+                    <label for="cd">&ensp;cd</label><br>
                     <input id="ans2" type="radio" name="command" value="ls">
-                    <label for="female">&ensp;ls</label><br>
+                    <label for="ls">&ensp;ls</label><br>
                     <input id="ans3" type="radio" name="command" value="pwd">
-                    <label for="other">&ensp;pwd</label>
+                    <label for="pwd">&ensp;pwd</label>
                     <br>
                     <br>
-                    <!--please pass the id of the correct answer when calling the function on click-->
-                    <input onclick="checkMultipleChoice('ans2')" type="submit" value="Submit">
-                    
-                </form>
+                    <!-- Call the quiz check on submit -->
+                    <button type="button" onclick="checkMultipleChoice()">Submit</button> 
+                </div>
             </div>
-            <!--<div id="terminal"></div>
-            <script>
-                newTerm();
-            </script>-->
             <p id="suggestionsArea"></p>
         </div>
     </main>
