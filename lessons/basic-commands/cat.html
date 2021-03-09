@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice TEMPLATE</title>
+    <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../tuxSuit.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="../xterm/css/xterm.css">
+
+    <script src="../xterm/lib/xterm.js"></script>
+    <script src="../jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../../parser.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html">Tux For Starters</a>
+            </div>
+            <div class="collapse navbar-collapse" id="mainBar">
+                <ul class="nav navbar-nav">
+                    <li><a href="../about.html">About</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
+                            <li><a href="index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
+                            <li><a href="MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../resources.html">Resources</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../help.html">Help</a></li>
+                    <li style="display:inline-block;">
+                        <form class="navbar-form" action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li><a href="../signin.html">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        
+        <div class="container" id="questionContainer">
+            <h2>Lesson ## - Cat Command</h2>
+            <div class="lessonContent">
+                <!-- Place your lesson content here -->
+                
+                <p>
+                    <strong>cat</strong> (concatenate) command allows you to view the content of a file. It reads the data from a file that you
+                    specify and then outputs its content. It is useful when creating, viewing, and concatenating files. <strong>Concatenate</strong> means to 
+                    combine two things together -  files in this case. 
+                </p>
+                    <p>1) To view the content of a file you can use this simple command.</p>
+                    Command :
+                    <br>
+                    <code>
+                        $ cat filename
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        Content of the file
+                    </code>
+                    <br><br>                    
+                       <p>2) To view more then one file you can simply add another file's name to the command like so</p>
+                        Command :
+                    <br>
+                    <code>
+                        $ cat filename1 filename2
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        Content of the file1 and file2
+                    </code>
+                    <br><br>
+                        <p>3) To view the file content with number lines, use the <strong>-n</strong> option like so</p>
+                        Command :
+                    <br>
+                    <code>
+                        $ cat -n filename1
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        1 This is line one <br>
+                    </code>
+                    <code>
+                        2 This is line two
+                    </code>
+                    <br><br>
+                        <p>4) We can also use this command to create a new file like so</p>
+                        Command :
+                    <br>
+                    <code>
+                        $ cat > newfilename
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        A new file will be created with the name you provide.
+                    </code>
+                    <br><br>
+                    <p>5) We can also use the cat command to copy content from one file to another. 
+                        The example below copies the information from file1 to file2.<br>
+                        Note that we can copy multiple files into file2 at the same time just by adding it after file1.
+                    </p>
+                        Command :
+                    <br>
+                    <code>
+                        $ cat file1 > file2
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        The content of file1 will be copied into file2
+                    </code>
+                    <br><br>
+                    <p>6) Cat command can suppress repeated empty lines in the output if they are exist in the file. For example, if the content of the file are as follows <br></p>
+                    <code>
+                        this is line one.<br>
+                        (emptyline)<br>
+                        (emptyline)<br>
+                        (emptyline)<br>
+                        this is line two.
+                    </code>
+                    <br>
+                        Command :
+                    <br>
+                    <code>
+                        $ cat -s filename
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        this is line one.<br>
+                            (emptyline)<br>
+                            this is line two.
+                    </code>
+                    <br><br>
+                    <p>7) We can also use the cat command to write content to an existing file that already has content in it already. This is called appending to a file.
+                        we can do this by using the following command.
+                    </p>
+                        Command :
+                    <br>
+                    <code>
+                        $ cat file1 >> file2
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        this is the content from file2<br>
+                        this is the content from file1
+                    </code>
+                    <br>
+                    <p>8) Spelling the cat command backword (<strong>tac</strong>) will output the content of the file in a reverse order.</p>
+                        Command :
+                    <br>
+                    <code>
+                        $ tac filename
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        this is line two.<br>
+                        this is line one.
+                    </code>
+                    <br>
+                    <p>9) Using the opetion <strong>"-E"</strong> will indicate end of each line by adding "<strong>$</strong>"
+                     at the end of each sentence</p>
+                        Command :
+                    <br>
+                    <code>
+                        $ cat -e filename
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        this is line one.$<br>
+                        this is line one.$
+                    </code>
+                    <br>
+
+
+
+
+
+
+                    <br><br>
+                    Source:
+                    <cite>https://www.geeksforgeeks.org/cat-command-in-linux-with-examples/</cite>
+                    
+    
+            </div>
+            <div class="questionContent">
+                <!-- Place your questions and answers here -->
+                <h3></h3>
+                <p>
+                    <!--Place your question here-->
+                </p>
+                <br>
+                <!-- Multiple choice container -->
+                <div class="multipleChoice">
+                    <!--Place your answes here-->
+                </div>
+            </div>
+            <p id="suggestionsArea"></p>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
