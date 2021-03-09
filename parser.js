@@ -273,3 +273,83 @@ function resetTerm() {
     // Initialize the new terminal
     newTerm();
 }
+//core xterm code
+function xTermDemo() {
+    // If terminal is already initialized
+    if (term._initialized) {
+        // No need to do anything else
+        return;
+    }
+
+    // Set terminal initialize state to true
+    term._initialized = true;
+
+    // Set terminal prompt
+    term.prompt = () => {
+        term.write("\r\n\x1B[1;34mlesson1@tux4starters\x1B[0m $ ");
+    };
+
+    // Print welcome message
+    term.writeln("\x1B[1;33mTux For Starters\x1B[0m");
+    // Print out prompt
+    prompt(term);
+
+    // Set on data listener
+    term.onData(e => {
+        // Switch statement that will check output
+        switch (e) {
+            case "\r": // Enter key
+                // If "clear" command was entered
+                if (cmdBuff == "clear") {
+                    // Clear terminal and break
+                    term.clear($("#terminal")[0]);
+                    while (!(cmdBuff == "")) {
+                        // Remove last char by slicing it off
+                        cmdBuff = cmdBuff.slice(0, -1);
+                        // Backspace
+                        term.write("\b \b");
+                    }
+                    break;
+                } else {
+                    // Else send current command buffer to exec code and write output
+                    term.write(demoOneExec(cmdBuff));
+                    // Continue to next case for prompt; no break
+                }
+            case "\u0003": // Ctrl+C
+                // Clear buffer
+                cmdBuff = "";
+                // Call for prompt reset
+                prompt(term);
+                break;
+            case "\u007F": // Backspace (DEL)
+                // If buffer is not empty
+                if (!(cmdBuff == "")) {
+                    // Remove last char by slicing it off
+                    cmdBuff = cmdBuff.slice(0, -1);
+                    // Backspace
+                    term.write("\b \b");
+                }
+                break;
+            default:
+                // If input is not a control sequence (e.g. cursor keys)
+                if (!(e.includes("\x1B"))) {
+                    // Add character to buffer and write to terminal
+                    cmdBuff += e;
+                    term.write(e);
+                }
+        }
+    });
+}
+// Check function
+function demoOneExec(cmdIn) {
+    // If command entered is empty
+    if (cmdIn == "") {
+        // Return no string
+        return "";
+    }
+    else {
+        // otherwise place your return code here
+        //currently just returning an empty string
+        return "";
+    }
+}
