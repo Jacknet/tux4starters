@@ -66,7 +66,8 @@ function prompt(term) {
 }
 
 // Function that will print a prompt. Also overwritten later.
-// Odd that JS isn't using some sort of "override" thing declared before each function.
+// Seems that JS doesn't need some sort of "override" thing declared.
+// This is too easy i guess.
 function termInstr(term) {}
 
 // Function that will launch xterm lesson code
