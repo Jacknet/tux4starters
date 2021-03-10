@@ -34,6 +34,7 @@ function checkMultipleChoice() {}
 // Function that will assign a hint to the suggestion area
 function giveHint(hintMsg){
     $("#suggestionsArea")[0].innerHTML = hintMsg;
+    $("#result")[0].innerHTML ="Incorrect!";
 }
 
 // Function that will assign stars given the amount of attempts made
@@ -46,17 +47,23 @@ function giveStars(count){
         case 2: // Two attempts
             // Three stars if one or less attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            //show answer is correct
+            $("#result")[0].innerHTML ="Correct!";
             // Break switch
             break;
         case 3: // Three attempts
         case 4: // Four attempts
             // Two stars if three to four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            //show answer is correct
+            $("#result")[0].innerHTML ="Correct!";
             // Break switch
             break;
         default: // Other number of attempts
             // One star for five or more attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
+            //show answer is correct
+            $("#result")[0].innerHTML ="Correct!";
     }
 }
 

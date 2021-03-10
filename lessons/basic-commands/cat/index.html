@@ -228,17 +228,28 @@
             </div>
             <div class="questionContent">
                 <!-- Place your questions and answers here -->
-                <h3></h3>
+                <h3>Question #1</h3>
                 <p>
                     <!--Place your question here-->
+                    which of the following command will append to content of file1 to file2?
                 </p>
                 <br>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
                     <!--Place your answes here-->
+                    <input id="ans1" type="radio" name="command" value="copy">
+                    <label for="new">&ensp; cat file1 > file2</label><br>
+                    <input id="ans2" type="radio" name="command" value="append">
+                    <label for="create">&ensp;cat file1 >> file2</label><br>
+                    <input id="ans3" type="radio" name="command" value="view">
+                    <label for="touch">&ensp;cat file1 file2</label>
+                    <br>
+                    <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>
+                <p id="result"></p>
+                <p id="suggestionsArea"></p>
             </div>
-            <p id="suggestionsArea"></p>
+            
         </div>
     </main>
 
