@@ -97,7 +97,7 @@ function launchLesson() {
     term.writeln("\x1B[1;33mTux For Starters\x1B[0m\r\n");
 
     // Print instructions
-    termInstr()
+    termInstr(term);
 
     // Print out prompt
     prompt(term);
