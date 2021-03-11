@@ -64,25 +64,71 @@
     </nav>
 
     <main>
+        
         <div class="container" id="questionContainer">
-            <h2>Basic command - CD</h2>
+            <h2>Basic Commands | cd</h2>
             <div class="lessonContent">
                 <!-- Place your lesson content here -->
                 
-    
+                <p>
+                   The <strong>cd</strong> (Change Directory) command allows you to move from one folder (or directory) to another found in the directory.
+                </p>
+                <p>
+                    Changing Directories lets you then use commands to make, change, or delete files, as well
+                    list out any of the files inside of the folder, among many other commands.
+                </p>
+                    <p>1) Let's start by typing <strong>ls</strong> to see what's in the example directory.</p>
+                    <code>
+                        root@tux4starters:~$ ls
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        Documents Downloads Music Pictures
+                    </code>
+                    <br><br>
+                    <p>2) To use <strong>cd</strong> to move to a folder, start by typing it into the terminal:</p>
+                    <code>
+                        root@tux4starters:~$ cd
+                    </code>
+                    <br><br>                    
+                       <p>2) After typing cd, type the folder that you want to move to and enter it. Let's try
+                           moving to the "Pictures" folder.
+                       </p>
+                        Command :
+                    <br>
+                    <code>
+                        root@tux4starters:~$ cd Pictures
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        root@tux4starters:/Pictures$
+                    </code>
+                    <br><br>    
             </div>
             <div class="questionContent">
                 <!-- Place your questions and answers here -->
-                <h3></h3>
+                <h3>Question</h3>
                 <p>
                     <!--Place your question here-->
-                   
+                    If you started out in the root directory, and you want to move to "FolderA" inside of it,
+                    what would you type?
                 </p>
                 <br>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
                     <!--Place your answes here-->
-                    
+                    <input id="ans1" type="radio" name="command" value="copy">
+                    <label for="new">&ensp; cd.. FolderA</label><br>
+                    <input id="ans2" type="radio" name="command" value="append">
+                    <label for="create">&ensp;cd FolderA1</label><br>
+                    <input id="ans3" type="radio" name="command" value="view">
+                    <label for="touch">&ensp;cd FolderA</label>
+                    <br>
+                    <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>
                 <p id="result"></p>
                 <p id="suggestionsArea"></p>
