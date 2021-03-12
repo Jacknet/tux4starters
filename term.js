@@ -69,7 +69,7 @@ function giveStars(count){
 
 // Function that will output initial prompt
 function prompt(term) {
-    term.write("\r\n\x1B[1;34mroot@tux4starters\x1B[0m:" + currWd + "$ ");
+    term.write("\r\n\x1B[1;34mstudent@tux4starters\x1B[0m:" + currWd + "$ ");
 }
 
 // Function that will print a prompt. Also overwritten later.
@@ -90,7 +90,7 @@ function launchLesson() {
 
     // Set terminal prompt
     term.prompt = () => {
-        term.write("\r\n\x1B[1;34mroot@tux4starters\x1B[0m:" + currWd + "$ ");
+        term.write("\r\n\x1B[1;34mstudent@tux4starters\x1B[0m:" + currWd + "$ ");
     };
 
     // Print welcome message
