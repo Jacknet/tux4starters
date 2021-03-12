@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tux For Starters | Basic Commands | cd</title>
+    <title>Tux For Starters | Basic Commands | ls</title>
     <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -66,67 +66,56 @@
     <main>
         
         <div class="container" id="questionContainer">
-            <h2>Basic Commands | cd</h2>
+            <h2>Basic Commands | ls</h2>
             <div class="lessonContent">
                 <!-- Place your lesson content here -->
                 
                 <p>
-                   The <strong>cd</strong> (Change Directory) command allows you to move from one folder (or directory) to another found in the directory.
-                </p>
-                <p>
-                    Changing Directories lets you then use commands to make, change, or delete files, as well
-                    list out any of the files inside of the folder, among many other commands.
+                    The <strong>ls</strong> command shows you all of the files and folders (also called directories) in a location.
+                    <br>
                 </p>
                     <p>1) Let's start by typing <strong>ls</strong> to see what's in the example directory.</p>
                     <code>
                         student@tux4starters:~$ ls
                     </code>
-                    <br>
+                    <br><br>
                         Output :
                     <br>
                     <code>
-                        Documents Downloads Music Pictures
+                        Documents Example Music Pictures 
+                    </code>
+                    <br/>
+                    <p>Here we see the folders for Documents, Music, and Pictures. There is also a file named Example as well.</p>
+                    <br><br>
+                    <p>2) <strong>ls</strong>, like many other commands in the terminal, have many parameters you can use! We will learn more about these later, but if we
+                        wanted to list the folders above in reverse, we would type <strong>-r</strong> after typing <strong>ls</strong></p>
+                    <code>
+                        student@tux4starters:~$ ls -r
                     </code>
                     <br><br>
-                    <p>2) To use <strong>cd</strong> to move to a folder, start by typing it into the terminal:</p>
-                    <code>
-                        student@tux4starters:~$ cd
-                    </code>
-                    <br><br>                    
-                       <p>2) After typing cd, type the folder that you want to move to and enter it. Let's try
-                           moving to the "Pictures" folder.
-                       </p>
-                        Command :
-                    <br>
-                    <code>
-                        student@tux4starters:~$ cd Pictures
-                    </code>
-                    <br>
                         Output :
                     <br>
                     <code>
-                        student@tux4starters:/Pictures$
+                        Pictures Music Example Documents
                     </code>
-                    <br><br>    
             </div>
             <div class="questionContent">
                 <!-- Place your questions and answers here -->
                 <h3>Question</h3>
                 <p>
                     <!--Place your question here-->
-                    If you started out in the root directory, and you want to move to "FolderA" inside of it,
-                    what would you type?
+                    What does the <strong>ls</strong> command do?
                 </p>
                 <br>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
                     <!--Place your answes here-->
                     <input id="ans1" type="radio" name="command" value="copy">
-                    <label for="new">&ensp; cd.. FolderA</label><br>
+                    <label for="new">&ensp; List all files in a directory</label><br>
                     <input id="ans2" type="radio" name="command" value="append">
-                    <label for="create">&ensp;cd FolderA1</label><br>
+                    <label for="create">&ensp; List all folders in a directory</label><br>
                     <input id="ans3" type="radio" name="command" value="view">
-                    <label for="touch">&ensp;cd FolderA</label>
+                    <label for="touch">&ensp; Both A and B</label>
                     <br>
                     <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>

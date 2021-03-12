@@ -13,7 +13,7 @@ function termInstr(term) {
         writeln() is basically like println().
     */
     /*
-        term.writeln("This sample module asks that you change your active directory to \"folder1\".");
+    term.writeln("This sample module asks that you change your active directory to \"folder1\".");
     */
 }
 
@@ -58,7 +58,7 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*cd ((.|~)\/)?folder1\/?\s*$/.exec(cmdIn)) {
+    if (/^\s*ls*$/.exec(cmdIn)) {
         // Append star rating
         $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
         // Append reset button
@@ -107,14 +107,12 @@ function checkMultipleChoice(){
         isSolved = true;
         // Show star rating based on attempts
         giveStars(attemptCount);
-        // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
-            giveHint("Take a look at ");
+            giveHint("In the examples on the page, 'Documents' was a folder and 'Example' was a file.");
         }
     }
 }
