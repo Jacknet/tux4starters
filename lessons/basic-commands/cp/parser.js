@@ -1,10 +1,10 @@
+//Parser for cp
 
-//Parser for cat
 function checkMultipleChoice(){
 
     // Get pointer of valid response
     // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
-    var ansChoice = $("#ans2")[0];
+    var ansChoice = $("#ans1")[0];
 
     // Check if the valid radio button is marked
     if (ansChoice.checked) {
@@ -18,7 +18,7 @@ function checkMultipleChoice(){
         attemptCount++;
         // Show a hint after a failed attempts
         //this will also show "incorrect!"
-        giveHint("Review section 7 again");
+        giveHint("Review section 2 again");
         
     }
 }

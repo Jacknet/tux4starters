@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tux For Starters | Basic Commands | cp</title>
+    <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/tuxSuit.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="/xterm/css/xterm.css">
+
+    <script src="/xterm/lib/xterm.js"></script>
+    <script src="/jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/term.js"></script>
+    <script src="parser.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index.html">Tux For Starters</a>
+            </div>
+            <div class="collapse navbar-collapse" id="mainBar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/about.html">About</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
+                            <li><a href="/index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
+                            <li><a href="/MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/resources.html">Resources</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/help.html">Help</a></li>
+                    <li style="display:inline-block;">
+                        <form class="navbar-form" action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li><a href="/signin.html">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        
+        <div class="container" id="questionContainer">
+            <h2>Lesson 7 - cp Command</h2>
+            <div class="lessonContent">
+                <!-- Place your lesson content here -->
+                
+                <p>
+                    <strong>cp</strong> (copy) command allows you to copy files or group of files or directory. It creates a exact copy of the file with different file name.
+                    This command requres atleast two file names, the name of the file you want to copy (source) and the name of the new file that will be created (destination).
+                    you can also specify a directory where you want to copy the new file to.
+
+                </p>
+                    <p>1) Below we copy file1 into a new file called file2.</p>
+                    Command :
+                    <br>
+                    <code>
+                        $ cp file1 file2
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        Content of the file1 will be copied to file2. file2 will be created if it does not exist.
+                        If file2 does exist then its content will be overwritten.
+                    </code>
+                    <br><br>                    
+                       <p>2) We can more file(s) to a folder in our directory</p>
+                        Command :
+                    <br>
+                    <code>
+                        $ cp file1 file2 backup
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        file1 and file2 will be copied to a folder called backup if it exist within our directory.
+                    </code>
+                    <br><br>
+                        <p>3) cp also allows us to copy a folder to another folder by using the <strong>-R</strong> option. The -R option tells it to 
+                        recursively copy all the files that are in folder1 to folder2.</p>
+                        Command :
+                    <br>
+                    <code>
+                        $ cp -R folder1 folder2
+                    </code>
+                    <br>
+                        Output :
+                    <br>
+                    <code>
+                        folder1 and all of its files will be copied to folder2.
+                    </code>
+               
+
+
+
+                    <br><br>
+                    Source:
+                    <cite>https://www.geeksforgeeks.org/cp-command-linux-examples/</cite>
+                    
+    
+            </div>
+            <div class="questionContent">
+                <!-- Place your questions and answers here -->
+                <h3>Question #1</h3>
+                <p>
+                    <!--Place your question here-->
+                    Which command will allow you to allow you to copy <b>attendance.txt</b> and <b>students.txt</b> file to a 
+                    a folder called <b>period1</b>? 
+                </p>
+                <br>
+                <!-- Multiple choice container -->
+                <div class="multipleChoice">
+                    <!--Place your answes here-->
+                    <input id="ans1" type="radio" name="command" value="cp">
+                    <label for="cp">&ensp;cp attendance.txt students.txt period1</label><br>
+                    <input id="ans2" type="radio" name="command" value="folder">
+                    <label for="folder">&ensp;attendance.txt students.txt period1</label><br>
+                    <input id="ans3" type="radio" name="command" value="file">
+                    <label for="file">&ensp;cp attendance.txt students.txt</label>
+                    <br>
+                    <button type="button" onclick="checkMultipleChoice()">Submit</button>
+                </div>
+                <p id="result"></p>
+                <p id="suggestionsArea"></p>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
