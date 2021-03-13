@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tux For Starters | Basic Commands | ls</title>
+    <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/tuxSuit.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="/xterm/css/xterm.css">
+
+    <script src="/xterm/lib/xterm.js"></script>
+    <script src="/jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/term.js"></script>
+    <script src="parser.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index.html">Tux For Starters</a>
+            </div>
+            <div class="collapse navbar-collapse" id="mainBar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/about.html">About</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
+                            <li><a href="/index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
+                            <li><a href="/MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/resources.html">Resources</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/help.html">Help</a></li>
+                    <li style="display:inline-block;">
+                        <form class="navbar-form" action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li><a href="/signin.html">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        
+        <div class="container" id="questionContainer">
+            <h2>Basic Commands | ls</h2>
+            <div class="lessonContent">
+                <!-- Place your lesson content here -->
+                
+                <p>
+                    The <strong>ls</strong> command shows you all of the files and folders (also called directories) in a location.
+                    <br>
+                </p>
+                    <p>1) Let's start by typing <strong>ls</strong> to see what's in the example directory.</p>
+                    <code>
+                        student@tux4starters:~$ ls
+                    </code>
+                    <br><br>
+                        Output :
+                    <br>
+                    <code>
+                        Documents Example Music Pictures 
+                    </code>
+                    <br/>
+                    <p>Here we see the folders for Documents, Music, and Pictures. There is also a file named Example as well.</p>
+                    <br><br>
+                    <p>2) <strong>ls</strong>, like many other commands in the terminal, have many parameters you can use! We will learn more about these later, but if we
+                        wanted to list the folders above in reverse, we would type <strong>-r</strong> after typing <strong>ls</strong></p>
+                    <code>
+                        student@tux4starters:~$ ls -r
+                    </code>
+                    <br><br>
+                        Output :
+                    <br>
+                    <code>
+                        Pictures Music Example Documents
+                    </code>
+            </div>
+            <div class="questionContent">
+                <!-- Place your questions and answers here -->
+                <h3>Question</h3>
+                <p>
+                    <!--Place your question here-->
+                    What does the <strong>ls</strong> command do?
+                </p>
+                <br>
+                <!-- Multiple choice container -->
+                <div class="multipleChoice">
+                    <!--Place your answes here-->
+                    <input id="ans1" type="radio" name="command" value="copy">
+                    <label for="new">&ensp; List all files in a directory</label><br>
+                    <input id="ans2" type="radio" name="command" value="append">
+                    <label for="create">&ensp; List all folders in a directory</label><br>
+                    <input id="ans3" type="radio" name="command" value="view">
+                    <label for="touch">&ensp; Both A and B</label>
+                    <br>
+                    <button type="button" onclick="checkMultipleChoice()">Submit</button>
+                </div>
+                <p id="result"></p>
+                <p id="suggestionsArea"></p>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>

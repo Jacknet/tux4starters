@@ -69,7 +69,7 @@ function giveStars(count){
 
 // Function that will output initial prompt
 function prompt(term) {
-    term.write("\r\n\x1B[1;34mlesson1@tux4starters\x1B[0m:" + currWd + "$ ");
+    term.write("\r\n\x1B[1;34mstudent@tux4starters\x1B[0m:" + currWd + "$ ");
 }
 
 // Function that will print a prompt. Also overwritten later.
@@ -90,14 +90,14 @@ function launchLesson() {
 
     // Set terminal prompt
     term.prompt = () => {
-        term.write("\r\n\x1B[1;34mlesson1@tux4starters\x1B[0m:" + currWd + "$ ");
+        term.write("\r\n\x1B[1;34mstudent@tux4starters\x1B[0m:" + currWd + "$ ");
     };
 
     // Print welcome message
     term.writeln("\x1B[1;33mTux For Starters\x1B[0m\r\n");
 
     // Print instructions
-    termInstr()
+    termInstr(term);
 
     // Print out prompt
     prompt(term);
@@ -181,74 +181,4 @@ function resetTerm() {
     term = new Terminal();
     // Initialize the new terminal
     newTerm();
-}
-// Launch the session now
-function launchLesson() {
-    // If terminal is already initialized
-    if (term._initialized) {
-        // No need to do anything else
-        return;
-    }
-
-    // Set terminal initialize state to true
-    term._initialized = true;
-
-    // Set terminal prompt
-    term.prompt = () => {
-        term.write("\r\n\x1B[1;34mlesson1@tux4starters\x1B[0m $ ");
-    };
-
-    // Print welcome message
-    term.writeln("\x1B[1;33mTux For Starters\x1B[0m");
-    // Print out prompt
-    prompt(term);
-
-    // Set on data listener
-    term.onData(e => {
-        // If not solved
-        if (!isSolved) {
-            // Switch statement that will check output
-            switch (e) {
-                case "\r": // Enter key
-                    // If "clear" command was entered
-                    if (cmdBuff == "clear") {
-                        // Clear terminal and break
-                        term.clear($("#terminal")[0]);
-                        while (!(cmdBuff == "")) {
-                            // Remove last char by slicing it off
-                            cmdBuff = cmdBuff.slice(0, -1);
-                            // Backspace
-                            term.write("\b \b");
-                        }
-                        break;
-                    } else {
-                        // Else send current command buffer to exec code and write output
-                        term.write(termParse(cmdBuff));
-                        // Continue to next case for prompt; no break
-                    }
-                case "\u0003": // Ctrl+C
-                    // Clear buffer
-                    cmdBuff = "";
-                    // Call for prompt reset
-                    prompt(term);
-                    break;
-                case "\u007F": // Backspace (DEL)
-                    // If buffer is not empty
-                    if (!(cmdBuff == "")) {
-                        // Remove last char by slicing it off
-                        cmdBuff = cmdBuff.slice(0, -1);
-                        // Backspace
-                        term.write("\b \b");
-                    }
-                    break;
-                default:
-                    // If input is not a control sequence (e.g. cursor keys)
-                    if (!(e.includes("\x1B"))) {
-                        // Add character to buffer and write to terminal
-                        cmdBuff += e;
-                        term.write(e);
-                    }
-            }
-        }
-    });
 }
