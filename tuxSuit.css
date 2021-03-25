@@ -195,7 +195,6 @@ textarea {
 }
 .lessonContent {
     width: 60%;   
-    border-radius: 10px;
 }
 .questionContent {
     width: 38%;
@@ -204,5 +203,6 @@ textarea {
 }
 #questionContainer {
     background-color:rgb(189, 205, 211);
+    padding-bottom: 1%;
     border-radius: 10px;
 }
