@@ -46,10 +46,10 @@ body {
     cursor: pointer !important;
 }
 
-.navbar-nav li{
+/* .navbar-nav li{
     padding-left: 10px;
     padding-right: 10px;
-}
+} */
 
 .navbar-form {
     float: left;
