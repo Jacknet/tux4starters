@@ -65,7 +65,7 @@ body {
     background-color: #2E4057;
 }
 
-.navbar-collapse {
+.navbar-collapse, .container-fluid {
     background-color: #F9DC5C;
 
 }
