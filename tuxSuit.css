@@ -46,10 +46,10 @@ body {
     cursor: pointer !important;
 }
 
-.navbar-nav li{
+/* .navbar-nav li{
     padding-left: 10px;
     padding-right: 10px;
-}
+} */
 
 .navbar-form {
     float: left;
@@ -65,7 +65,7 @@ body {
     background-color: #2E4057;
 }
 
-.navbar-collapse {
+.navbar-collapse, .container-fluid {
     background-color: #F9DC5C;
 
 }
@@ -82,6 +82,13 @@ h2 {
     color: #2E4057;
     font-family: 'Open Sans Bold', Arial Bold, Helvetica, sans-serif !important;
     font-size: 30px;
+    font-weight: bold;
+}
+
+h3 {
+    color: #2E4057;
+    font-family: 'Open Sans Bold', Arial Bold, Helvetica, sans-serif !important;
+    font-size: 18px;
     font-weight: bold;
 }
 

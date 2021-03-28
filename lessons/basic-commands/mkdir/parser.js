@@ -1,9 +1,11 @@
-
 /*
     Tux For Starters - Parser Template Code
     Parser code authored by Joaquin, multiple choice code by Mayank
     Under GPLv3
 */
+
+// Marker that indicates if step 1 is done
+var stepOneDone = false;
 
 // Instructions for lesson
 function termInstr(term) {
@@ -14,7 +16,7 @@ function termInstr(term) {
         writeln() is basically like println().
     */
     /*
-        term.writeln("This sample module asks that you change your active directory to \"folder1\".");
+    term.writeln("This sample module asks that you change your active directory to \"folder1\".");
     */
 }
 
@@ -59,30 +61,53 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*cd ((.|~)\/)?folder1\/?\s*$/.exec(cmdIn)) {
+    // Step 2 code
+    if ((/^\s*cd folderB\s*$/.exec(cmdIn)) && (stepOneDone)) {
+        // Set working directory to created folder
+        currWrd = "folderB";
         // Append star rating
-        $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+        giveStarsTerm(attemptCount);
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\ls\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        // Set current directory to folder1
-        currWd = "folder1";
-        // Set solved flag to true
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\rmdir\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        // Mark solved
         isSolved = true;
-        // Print result
+        // Unmark step 1 done flag for reset
+        stepOneDone = false;
+        // Print nothing
         return "";
-    } else {
+    } else if (stepOneDone) {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Use the command that stands for &#39;<strong>Change Directory</strong>&#39;";
+        $("#suggestionsArea")[0].innerHTML = "The cd command changes your current directory.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure that you spell the folder name exactly as spelled above.";
-        } else {
-            // Otherwise increment attempt counter
-            attemptCount++;
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use cd to go to folderB";
         }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
+    // Step 1 code
+    if ((/^\s*mkdir folderB\s*$/.exec(cmdIn)) && !(stepOneDone)) {
+        // If mkdir is correct and step one is not done
+        // Mark step 1 as done
+        stepOneDone = true;
+        // Print nothing
+        return "";
+    } else if (!(stepOneDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "The mkdir command creates a new directory.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use mkdir to create folderB";
+        }
+        // Increment attempt counter
+        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -91,27 +116,31 @@ function termParse(cmdIn) {
 
 }
 
-//Parser for cat
+// This function will check the radio buttons and determine if the correct answer was chosen. 
 function checkMultipleChoice(){
+
+
 
     // Get pointer of valid response
     // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
     var ansChoice = $("#ans2")[0];
+
+
 
     // Check if the valid radio button is marked
     if (ansChoice.checked) {
         // Mark that the question has been solved
         isSolved = true;
         // Show star rating based on attempts
-        //this will also show "Correct!"
         giveStarsMult(attemptCount);
+        // Append next button
         $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
-        // Show a hint after a failed attempts
-        //this will also show "incorrect!"
-        giveHint("Review section 7 again");
-        
+        // Show a hint after three failed attempts
+        if (attemptCount >= 3) {
+            giveHint("pwd stands for Print ____ _______");
+        }
     }
 }

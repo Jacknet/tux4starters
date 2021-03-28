@@ -1,4 +1,3 @@
-
 /*
     Tux For Starters - Parser Template Code
     Parser code authored by Joaquin, multiple choice code by Mayank
@@ -14,7 +13,7 @@ function termInstr(term) {
         writeln() is basically like println().
     */
     /*
-        term.writeln("This sample module asks that you change your active directory to \"folder1\".");
+    term.writeln("This sample module asks that you change your active directory to \"folder1\".");
     */
 }
 
@@ -59,15 +58,14 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*cd ((.|~)\/)?folder1\/?\s*$/.exec(cmdIn)) {
+    if (/^\s*pwd\s*$/.exec(cmdIn)) {
         // Append star rating
         $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\ls\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        // Set current directory to folder1
-        currWd = "folder1";
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\cd\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        term.writeln ("\r\n\n/root/student");
         // Set solved flag to true
         isSolved = true;
         // Print result
@@ -91,27 +89,31 @@ function termParse(cmdIn) {
 
 }
 
-//Parser for cat
+// This function will check the radio buttons and determine if the correct answer was chosen. 
 function checkMultipleChoice(){
+
+
 
     // Get pointer of valid response
     // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
     var ansChoice = $("#ans2")[0];
+
+
 
     // Check if the valid radio button is marked
     if (ansChoice.checked) {
         // Mark that the question has been solved
         isSolved = true;
         // Show star rating based on attempts
-        //this will also show "Correct!"
         giveStarsMult(attemptCount);
+        // Append next button
         $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
-        // Show a hint after a failed attempts
-        //this will also show "incorrect!"
-        giveHint("Review section 7 again");
-        
+        // Show a hint after three failed attempts
+        if (attemptCount >= 3) {
+            giveHint("Remember that to remove a directory, you do not need to spell out remove");
+        }
     }
 }

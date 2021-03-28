@@ -58,26 +58,25 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*ls*$/.exec(cmdIn)) {
+    if (/^\s*ls -r\s*$/.exec(cmdIn)) {
         // Append star rating
         $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"#\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        // Set current directory to folder1
-        currWd = "folder1";
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\mkdir\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        term.writeln ("\r\n\nPictures Music Example Documents");
         // Set solved flag to true
         isSolved = true;
         // Print result
         return "";
     } else {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Use the command that stands for &#39;<strong>Change Directory</strong>&#39;";
+        $("#suggestionsArea")[0].innerHTML = "Listing everything normally would just have you type <strong>ls</strong>.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure that you spell the folder name exactly as spelled above.";
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Remember that -r is the parameter for having everything listed in reverse order.";
         } else {
             // Otherwise increment attempt counter
             attemptCount++;
@@ -106,7 +105,8 @@ function checkMultipleChoice(){
         // Mark that the question has been solved
         isSolved = true;
         // Show star rating based on attempts
-        giveStars(attemptCount);
+        giveStarsMult(attemptCount);
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
