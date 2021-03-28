@@ -113,7 +113,7 @@ function checkMultipleChoice(){
         attemptCount++;
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
-            giveHint("pwd stands for Print ____ _______");
+            giveHint("Remember that to remove a directory, you do not need to spell out remove");
         }
     }
 }
