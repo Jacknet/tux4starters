@@ -12,7 +12,7 @@ function checkMultipleChoice(){
         isSolved = true;
         // Show star rating based on attempts
         //this will also show "Correct!"
-        giveStars(attemptCount);
+        giveStarsMult(attemptCount);
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;

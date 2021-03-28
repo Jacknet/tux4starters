@@ -4,6 +4,9 @@
     Under GPLv3
 */
 
+// Marker that indicates if step 1 is done
+var stepOneDone = false;
+
 // Instructions for lesson
 function termInstr(term) {
     /*
@@ -58,30 +61,53 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*mkdir folderB\s*$/.exec(cmdIn)) {
-        if (/^\s*cd folderB\s*$/.exec(cmdIn)) {
-            // Append star rating
-            $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-            // Append reset button
-            $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
-            // Append next button
-            $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\rmdir\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-            currWrd = "folderB";
-            isSolved = true;
-        }
-        // Print result
+    // Step 2 code
+    if ((/^\s*cd folderB\s*$/.exec(cmdIn)) && (stepOneDone)) {
+        // Set working directory to created folder
+        currWrd = "folderB";
+        // Append star rating
+        giveStarsTerm(attemptCount);
+        // Append reset button
+        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
+        // Append next button
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\rmdir\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        // Mark solved
+        isSolved = true;
+        // Unmark step 1 done flag for reset
+        stepOneDone = false;
+        // Print nothing
         return "";
-    } else {
+    } else if (stepOneDone) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "The cd command changes your current directory.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use cd to go to folderB";
+        }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
+    // Step 1 code
+    if ((/^\s*mkdir folderB\s*$/.exec(cmdIn)) && !(stepOneDone)) {
+        // If mkdir is correct and step one is not done
+        // Mark step 1 as done
+        stepOneDone = true;
+        // Print nothing
+        return "";
+    } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The mkdir command creates a new directory.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use mkdir to create folderB";
-        } else {
-            // Otherwise increment attempt counter
-            attemptCount++;
         }
+        // Increment attempt counter
+        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -106,7 +132,7 @@ function checkMultipleChoice(){
         // Mark that the question has been solved
         isSolved = true;
         // Show star rating based on attempts
-        giveStars(attemptCount);
+        giveStarsMult(attemptCount);
         // Append next button
         $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {

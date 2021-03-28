@@ -106,7 +106,7 @@ function checkMultipleChoice(){
         // Mark that the question has been solved
         isSolved = true;
         // Show star rating based on attempts
-        giveStars(attemptCount);
+        giveStarsMult(attemptCount);
         // Append next button
         $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
