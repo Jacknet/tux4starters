@@ -58,25 +58,26 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*ls -r\s*$/.exec(cmdIn)) {
-        // Append star rating
-        $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-        // Append reset button
-        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
-        // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\mkdir\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        term.writeln ("\r\n\nPictures Music Example Documents");
-        // Set solved flag to true
-        isSolved = true;
+    if (/^\s*mkdir folderB\s*$/.exec(cmdIn)) {
+        if (/^\s*cd folderB\s*$/.exec(cmdIn)) {
+            // Append star rating
+            $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+            // Append reset button
+            $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
+            // Append next button
+            $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\rmdir\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+            currWrd = "folderB";
+            isSolved = true;
+        }
         // Print result
         return "";
     } else {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Listing everything normally would just have you type <strong>ls</strong>.";
+        $("#suggestionsArea")[0].innerHTML = "The mkdir command creates a new directory.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Remember that -r is the parameter for having everything listed in reverse order.";
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use mkdir to create folderB";
         } else {
             // Otherwise increment attempt counter
             attemptCount++;
@@ -96,7 +97,7 @@ function checkMultipleChoice(){
 
     // Get pointer of valid response
     // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
-    var ansChoice = $("#ans3")[0];
+    var ansChoice = $("#ans2")[0];
 
 
 
@@ -106,13 +107,14 @@ function checkMultipleChoice(){
         isSolved = true;
         // Show star rating based on attempts
         giveStars(attemptCount);
+        // Append next button
         $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
-            giveHint("In the examples on the page, 'Documents' was a folder and 'Example' was a file.");
+            giveHint("pwd stands for Print ____ _______");
         }
     }
 }

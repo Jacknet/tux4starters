@@ -85,6 +85,13 @@ h2 {
     font-weight: bold;
 }
 
+h3 {
+    color: #2E4057;
+    font-family: 'Open Sans Bold', Arial Bold, Helvetica, sans-serif !important;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 p {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
     font-size: 18px;
