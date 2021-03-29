@@ -3,6 +3,7 @@
     Parser code authored by Joaquin, multiple choice code by Mayank
     Under GPLv3
 */
+var stepOneDone = false;
 
 // Instructions for lesson
 function termInstr(term) {
@@ -58,29 +59,52 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*pwd\s*$/.exec(cmdIn)) {
-        // Append star rating
-        $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-        // Append reset button
-        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
-        // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\cd\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        term.writeln ("\r\n\n/root/student");
-        // Set solved flag to true
-        isSolved = true;
+    // Step 1 code
+    if ((/^\s*touch ABC\s*$/.exec(cmdIn)) && !(stepOneDone)) {
+        // If first step is correct and step one is not done
+        // Mark step 1 as done
+        stepOneDone = true;
         // Print result
         return "";
-    } else {
+    } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Use the command that stands for &#39;<strong>Change Directory</strong>&#39;";
+        $("#suggestionsArea")[0].innerHTML = "Remember to use the command to quickly create empty files. Remember that the file will be called ABC.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure that you spell the folder name exactly as spelled above.";
-        } else {
-            // Otherwise increment attempt counter
-            attemptCount++;
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>touch</strong> command to create an empty file.";
         }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
+    // Step 2 code
+    if ((/^\s*ls\s*$/.exec(cmdIn)) && (stepOneDone)) {
+        // Append star rating
+        giveStarsTerm(attemptCount);
+        // Append reset button
+        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
+        // Append next button
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\cp\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        // Mark solved
+        isSolved = true;
+        // Reset variables
+        stepOneDone = false;
+        // Print result
+        term.writeln ("\r\n\nABC Documents Example Music Pictures");
+        return "";
+    } else if ((stepOneDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "Use the command to list all the files and folders in this directory.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>ls</strong> to list all the files.";
+        }
+        // Increment attempt counter
+        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -113,7 +137,7 @@ function checkMultipleChoice(){
         attemptCount++;
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
-            giveHint("pwd stands for Print ____ _______");
+            giveHint("Remember that the command starts with a 't'.");
         }
     }
 }

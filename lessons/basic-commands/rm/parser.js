@@ -96,7 +96,7 @@ function checkMultipleChoice(){
 
     // Get pointer of valid response
     // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
-    var ansChoice = $("#ans2")[0];
+    var ansChoice = $("#ans1")[0];
 
 
 
@@ -113,7 +113,7 @@ function checkMultipleChoice(){
         attemptCount++;
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
-            giveHint("Remember that to remove a directory, you do not need to spell out remove");
+            giveHint("Remember that the command to remove a directory, it is rmdir, so removing a file would be that command without the 'dir'.");
         }
     }
 }

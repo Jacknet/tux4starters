@@ -94,7 +94,7 @@ function termParse(cmdIn) {
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use rmdir to remove directories.";
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>rmdir</strong> to remove directories.";
         }
         // Increment attempt counter
         attemptCount++;
@@ -112,7 +112,7 @@ function termParse(cmdIn) {
         $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\touch\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
         // Mark solved
         isSolved = true;
-        // Mark step 2 as done
+        // Reset variables
         stepOneDone = false;
         stepTwoDone = false;
         // Print result
