@@ -4,6 +4,10 @@
     Under GPLv3
 */
 
+// Set variables
+var stepOneDone = false;
+var stepTwoDone = false;
+
 // Instructions for lesson
 function termInstr(term) {
     /*
@@ -58,33 +62,77 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*pwd\s*$/.exec(cmdIn)) {
-        // Append star rating
-        $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-        // Append reset button
-        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
-        // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\cd\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        term.writeln ("\r\n\n/root/student");
-        // Set solved flag to true
-        isSolved = true;
+    // Step 1 code
+    if ((/^\s*ls\s*$/.exec(cmdIn)) && !(stepOneDone)) {
+        // If mkdir is correct and step one is not done
+        // Mark step 1 as done
+        stepOneDone = true;
         // Print result
+        term.writeln ("\r\n\nABC Documents Example Music Pictures");
         return "";
-    } else {
+    } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Use the command that stands for &#39;<strong>Change Directory</strong>&#39;";
+        $("#suggestionsArea")[0].innerHTML = "List all of the files in the root directory first.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure that you spell the folder name exactly as spelled above.";
-        } else {
-            // Otherwise increment attempt counter
-            attemptCount++;
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>ls</strong> command to list everything in the directory.";
         }
+        // Increment attempt counter
+        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
 
+    // Step 2 code
+    if ((/^\s*rm ABC\s*$/.exec(cmdIn)) && (stepOneDone) && !(stepTwoDone)) {
+        stepOneDone = true;
+        stepTwoDone = true;
+        // Change working directory
+        return "";
+    } else if ((stepOneDone) && !(stepTwoDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "The second step is to remove the file named ABC.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>rm</strong> to remove the file.";
+        }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
+    // Step 3 code
+    if ((/^\s*ls\s*$/.exec(cmdIn)) && (stepOneDone) && (stepTwoDone)) {
+        // Append star rating
+        giveStarsTerm(attemptCount);
+        // Append reset button
+        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
+        // Append next button
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\cat\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        // Mark solved
+        isSolved = true;
+        // Reset variables
+        stepOneDone = false;
+        stepTwoDone = false;
+        // Print result
+        term.writeln ("\r\n\nDocuments Example Music Pictures");
+        return "";
+    } else if ((stepOneDone) && (stepTwoDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "Finally, list all the files and folders again.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the same <strong>ls</strong> command you used in the first step.";
+        }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
 
 
 }

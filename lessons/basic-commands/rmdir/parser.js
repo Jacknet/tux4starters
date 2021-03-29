@@ -68,7 +68,7 @@ function termParse(cmdIn) {
         // Print result
         term.writeln ("\r\n\ndelFolder Documents Example Music Pictures");
         return "";
-    } else if (!(stepOneDone)) {
+    } else if (!(stepOneDone) & !(stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "First, list the files and folders.";
         // If attempt is 3 or over

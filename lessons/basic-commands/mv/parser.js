@@ -4,7 +4,7 @@
     Under GPLv3
 */
 var stepOneDone = false;
-
+var stepTwoDone = false;
 // Instructions for lesson
 function termInstr(term) {
     /*
@@ -60,19 +60,19 @@ function termParse(cmdIn) {
         "cd ~/newlesson/"
     */
     // Step 1 code
-    if ((/^\s*cp ABC DEF\s*$/.exec(cmdIn)) && !(stepOneDone)) {
-        // If first step is correct and step one is not done
+    if ((/^\s*mv DEF Pictures\s*$/.exec(cmdIn)) && !(stepOneDone)){
+        // If ls is correct and step one is not done
         // Mark step 1 as done
         stepOneDone = true;
         // Print result
         return "";
-    } else if (!(stepOneDone)) {
+    } else if (!(stepOneDone) & !(stepTwoDone)) {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Remember, the ABC file is already created, all you need to do is copy the file into another file named DEF.";
+        $("#suggestionsArea")[0].innerHTML = "The first step is to move the DEF file into the Pictures folder.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>cp</strong> command to copy all of ABC into DEF.";
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>mv</strong> command to move DEF into Pictures.";
         }
         // Increment attempt counter
         attemptCount++;
@@ -81,27 +81,19 @@ function termParse(cmdIn) {
     }
 
     // Step 2 code
-    if ((/^\s*ls\s*$/.exec(cmdIn)) && (stepOneDone)) {
-        // Append star rating
-        giveStarsTerm(attemptCount);
-        // Append reset button
-        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
-        // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\mv\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        // Mark solved
-        isSolved = true;
-        // Reset variables
-        stepOneDone = false;
-        // Print result
-        term.writeln ("\r\n\nABC DEF Documents Example Music Pictures");
+    if ((/^\s*cd Pictures\s*$/.exec(cmdIn)) && (stepOneDone) && !(stepTwoDone)) {
+        stepOneDone = true;
+        stepTwoDone = true;
+        // Change working directory
+        currWd = "~/Pictures";
         return "";
-    } else if ((stepOneDone)) {
+    } else if ((stepOneDone) && !(stepTwoDone)) {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Use the command to list all the files and folders in this directory.";
+        $("#suggestionsArea")[0].innerHTML = "The second step is to go into the Pictures folder.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>ls</strong> to list all the files.";
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>cd</strong> to go into a directory.";
         }
         // Increment attempt counter
         attemptCount++;
@@ -109,6 +101,35 @@ function termParse(cmdIn) {
         return "\r\nUnknown command";
     }
 
+    // Step 3 code
+    if ((/^\s*ls\s*$/.exec(cmdIn)) && (stepOneDone) && (stepTwoDone)) {
+        // Append star rating
+        giveStarsTerm(attemptCount);
+        // Append reset button
+        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
+        // Append next button
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\rm\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        // Mark solved
+        isSolved = true;
+        // Reset variables
+        stepOneDone = false;
+        stepTwoDone = false;
+        // Print result
+        term.writeln ("\r\n\nDEF");
+        return "";
+    } else if ((stepOneDone) && (stepTwoDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "Finally, list all the files and folders again.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the same <strong>ls</strong> command you used in the first step.";
+        }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
 
 
 }

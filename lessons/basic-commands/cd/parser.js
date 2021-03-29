@@ -66,7 +66,7 @@ function termParse(cmdIn) {
         // Append next button
         $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\ls\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
         // Set current directory to folder1
-        currWd = "folder1";
+        currWd = "~/folder1";
         // Set solved flag to true
         isSolved = true;
         // Print result

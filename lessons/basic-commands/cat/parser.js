@@ -1,10 +1,10 @@
-
 /*
     Tux For Starters - Parser Template Code
     Parser code authored by Joaquin, multiple choice code by Mayank
     Under GPLv3
 */
-
+var stepOneDone = false;
+var stepTwoDone = false;
 // Instructions for lesson
 function termInstr(term) {
     /*
@@ -14,7 +14,7 @@ function termInstr(term) {
         writeln() is basically like println().
     */
     /*
-        term.writeln("This sample module asks that you change your active directory to \"folder1\".");
+    term.writeln("This sample module asks that you change your active directory to \"folder1\".");
     */
 }
 
@@ -59,37 +59,110 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*cd ((.|~)\/)?folder1\/?\s*$/.exec(cmdIn)) {
-        // Append star rating
-        $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-        // Append reset button
-        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
-        // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\ls\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        // Set current directory to folder1
-        currWd = "folder1";
-        // Set solved flag to true
-        isSolved = true;
-        // Print result
+    // Step 1 code
+    if ((/^\s*cd Music\s*$/.exec(cmdIn)) && !(stepOneDone)){
+        // If ls is correct and step one is not done
+        // Mark step 1 as done
+        stepOneDone = true;
+        // Change directory name
+        currWd = "~/Music"
         return "";
-    } else {
+    } else if (!(stepOneDone) & !(stepTwoDone)) {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Use the command that stands for &#39;<strong>Change Directory</strong>&#39;";
+        $("#suggestionsArea")[0].innerHTML = "The first step is to change the directory to the Music folder.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure that you spell the folder name exactly as spelled above.";
-        } else {
-            // Otherwise increment attempt counter
-            attemptCount++;
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>cd</strong> command to go to the Music folder.";
         }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
+    // Step 2 code
+    if ((/^\s*ls\s*$/.exec(cmdIn)) && (stepOneDone) && !(stepTwoDone)) {
+        stepOneDone = true;
+        stepTwoDone = true;
+        // Print result
+        term.writeln ("\r\n\nAnthem Band Concert Lyrics Song-Title");
+        return "";
+    } else if ((stepOneDone) && !(stepTwoDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "The second step is to list everything in the Music folder.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>cd</strong> to go into a directory.";
+        }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
+    // Step 3 code
+    if ((/^\s*cat Song Title Lyrics\s*$/.exec(cmdIn)) && (stepOneDone) && (stepTwoDone)) {
+        // Append star rating
+        giveStarsTerm(attemptCount);
+        // Append reset button
+        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
+        // Append next button
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\rm\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        // Mark solved
+        isSolved = true;
+        // Reset variables
+        stepOneDone = false;
+        stepTwoDone = false;
+        // Print result
+        term.writeln ("\r\n\nLa La La Music\r\nLa la la, I am singing a song, la la la");
+        return "";
+    } else if ((stepOneDone) && (stepTwoDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "The last step is to show the content of both of these files.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>cat</strong> command and the name of the two files starting with Song-Title.";
+        }
+        // Increment attempt counter
+        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
 
 
-
 }
+
+// This function will check the radio buttons and determine if the correct answer was chosen. 
+function checkMultipleChoice(){
+
+
+
+    // Get pointer of valid response
+    // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
+    var ansChoice = $("#ans3")[0];
+
+
+
+    // Check if the valid radio button is marked
+    if (ansChoice.checked) {
+        // Mark that the question has been solved
+        isSolved = true;
+        // Show star rating based on attempts
+        giveStarsMult(attemptCount);
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+    } else {
+        // Increment attempt if invalid response is given
+        attemptCount++;
+        // Show a hint after three failed attempts
+        if (attemptCount >= 3) {
+            giveHint("In the examples on the page, 'Documents' was a folder and 'Example' was a file.");
+        }
+    }
+}
+
 
 //Parser for cat
 function checkMultipleChoice(){
