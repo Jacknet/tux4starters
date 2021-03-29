@@ -3,6 +3,8 @@
     Parser code authored by Joaquin, multiple choice code by Mayank
     Under GPLv3
 */
+var stepOneDone = false;
+var stepTwoDone = false;
 
 // Instructions for lesson
 function termInstr(term) {
@@ -58,29 +60,74 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
-    if (/^\s*pwd\s*$/.exec(cmdIn)) {
-        // Append star rating
-        $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-        // Append reset button
-        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
-        // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\cd\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
-        term.writeln ("\r\n\n/root/student");
-        // Set solved flag to true
-        isSolved = true;
+    // Step 1 code
+    if ((/^\s*ls\s*$/.exec(cmdIn)) && !(stepOneDone) && !(stepTwoDone)){
+        // If ls is correct and step one is not done
+        // Mark step 1 as done
+        stepOneDone = true;
         // Print result
+        term.writeln ("\r\n\ndelFolder Documents Example Music Pictures");
         return "";
-    } else {
+    } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "Use the command that stands for &#39;<strong>Change Directory</strong>&#39;";
+        $("#suggestionsArea")[0].innerHTML = "First, list the files and folders.";
         // If attempt is 3 or over
         if (attemptCount >= 3) {
             // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure that you spell the folder name exactly as spelled above.";
-        } else {
-            // Otherwise increment attempt counter
-            attemptCount++;
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>ls</strong> to list files and directories.";
         }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
+    // Step 2 code
+    if ((/^\s*rmdir delFolder\s*$/.exec(cmdIn)) && (stepOneDone) && !(stepTwoDone)) {
+        stepOneDone = true;
+        stepTwoDone = true;
+        // Print nothing
+        return "";
+    } else if ((stepOneDone) && !(stepTwoDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "The remove command is needed right after listing all the files and folders.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use rmdir to remove directories.";
+        }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
+    // Step 3 code
+    if ((/^\s*ls\s*$/.exec(cmdIn)) && (stepOneDone) && (stepTwoDone)) {
+        // Append star rating
+        giveStarsTerm(attemptCount);
+        // Append reset button
+        $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
+        // Append next button
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\touch\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        // Mark solved
+        isSolved = true;
+        // Mark step 2 as done
+        stepOneDone = false;
+        stepTwoDone = false;
+        // Print result
+        term.writeln ("\r\n\nDocuments Example Music Pictures");
+        return "";
+    } else if ((stepOneDone) && (stepTwoDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "Finally, list all the files and folders again.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the same <strong>ls</strong> command you used in the first step.";
+        }
+        // Increment attempt counter
+        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -96,7 +143,7 @@ function checkMultipleChoice(){
 
     // Get pointer of valid response
     // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
-    var ansChoice = $("#ans2")[0];
+    var ansChoice = $("#ans1")[0];
 
 
 
@@ -113,7 +160,7 @@ function checkMultipleChoice(){
         attemptCount++;
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
-            giveHint("pwd stands for Print ____ _______");
+            giveHint("Remember that to remove a directory, you do not need to spell out remove.");
         }
     }
 }

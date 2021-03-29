@@ -61,10 +61,31 @@ function termParse(cmdIn) {
         "cd ~/newlesson"
         "cd ~/newlesson/"
     */
+    // Step 1 code
+    if ((/^\s*mkdir folderB\s*$/.exec(cmdIn)) && !(stepOneDone)) {
+        // If mkdir is correct and step one is not done
+        // Mark step 1 as done
+        stepOneDone = true;
+        // Print nothing
+        return "";
+    } else if (!(stepOneDone)) {
+        // Otherwise, set a suggestion
+        $("#suggestionsArea")[0].innerHTML = "The mkdir command creates a new directory.";
+        // If attempt is 3 or over
+        if (attemptCount >= 3) {
+            // Add hint
+            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use mkdir to create folderB";
+        }
+        // Increment attempt counter
+        attemptCount++;
+        // Print error
+        return "\r\nUnknown command";
+    }
+
     // Step 2 code
     if ((/^\s*cd folderB\s*$/.exec(cmdIn)) && (stepOneDone)) {
         // Set working directory to created folder
-        currWrd = "folderB";
+        currWd = "folderB";
         // Append star rating
         giveStarsTerm(attemptCount);
         // Append reset button
@@ -90,28 +111,6 @@ function termParse(cmdIn) {
         // Print error
         return "\r\nUnknown command";
     }
-
-    // Step 1 code
-    if ((/^\s*mkdir folderB\s*$/.exec(cmdIn)) && !(stepOneDone)) {
-        // If mkdir is correct and step one is not done
-        // Mark step 1 as done
-        stepOneDone = true;
-        // Print nothing
-        return "";
-    } else if (!(stepOneDone)) {
-        // Otherwise, set a suggestion
-        $("#suggestionsArea")[0].innerHTML = "The mkdir command creates a new directory.";
-        // If attempt is 3 or over
-        if (attemptCount >= 3) {
-            // Add hint
-            $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use mkdir to create folderB";
-        }
-        // Increment attempt counter
-        attemptCount++;
-        // Print error
-        return "\r\nUnknown command";
-    }
-
 
 
 }
