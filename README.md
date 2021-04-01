@@ -10,4 +10,5 @@ A capstone project for the Bachelor of Science in Information Technology at the 
 * Bootstrap
 * JQuery
 * [Xterm.js](https://github.com/xtermjs/xterm.js)
-* More to come...
+* Node
+* MariaDB
