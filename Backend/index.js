@@ -1,5 +1,6 @@
 const mariadb = require("mariadb");
 const express = require("express");
+const { Router } = require("express");
 const app = express();
 
 //this is for node1
@@ -67,3 +68,31 @@ const port = 5000;
 app.listen(port);
 console.log("app is listening on port "+port);
 node1()
+
+
+//This is for the register page. If it is messing something up let justin know.
+router.post('/register.html', function(req, res, next) {
+  res.render('index', {title: 'Registration Complete'});
+});
+module.exports = router;
+
+
+/*
+const bcrypt = require("bcryptjs");
+const bcrypt = require('bcrypt');
+const saltRounds = 10; //this should allow ~10 hashes a sec
+
+bcrypt.hash(plaintextPW, saltRounds, function(err, hash){
+  //STORE HASH IN DB CODE GOES HERE
+});
+
+// Load hash from your password DB.
+bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+    // result == true
+});
+bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
+    // result == false
+});
+
+
+*/

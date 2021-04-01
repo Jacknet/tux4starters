@@ -60,35 +60,37 @@
     </nav>
 
     <main>
-        <div class="container">
-            <div class="row">
-                <div class="col tuxSpace">
-                    <h2 style="text-align:center;">Create an Account</h2>
-                    <br/>
-                    <form action="/action_page.php" method="post">
-                        <div class="imgcontainer">
-                          <img src="" alt="site logo" class="logo" >
-                        </div>
-                      
-                        <div class="inputWrapper">
-                          <label for="username"><b>Username</b></label>
-                          <input type="text" placeholder="Enter Username" name="username" required>
-                            <br/>
-                          <label for="email"><b>Email</b></label>
-                          <input type="text" placeholder="Enter Email" name="email" required>
-                            <br/>
-                          <label for="password"><b>Password</b></label>
-                          <input type="password" placeholder="Enter Password" name="password" required>
-                            <br/>
-                          <label for="password2"><b>Re-Enter Password</b></label>
-                          <input type="password2" placeholder="Enter Password" name="password2" required>
-                            <br/>
-                          <button type="submit">Create Account</button>
-                        </div>
-                      </form>
+        <form method="POST" action="/register">
+            <div class="container">
+                <div class="row">
+                    <div class="col tuxSpace">
+                        <h2 style="text-align:center;">Create an Account</h2>
+                        <br/>
+                        <form action="/action_page.php" method="post">
+                            <div class="imgcontainer">
+                            <img src="" alt="site logo" class="logo" >
+                            </div>
+                        
+                            <div class="inputWrapper">
+                            <label for="username"><b>Username</b></label>
+                            <input type="text" placeholder="Enter Username" name="username" required>
+                                <br/>
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" required>
+                                <br/>
+                            <label for="password"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="password" required>
+                                <br/>
+                            <label for="password2"><b>Re-Enter Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="password2" required>
+                                <br/>
+                            <button type="submit">Create Account</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </main>
 
     <footer>
