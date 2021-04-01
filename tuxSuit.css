@@ -122,6 +122,52 @@ p {
     color: #2E4057;
 }
 
+/* Main Lesson Page Buttons */
+.lesson-contain {
+    box-sizing: border-box;
+    width:100%;
+}
+
+.lesson-main{
+    background-color: #2E4057;
+    color: white !important;
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    [progress-icon] {
+        padding-left: 10px;
+        &:before { content: attr(data-icon) }; 
+    }
+}
+
+.lesson-parent {
+    background-color: #BCBDC0;
+    color: white !important;
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    [progress-icon] {
+        padding-left: 10px;
+        &:before { content: attr(data-icon) }; 
+    }
+}
+
+.lesson-child, .lesson-child a {
+    background-color: #BCBDC0;
+    color: white !important;
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    [progress-icon] {
+        padding-left: 10px;
+        &:before { content: attr(data-icon) }; 
+    }
+}
+}
+
 /* Lesson stuff for demo -JP */
 /* SIMULATED DEMO (DEPRECATED)
 #outCmdArea {
