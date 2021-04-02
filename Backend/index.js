@@ -1,10 +1,6 @@
 const mariadb = require("mariadb");
 const express = require("express");
-<<<<<<< HEAD
-const { Router } = require("express");
-=======
 var path = require("path");
->>>>>>> c65e4c7fd96c050c7d661ba3c7db39e53fcf02a5
 const app = express();
 
 
@@ -14,7 +10,7 @@ const pool = mariadb.createPool({
   user:'tux', 
   password: 'tux@edulib',
   port: '3306',
-  database: 'master1',
+  database: 'testuser',
   acquireTimeout: '40000' //set timeout to 40 seconds to avoid it crashing if the connection is slow
   //connectionLimit: 5,
   //multipleStatements : true
@@ -68,14 +64,6 @@ const pool2 = mariadb.createPool({
 //    }   
 // })
 
-
-//This is for the register page. If it is messing something up let justin know.
-router.post('/register.html', function(req, res, next) {
-  res.render('index', {title: 'Registration Complete'});
-});
-module.exports = router;
-
-
 /*
 const bcrypt = require("bcryptjs");
 const bcrypt = require('bcrypt');
@@ -106,7 +94,7 @@ let options = {
 app.use(express.static("../TUX4STARTERS", options));
 app.use('/api',express.json())
 
-app.get('/api',(req,res) => {
+app.post('/api',(req,res) => {
   console.log("API REQ RECEIVED!!!!")
   node1();
   async function node1() {
@@ -114,11 +102,19 @@ app.get('/api',(req,res) => {
     try {
         //console.log("THIS IS NODE 1");
       conn = await pool.getConnection();
-      const rows = await conn.query("SELECT * from testTable");
+      
+      const username = "testusername";
+      const email = "testemail";
+      const password = "testpassword";
+      // const result=await conn.query('INSERT INTO users ($username, $email, $password) VALUES (?, ?, ?)', [username, email, password], function( error, results, feilds){
+        //const result=await conn.query('insert into users values ("'+username+'", "'+email+'", "'+password+'");"')
+        const result=await conn.query('insert into users values ("'+username+'"'+','+'"'+email+'"'+','+'"'+password+'"'+';')
+      //})
+      // console.log(username +email +password);
       //console.log(rows[0]); //[ {val: 1}, meta: ... ]
       //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
       //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
-      res.send(rows);
+     // res.send(rows);
     } catch (err) {
       throw err;
       
@@ -149,6 +145,10 @@ app.get('/help.html' ,(req, res) =>{
 app.get('/signin.html' ,(req, res) =>{
   //res.send("some texts");
   res.sendFile(path.join(__dirname+'../../signin.html'));
+});
+app.get('/register.html' ,(req, res) =>{
+  //res.send("some texts");
+  res.sendFile(path.join(__dirname+'../../register.html'));
 });
 
 app.get('/demolesson1/index.html' ,(req, res) =>{
