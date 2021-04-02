@@ -75,7 +75,7 @@ let options = {
 app.use(express.static("../TUX4STARTERS", options));
 app.use('/api',express.json())
 
-app.get('/api',(req,res) => {
+app.post('/api',(req,res) => {
   console.log("API REQ RECEIVED!!!!")
   node1();
   async function node1() {
@@ -88,13 +88,15 @@ app.get('/api',(req,res) => {
       //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
       //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
       res.send(rows);
+      //console.log(`insert into users values `)
+      //const result=await conn.query(`insert into users values ("+username+", "+email+", "+password+");")
     } catch (err) {
       throw err;
       
     } 
   }
 
-  
+
  
   
 })
