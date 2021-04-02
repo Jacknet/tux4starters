@@ -10,7 +10,7 @@ const pool = mariadb.createPool({
   user:'tux', 
   password: 'tux@edulib',
   port: '3306',
-  database: 'master1',
+  database: 'testuser',
   acquireTimeout: '40000' //set timeout to 40 seconds to avoid it crashing if the connection is slow
   //connectionLimit: 5,
   //multipleStatements : true
@@ -64,6 +64,25 @@ const pool2 = mariadb.createPool({
 //    }   
 // })
 
+/*
+const bcrypt = require("bcryptjs");
+const bcrypt = require('bcrypt');
+const saltRounds = 10; //this should allow ~10 hashes a sec
+
+bcrypt.hash(plaintextPW, saltRounds, function(err, hash){
+  //STORE HASH IN DB CODE GOES HERE
+});
+
+// Load hash from your password DB.
+bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+    // result == true
+});
+bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
+    // result == false
+});
+
+
+*/
 let options = {
   dotfiles: "ignore", //possible values (allow, deny, ignore)
   etag: true,
@@ -83,7 +102,15 @@ app.post('/api',(req,res) => {
     try {
         //console.log("THIS IS NODE 1");
       conn = await pool.getConnection();
-      const rows = await conn.query("SELECT * from testTable");
+      
+      const username = "testusername";
+      const email = "testemail";
+      const password = "testpassword";
+      // const result=await conn.query('INSERT INTO users ($username, $email, $password) VALUES (?, ?, ?)', [username, email, password], function( error, results, feilds){
+        //const result=await conn.query('insert into users values ("'+username+'", "'+email+'", "'+password+'");"')
+        const result=await conn.query('insert into users values ("'+username+'"'+','+'"'+email+'"'+','+'"'+password+'"'+';')
+      //})
+      // console.log(username +email +password);
       //console.log(rows[0]); //[ {val: 1}, meta: ... ]
       //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
       //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
@@ -120,6 +147,10 @@ app.get('/help.html' ,(req, res) =>{
 app.get('/signin.html' ,(req, res) =>{
   //res.send("some texts");
   res.sendFile(path.join(__dirname+'../../signin.html'));
+});
+app.get('/register.html' ,(req, res) =>{
+  //res.send("some texts");
+  res.sendFile(path.join(__dirname+'../../register.html'));
 });
 
 app.get('/demolesson1/index.html' ,(req, res) =>{
