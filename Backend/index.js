@@ -2,6 +2,8 @@ const mariadb = require("mariadb");
 const express = require("express");
 var path = require("path");
 const app = express();
+const bodyParser = require("body-parser");
+var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 
 //this is for node1
@@ -92,29 +94,29 @@ let options = {
 }
 
 app.use(express.static("../TUX4STARTERS", options));
-app.use('/api',express.json())
+const exJson = app.use('/api',express.json());
 
-app.post('/api',(req,res) => {
+
+app.post('/api',urlencodedParser,(req,res) => {
   console.log("API REQ RECEIVED!!!!")
   node1();
   async function node1() {
     let conn;
     try {
         //console.log("THIS IS NODE 1");
-      conn = await pool.getConnection();
+      //conn = await pool.getConnection();
       
-      const username = "testusername";
+      const username = "testusername12";
       const email = "testemail";
       const password = "testpassword";
-      // const result=await conn.query('INSERT INTO users ($username, $email, $password) VALUES (?, ?, ?)', [username, email, password], function( error, results, feilds){
-        //const result=await conn.query('insert into users values ("'+username+'", "'+email+'", "'+password+'");"')
-        const result=await conn.query('insert into users values ("'+username+'"'+','+'"'+email+'"'+','+'"'+password+'"'+';')
-      //})
+
+      //const result=await conn.query(`insert into users values ("${username}","${email}","${password}");`);
+        console.log(req.body);
+        res.send(null)
       // console.log(username +email +password);
       //console.log(rows[0]); //[ {val: 1}, meta: ... ]
       //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
-      //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
-      res.send(rows);
+      //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 
       //console.log(`insert into users values `)
       //const result=await conn.query(`insert into users values ("+username+", "+email+", "+password+");")
     } catch (err) {
