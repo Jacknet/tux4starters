@@ -59,7 +59,7 @@ function termParse(cmdIn) {
     */
     if (/^\s*cd ((.|~)\/)?newlesson\/?\s*$/.exec(cmdIn)) {
         // Append star rating
-        $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
+        giveStarsTerm(attemptCount);
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
