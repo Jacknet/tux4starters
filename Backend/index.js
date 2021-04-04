@@ -103,17 +103,15 @@ app.post('/api',urlencodedParser,(req,res) => {
   async function node1() {
     let conn;
     try {
-        //console.log("THIS IS NODE 1");
-      //conn = await pool.getConnection();
+      conn = await pool.getConnection();
       
-      const username = "testusername12";
-      const email = "testemail";
-      const password = "testpassword";
+      const username = req.body.username;
+      const email = req.body.email;
+      const password = req.body.password;
 
-      //const result=await conn.query(`insert into users values ("${username}","${email}","${password}");`);
+      const result=await conn.query(`insert into users values ("${username}","${email}","${password}");`);
         console.log(req.body);
         res.send(null)
-      // console.log(username +email +password);
       //console.log(rows[0]); //[ {val: 1}, meta: ... ]
       //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
       //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 
