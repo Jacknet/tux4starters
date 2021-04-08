@@ -12,6 +12,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../acc.js"></script>
 </head>
 <body>
 
@@ -66,24 +67,66 @@
                     <h2>Lessons</h2>
                      <br>
                     <p>Choose from the sections below to get started or continue on from from where you left off.</p>
-                    <div class="lesson-contain">
-                        <button type="button" class="btn lesson-main" data-toggle="collapse" data-target="#genu">
-                          General UNIX
-                        </button>
-                        <br>
-                        <div id="genu" class="collapse">
-                                <button type="button" class="btn lesson-parent" data-toggle="collapse" data-target="#gen1">
-                                    Example Lesson
-                                </button>
-                                <br>
-                                <div id="gen1" class="collapse">
-                                    <p>Eureka!</p>
-                                </div>
-                        </div>
-                        <button type="button" class="btn lesson-main" data-toggle="collapse" data-target="#basic">
-                          Basic Commands
-                        </button>
-                        <br>
+                    <button class="less-acc">General UNIX</button>
+                      <div class="panel">
+                          <button class="par-acc">Example Lesson</button>
+                          <div class="panel">
+                              Hello
+                          </div>
+                      </div>
+                    <button class="less-acc">Basic Commands</button>
+                      <div class="panel">
+                          <button class="par-acc">pwd</button>
+                            <div class="panel">
+                                <a href="basic-commands/pwd/content.html">Content</a>
+                                <a href="basic-commands/pwd/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">cd</button>
+                            <div class="panel">
+                              <a href="basic-commands/cd/content.html">Content</a>
+                              <a href="basic-commands/cd/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">ls</button>
+                            <div class="panel">
+                              <a href="basic-commands/ls/content.html">Content</a>
+                              <a href="basic-commands/ls/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">mkdir</button>
+                            <div class="panel">
+                              <a href="basic-commands/mkdir/content.html">Content</a>
+                              <a href="basic-commands/mkdir/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">rmdir</button>
+                            <div class="panel">
+                              <a href="basic-commands/rmdir/content.html">Content</a>
+                              <a href="basic-commands/rmdir/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">touch</button>
+                            <div class="panel">
+                              <a href="basic-commands/touch/content.html">Content</a>
+                              <a href="basic-commands/touch/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">cp</button>
+                            <div class="panel">
+                              <a href="basic-commands/cp/content.html">Content</a>
+                              <a href="basic-commands/cp/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">mv</button>
+                            <div class="panel">
+                              <a href="basic-commands/mv/content.html">Content</a>
+                              <a href="basic-commands/mv/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">rm</button>
+                            <div class="panel">
+                              <a href="basic-commands/rm/content.html">Content</a>
+                              <a href="basic-commands/rm/assignment.html">Assignment</a>
+                            </div>
+                          <button class="par-acc">cat</button>
+                            <div class="panel">
+                              <a href="basic-commands/cat/content.html">Content</a>
+                              <a href="basic-commands/cat/assignment.html">Assignment</a>
+                            </div>
+                      </div>
                         <div id="basic" class="collapse">
                             <button type="button" class="btn lesson-parent" data-toggle="collapse" data-target="#base1">
                                 pwd

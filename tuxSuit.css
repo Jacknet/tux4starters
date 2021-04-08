@@ -122,51 +122,84 @@ p {
     color: #2E4057;
 }
 
-/* Main Lesson Page Buttons */
-.lesson-contain {
-    box-sizing: border-box;
-    width:100%;
-}
-
-.lesson-main{
+/* Main Lesson Accordions */
+button.less-acc {
     background-color: #2E4057;
-    color: white !important;
-    display: block;
+    border: none;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px;
     font-weight: bold;
-    text-align: left;
+    text-align:left;
+    text-decoration: none;
+    transition: 0.2s;
     width: 100%;
-    [progress-icon] {
-        padding-left: 10px;
-        &:before { content: attr(data-icon) }; 
-    }
 }
 
-.lesson-parent {
-    background-color: #BCBDC0;
-    color: white !important;
-    display: block;
-    font-weight: bold;
-    text-align: left;
-    width: 100%;
-    [progress-icon] {
-        padding-left: 10px;
-        &:before { content: attr(data-icon) }; 
-    }
+button.less-acc:active, button.less-acc:hover {
+    background-color: #151E28;
 }
 
-.lesson-child, .lesson-child a {
-    background-color: #BCBDC0;
-    color: white !important;
-    display: block;
+button.less-acc::before {
+    content:"\e080";
+    color: #FFFFFF;
+    float: left;
+    margin-left: 5px;
+    padding-right: 20px;
+
+}
+
+button.less-acc:active::before {
+    content:"\e114";
+}
+
+button.par-acc {
+    background-color: #d5d5d7;
+    border: none;
+    color: #000000;
+    font-size: 15px;
+    padding: 10px;
     font-weight: bold;
-    text-align: left;
+    text-align:left;
+    text-decoration: none;
+    transition: 0.2s;
     width: 100%;
-    [progress-icon] {
-        padding-left: 10px;
-        &:before { content: attr(data-icon) }; 
-    }
 }
+
+button.par-acc:active, button.par-acc:hover {
+    background-color: #bcbdc0;
 }
+
+button.par-acc::before {
+    content:"\e080";
+    color: #FFFFFF;
+    float: left;
+    margin-left: 5px;
+    padding-right: 20px;
+
+}
+
+button.par-acc:active::before {
+    content:"\e114";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: transparent;
+    height: 0;
+    overflow: hidden;
+    transition: 0.2s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    opacity: 1;
+    height: auto;
+}
+
 
 /* Lesson stuff for demo -JP */
 /* SIMULATED DEMO (DEPRECATED)
