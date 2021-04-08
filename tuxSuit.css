@@ -142,16 +142,11 @@ button.less-acc:active, button.less-acc:hover {
 }
 
 button.less-acc:before {
-    content:"\e080";
     color: #FFFFFF;
     float: left;
     margin-left: 5px;
     padding-right: 20px;
 
-}
-
-button.less-acc:active:before {
-    content:"\e114";
 }
 
 button.par-acc {
@@ -161,7 +156,7 @@ button.par-acc {
     font-size: 15px;
     padding: 10px;
     font-weight: bold;
-    text-align:left;
+    text-align: left;
     text-decoration: none;
     transition: 0.2s;
     width: 100%;
@@ -172,25 +167,24 @@ button.par-acc:active, button.par-acc:hover {
 }
 
 button.par-acc:before {
-    content:"\e080";
     color: #FFFFFF;
     float: left;
     margin-left: 5px;
     padding-right: 20px;
-
-}
-
-button.par-acc:active:before {
-    content:"\e114";
 }
 
 div.panel {
-    display:none;
+    /* Failsafe fallback to not hide element if browser has JS issues */
+    display: block; 
     padding: 0 18px;
     background-color: transparent;
     height: auto;
     overflow: hidden;
     transition: 0.2s ease-in-out;
+    /* Disable box shadowing */
+    border-radius: 0;
+    box-shadow: 0 0 0;
+    -webkit-box-shadow: 0 0 0;
 }
 
 
