@@ -141,7 +141,7 @@ button.less-acc:active, button.less-acc:hover {
     background-color: #151E28;
 }
 
-button.less-acc::before {
+button.less-acc:before {
     content:"\e080";
     color: #FFFFFF;
     float: left;
@@ -150,7 +150,7 @@ button.less-acc::before {
 
 }
 
-button.less-acc:active::before {
+button.less-acc:active:before {
     content:"\e114";
 }
 
@@ -171,7 +171,7 @@ button.par-acc:active, button.par-acc:hover {
     background-color: #bcbdc0;
 }
 
-button.par-acc::before {
+button.par-acc:before {
     content:"\e080";
     color: #FFFFFF;
     float: left;
@@ -180,24 +180,17 @@ button.par-acc::before {
 
 }
 
-button.par-acc:active::before {
+button.par-acc:active:before {
     content:"\e114";
 }
 
 div.panel {
+    display:none;
     padding: 0 18px;
     background-color: transparent;
-    height: 0;
+    height: auto;
     overflow: hidden;
     transition: 0.2s ease-in-out;
-    opacity: 0;
-}
-
-div.panel.show {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    opacity: 1;
-    height: auto;
 }
 
 
