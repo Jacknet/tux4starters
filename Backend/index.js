@@ -67,6 +67,30 @@ const pool2 = mariadb.createPool({
 // })
 
 /*
+_________________________________________________
+//ASYNC 
+const bcrypt = require('bcrypt');
+const saltRounds = 10; //this should allow ~10 hashes a sec
+const plaintextPassword = testPassword12!!
+const otherPassword = 'mySecretPass!'
+
+async function checkUser(username, password) {
+    //... fetch user from a db etc.
+
+    const match = await bcrypt.compare(password, user.passwordHash);
+
+    if(match) {
+        //login
+    }
+
+    //...
+}
+
+
+
+
+
+
 const bcrypt = require("bcryptjs");
 const bcrypt = require('bcrypt');
 const saltRounds = 10; //this should allow ~10 hashes a sec
@@ -109,18 +133,26 @@ app.post('/api',urlencodedParser,(req,res) => {
       const email = req.body.email;
       const password = req.body.password;
 
-      const result=await conn.query(`insert into users values ("${username}","${email}","${password}");`);
-        console.log(req.body);
-        res.send(null)
-      //console.log(rows[0]); //[ {val: 1}, meta: ... ]
-      //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
-      //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 
-      //console.log(`insert into users values `)
-      //const result=await conn.query(`insert into users values ("+username+", "+email+", "+password+");")
+      //const bcrypt = require('bcrypt');
+      const saltRounds = 10; //this should allow ~10 hashes a sec
+
+      bcrypt.genSalt(saltRounds, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+          const result=await conn.query(`insert into users values ("${username}","${email}","${password}");`);
+          console.log(req.body);
+          res.send(null)
+
+            //console.log(rows[0]); //[ {val: 1}, meta: ... ]
+            //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
+            //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 
+            //console.log(`insert into users values `)
+            //const result=await conn.query(`insert into users values ("+username+", "+email+", "+password+");")
+        });
+      }); 
     } catch (err) {
-      throw err;
-      
+            throw err;
     } 
+      
   }
 
 
