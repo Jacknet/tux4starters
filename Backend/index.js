@@ -147,7 +147,7 @@ app.post('/api',urlencodedParser,(req,res) => {
   async function node1() {
     let conn;
     try {
-      conn = /*await*/ pool.getConnection();
+      conn = await pool.getConnection();
       
       const username = req.body.username;
       const email = req.body.email;
@@ -159,11 +159,12 @@ app.post('/api',urlencodedParser,(req,res) => {
         bcrypt.hash(password, salt, function(err, hash) {
           console.log(hash);
           testhash = hash;
+          console.log(testhash.length);
           console.log(req.body);
           res.send(null)
         });
       }); 
-      const result=/*await*/ conn.query(`insert into users values ("${username}","${email}","${testhash}");`);
+      const result=await conn.query(`insert into users values ("${username}","${email}","${testhash}");`);
     } catch (err) {
             throw err;
     }       
