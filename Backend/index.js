@@ -5,6 +5,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const {connect} = require("http2");
 var urlencodedParser = bodyParser.urlencoded({extended: false});
+const bcrypt = require('bcrypt');
+const saltRounds = 10; //this should allow ~10 hashes a sec. Used to encrypt password
 
 /*
 //this is for node1
@@ -36,6 +38,7 @@ const pool2 = mariadb.createPool({
 
 
 //this one uses promises. this does not need to be called, it runs at runtime.
+//------------------------------------------
 mariadb.createConnection({
   host: '3.136.100.20',
   user: 'tux',
@@ -56,8 +59,11 @@ mariadb.createConnection({
 .catch(err => {
   //handle connection error
 });
+//----------------------------------------------
+
 
 //this one uses an async and await function. this function must be called for it to be executed. 
+//------------------------------------------------
 async function connectToDB() {
     let conn;
     //console.log("THIS IS NODE 1");
@@ -78,23 +84,7 @@ async function connectToDB() {
         }
     }
 }
-
-async function node() {
-    let conn;
-    //console.log("THIS IS NODE 1");
-    try {
-        conn = await pool.getConnection()
-        const rows = await conn.query("SELECT * from users where username='1'");
-        console.log(rows);
-
-    } catch (err) {
-        throw err;
-    } finally {
-        if (conn) {
-            return conn.end();
-        }
-    }
-}
+//-------------------------------------------------------
 /*
 _________________________________________________
 //ASYNC 
@@ -149,35 +139,32 @@ let options = {
 app.use(express.static("../TUX4STARTERS", options));
 const exJson = app.use('/api', express.json());
 
-/*----------------------------------------------------------
+
 app.post('/api',urlencodedParser,(req,res) => {
   console.log("API REQ RECEIVED!!!!")
   node1();
   async function node1() {
     let conn;
     try {
-      conn = await pool.getConnection();
+      //conn = await pool.getConnection();
       
       const username = req.body.username;
       const email = req.body.email;
       const password = req.body.password;
 
       //const bcrypt = require('bcrypt');
-      const saltRounds = 10; //this should allow ~10 hashes a sec
+      //const saltRounds = 10; //this should allow ~10 hashes a sec
 
       bcrypt.genSalt(saltRounds, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
-          const result=await conn.query(`insert into users values ("${username}","${email}","${password}");`);
-          console.log(req.body);
-          res.send(null)
+          console.log(password);
+          
 
-            //console.log(rows[0]); //[ {val: 1}, meta: ... ]
-            //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
-            //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 
-            //console.log(`insert into users values `)
-            //const result=await conn.query(`insert into users values ("+username+", "+email+", "+password+");")
         });
-      }); 
+      });
+      //const result=await conn.query(`insert into users values ("${username}","${email}","${password}");`);
+      console.log(req.body);
+          res.send(null)
     } catch (err) {
             throw err;
     } 
@@ -185,7 +172,7 @@ app.post('/api',urlencodedParser,(req,res) => {
   }
 
 })
-*/ //----------------------------------------------
+
 
 app.get('/', (req, res) => {
     //res.send("some texts");
