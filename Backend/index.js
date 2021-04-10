@@ -1,12 +1,12 @@
 const mariadb = require("mariadb");
 const express = require("express");
 var path = require("path");
-const bcrypt = require('bcrypt');
 const app = express();
+const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 const {connect} = require("http2");
-/*
+
 //this is for node1
 const pool = mariadb.createPool({
   host: '3.136.100.20', 
@@ -17,7 +17,7 @@ const pool = mariadb.createPool({
   acquireTimeout: '10000' //set timeout to 40 seconds to avoid it crashing if the connection is slow
   //connectionLimit: 5,
   //multipleStatements : true
-});*/
+});
 
 //This for node2
 const pool2 = mariadb.createPool({
@@ -143,24 +143,27 @@ const exJson = app.use('/api', express.json());
 
 app.post('/api',urlencodedParser,(req,res) => {
   console.log("API REQ RECEIVED!!!!")
-  node1();
+ node1();
   async function node1() {
     let conn;
     try {
-      conn = await pool.getConnection();
+      conn = /*await*/ pool.getConnection();
       
       const username = req.body.username;
       const email = req.body.email;
       const password = req.body.password;
       const saltRounds = 10; //this should allow ~10 hashes a sec
+      var testhash = "123456";
 
-      bcrypt.genSalt(saltRounds, (err, salt) => {
-        bcrypt.hash(password, salt, (err, hash) => {
-          const result=await conn.query(`insert into users values ("${username}","${email}","${password}");`);
+      bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(password, salt, function(err, hash) {
+          console.log(hash);
+          testhash = hash;
           console.log(req.body);
           res.send(null)
         });
       }); 
+      const result=/*await*/ conn.query(`insert into users values ("${username}","${email}","${testhash}");`);
     } catch (err) {
             throw err;
     }       
