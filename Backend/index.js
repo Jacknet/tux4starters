@@ -93,20 +93,17 @@ let options = {
   index: false,
   redirect: false 
 }
-
-app.use(express.static("../TUX4STARTERS", options));
-const exJson = app.use('/api', express.json());
-
-app.post('/api',urlencodedParser,(req,res) => {
-  console.log("API REQ RECEIVED!!!!")
-
- let md = mariadb.createConnection({
+let md = mariadb.createConnection({
   host: '3.136.100.20',
   user: 'tux',
   password: 'tux@edulib',
   port: '3306',
   database: 'testuser'
 })
+app.use(express.static("../TUX4STARTERS", options));
+const exJson = app.use('/api', express.json());
+// API for registration
+app.post('/register',urlencodedParser,(req,res) => {
 md.then(conn =>{
   const username = req.body.username;
       const email = req.body.email;
@@ -117,15 +114,47 @@ md.then(conn =>{
         bcrypt.hash(password, salt, function(err, hash) {
           const result= conn.query(`insert into users values ("${username}","${email}","${hash}");`);
           console.log(result);
-         
+          res.send(null)
         });
       }); 
 }).catch(err =>{
   console.log(err);
 });
-res.send(null)
 
 })
+
+//API for signing in
+app.post('/signin',urlencodedParser,(req,res) => {
+  md.then(conn =>{
+        const username = req.body.username;
+        const password = req.body.password;
+        let hashPassword = "";
+
+        const result= conn.query(`select convert(password using utf8) as password from users where username = "${username}";`)
+                      .then(rows => {
+                        
+                        hashPassword = rows[0].password;
+                        conn.end;
+
+                        checkUser(username,password,hashPassword);
+
+                        async function checkUser (username, password,hashPassword){
+                        const match = await bcrypt.compare(password,hashPassword);
+                        console.log("match = "+ match);
+            
+                        } 
+                      })
+        res.send(null) 
+
+
+
+
+  }).catch(err =>{
+    console.log(err);
+  });
+  
+  
+  })
 
 app.get('/', (req, res) => {
   //res.send("some texts");
