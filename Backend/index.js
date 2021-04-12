@@ -105,7 +105,7 @@ const exJson = app.use('/api', express.json());
 // API for registration
 app.post('/register',urlencodedParser,(req,res) => {
 md.then(conn =>{
-  const username = req.body.username;
+      const username = req.body.username;
       const email = req.body.email;
       const password = req.body.password;
       const saltRounds = 10; //this should allow ~10 hashes a sec
