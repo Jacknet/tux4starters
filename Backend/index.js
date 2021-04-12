@@ -32,21 +32,6 @@ const pool2 = mariadb.createPool({
   //multipleStatements : true
 });
 
-// async function node1() {
-//   let conn;
-//   try {
-//       //console.log("THIS IS NODE 1");
-//     conn = await pool.getConnection();
-//     const rows = await conn.query("SELECT * from testTable");
-//     //console.log(rows[0]); //[ {val: 1}, meta: ... ]
-//     //const res = await conn.query("INSERT INTO testTable value (?, ?)", [1, "mariadb"]);
-//     //console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
-//     return rows;
-//   } catch (err) {
-//     throw err;
-    
-//   } 
-// }
 //-----------below are couple different ways to make connection and 
 //-----------perform a query on the database
 
@@ -79,6 +64,7 @@ mariadb.createConnection({
 
 //this one uses an async and await function. this function must be called for it to be executed. 
 //------------------------------------------------
+/*
 async function connectToDB() {
     let conn;
     //console.log("THIS IS NODE 1");
@@ -96,28 +82,10 @@ async function connectToDB() {
         }
     }
 }
-//-------------------------------------------------------
-/*
-_________________________________________________
-//ASYNC 
-const bcrypt = require('bcrypt');
-const saltRounds = 10; //this should allow ~10 hashes a sec
-const plaintextPassword = testPassword12!!
-const otherPassword = 'mySecretPass!'
-
-async function checkUser(username, password) {
-    //... fetch user from a db etc.
-
-    const match = await bcrypt.compare(password, user.passwordHash);
-
-    if(match) {
-        //login
-    }
-
-    //...
-}
-
 */
+//-------------------------------------------------------
+
+
 let options = {
   dotfiles: "ignore", //possible values (allow, deny, ignore)
   etag: true,
@@ -131,7 +99,6 @@ const exJson = app.use('/api', express.json());
 
 app.post('/api',urlencodedParser,(req,res) => {
   console.log("API REQ RECEIVED!!!!")
- //node1();
 
  let md = mariadb.createConnection({
   host: '3.136.100.20',
@@ -157,33 +124,7 @@ md.then(conn =>{
   console.log(err);
 });
 res.send(null)
-/*
-  async function node1() {
-    let conn;
-    try {
-      conn = await pool.getConnection();
-      
-      const username = req.body.username;
-      const email = req.body.email;
-      const password = req.body.password;
-      const saltRounds = 10; //this should allow ~10 hashes a sec
-      let testhash = "123456";
 
-      bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(password, salt, function(err, hash) {
-          
-          testhash = hash;
-          console.log("hash = "+testhash);
-          //console.log(req.body);
-        });
-      }); 
-      const result= await conn.query(`insert into users values ("${username}","${email}","${testhash}");`);
-      
-      res.send(null)
-    } catch (err) {
-            throw err;
-    }       
-  }*/
 })
 
 app.get('/', (req, res) => {
