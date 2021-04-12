@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script defer src=formVaild.js></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tux For Starters - About</title>
     <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
@@ -66,20 +67,20 @@
                     <div class="col tuxSpace">
                         <h2 style="text-align:center;">Create an Account</h2>
                         <br/>
-                        <form action="/api" method="post">
+                        <form id="form" action="/api" method="post">
                             <div class="imgcontainer">
                             <img src="" alt="site logo" class="logo" >
                             </div>
                         
                             <div class="inputWrapper">
                             <label for="username"><b>Username</b></label>
-                            <input type="text" placeholder="Enter Username" name="username" required>
+                            <input id="username" type="text" placeholder="Enter Username" name="username" required>
                                 <br/>
                             <label for="email"><b>Email</b></label>
-                            <input type="text" placeholder="Enter Email" name="email" required>
+                            <input id= "email" type="text" placeholder="Enter Email" name="email" required>
                                 <br/>
                             <label for="password"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password" required>
+                            <input id=password" type="password" placeholder="Enter Password" name="password" required>
                                 <br/>
                             <!-- <label for="password2"><b>Re-Enter Password</b></label>
                             <input type="password" placeholder="Enter Password" name="password2" required> -->

@@ -108,7 +108,7 @@ app.post('/api',urlencodedParser,(req,res) => {
   database: 'testuser'
 })
 md.then(conn =>{
-  const username = req.body.username;
+      const username = req.body.username;
       const email = req.body.email;
       const password = req.body.password;
       const saltRounds = 10; //this should allow ~10 hashes a sec
