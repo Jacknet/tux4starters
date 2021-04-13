@@ -8,15 +8,16 @@ function toggleAccordion(button) {
 
     // If panel is already shown
     if (panel.style.display === "block") {
-        // Put drop-down arrow facing down
-        button.innerHTML = "<span class=\"glyphicon glyphicon-chevron-down\"></span> " + button.innerHTML.slice(button.innerHTML.indexOf("</span>") + 8);
+        // Put drop-down arrow facing right
+        button.innerHTML = "<span class=\"glyphicon glyphicon-chevron-right\"></span> " + button.innerHTML.slice(button.innerHTML.indexOf("</span>") + 8);
         // Hide it
         panel.style.display = "none";
     }
     else {
-        // Otherwise point the drop-down arrow upwards
-        button.innerHTML = "<span class=\"glyphicon glyphicon-chevron-up\"></span> " + button.innerHTML.slice(button.innerHTML.indexOf("</span>") + 8);
+        // Otherwise point the drop-down arrow down
+        button.innerHTML = "<span class=\"glyphicon glyphicon-chevron-down\"></span> " + button.innerHTML.slice(button.innerHTML.indexOf("</span>") + 8);
         // Show the panel content
+        
         panel.style.display = "block";
     }
 }
@@ -30,7 +31,7 @@ function startAccordion() {
     for (var i = 0; i < acc.length; i++) {
         // Hide any sibling elements and add drop-down arrow
         acc[i].nextElementSibling.style.display = "none";
-        acc[i].innerHTML = "<span class=\"glyphicon glyphicon-chevron-down\"></span> " + acc[i].innerHTML;
+        acc[i].innerHTML = "<span class=\"glyphicon glyphicon-chevron-right\"></span> " + acc[i].innerHTML;
 
         // Add a toggle click listener to the button
         acc[i].addEventListener("click", function() {
