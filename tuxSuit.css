@@ -173,6 +173,24 @@ button.par-acc:before {
     padding-right: 20px;
 }
 
+
+.child-acc {
+    background-color: #d5d5d7;
+    border: none;
+    color: #000000;
+    font-size: 15px;
+    padding: 10px;
+    text-align: left;
+    text-decoration: none;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.child-acc:active, .child-acc:hover {
+    background-color: #bcbdc0;
+}
+
+
 div.panel {
     /* Failsafe fallback to not hide element if browser has JS issues */
     display: block; 
