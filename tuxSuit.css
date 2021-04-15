@@ -297,3 +297,14 @@ textarea {
     padding-bottom: 1%;
     border-radius: 10px;
 }
+
+.navbar-brand img {
+    float: left;
+    margin: auto;
+    padding-top: 8px;
+    padding-right: 5px;
+}
+
+.imgcontainer {
+    text-align: center;
+}
