@@ -182,6 +182,21 @@ app.post('/signin', urlencodedParser, (req, res) => {
 
 })
 
+/*
+app.post("/forgot", (req, res) => {
+  const thisEmail = getEmail(req.body.email);
+  if (thisEmail){
+    const id = uuidv1();
+    const request = {
+      id,
+      email: thisEmail.email,
+    };
+    createResetRequest(requset);
+    sendResentLink(thisUser.email, id);
+  }
+  res.status(200).json();
+});
+*/
 app.get('/', (req, res) => {
   //res.send("some texts");
   res.sendFile(path.join(__dirname + '../../index.html'));

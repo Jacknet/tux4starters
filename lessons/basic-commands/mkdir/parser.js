@@ -91,7 +91,7 @@ function termParse(cmdIn) {
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\rmdir\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"../rmdir/content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
         // Mark solved
         isSolved = true;
         // Unmark step 1 done flag for reset

@@ -52,11 +52,11 @@ function demoOneExec(cmdIn) {
             return "\r\n<h1>Header One</h1>";
         } else {
             // Otherwise, set output with "bytes received" from curl and leave a hint for next time
-            $("#suggestionsArea")[0].innerHTML = "You got the header! We can improve this command further to remove the \"Bytes received\" line.";
+            $("#suggestionsArea")[0].innerHTML = "You got the header! We can improve this command further to remove the \"Bytes received\" line using the <code>--silent</code> flag after <code>curl</code>.";
             // If attempt is 3 or over
             if (attemptCount >= 3) {
                 // Add hint
-                $("#suggestionsArea")[0].innerHTML += "<br/><br/>Try using the <code>--silent</code> flag for <code>curl</code> to get rid of that.";
+                $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <code>--silent</code> flag right after <code>curl</code> to get rid of the line, leaving just the tag.";
             } else {
                 // Otherwise increment attempt counter
                 attemptCount++;

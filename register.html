@@ -114,7 +114,7 @@ async function register(e){
     console.log(username)
     console.log(email)
     console.log(password)
-   await fetch('/register', {
+ /*  await fetch('/register', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -128,16 +128,17 @@ async function register(e){
                     console.log(result)
                 } )
 
-
-/*				
+*/
+			
 axios.post('/register', {
-    Name: 'Fred',
-    Age: '23'
+    "username": username,
+    "email": email,
+	"password": password
   })
   .then(function (response) {
     console.log(response);
   })
-*/			
+			
 
 }
 
