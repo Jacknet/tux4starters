@@ -64,7 +64,7 @@ function termParse(cmdIn) {
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"..\\ls\\content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"../ls/content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
         // Set current directory to folder1
         currWd = "~/folder1";
         // Set solved flag to true
