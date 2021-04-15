@@ -11,24 +11,12 @@ require("dotenv").config()
 
 //this is for node1
 const pool = mariadb.createPool({
-  host: '3.136.100.20', 
-  user:'tux', 
-  password: 'tux@edulib',
-  port: '3306',
-  database: 'testuser',
+  host: process.env.MD_HOST,
+  user: process.env.MD_USER,
+  password: process.env.MD_PASSWORD,
+  port: process.env.MD_PORT,
+  database: process.env.MD_DATABASE,  
   acquireTimeout: '10000' //set timeout to 40 seconds to avoid it crashing if the connection is slow
-  //connectionLimit: 5,
-  //multipleStatements : true
-});
-
-//This for node2
-const pool2 = mariadb.createPool({
-  host: '3.129.34.123', 
-  user:'tux', 
-  password: 'tux@edulib',
-  port: '3306',
-  database: 'master1',
-  acquireTimeout: '40000' //set timeout to 40 seconds to avoid it crashing if the connection is slow 
   //connectionLimit: 5,
   //multipleStatements : true
 });
@@ -41,11 +29,11 @@ const pool2 = mariadb.createPool({
 /*
 //------------------------------------------
 mariadb.createConnection({
-  host: '3.136.100.20',
-  user: 'tux',
-  password: 'tux@edulib',
-  port: '3306',
-  database: 'testuser'
+  host: process.env.MD_HOST,
+  user: process.env.MD_USER,
+  password: process.env.MD_PASSWORD,
+  port: process.env.MD_PORT,
+  database: process.env.MD_DATABASE  
 })
 .then(conn => {
   conn.query("select * from users")
@@ -109,7 +97,6 @@ const exJson = app.use('/', express.json());
 
 //for registration
 app.post('/register',(req,res) => {
-  console.log("received!!")
   console.log(req.body)
   res.json("Some texts")
 md.then(conn =>{
