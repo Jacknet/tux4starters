@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 const {connect} = require("http2");
 const nodemon = require("nodemon");
+require("dotenv").config()
 
 //this is for node1
 const pool = mariadb.createPool({
@@ -93,68 +94,106 @@ let options = {
   index: false,
   redirect: false 
 }
-let md = mariadb.createConnection({
-  host: '3.136.100.20',
-  user: 'tux',
-  password: 'tux@edulib',
-  port: '3306',
-  database: 'testuser'
-})
-app.use(express.static("../TUX4STARTERS", options));
-const exJson = app.use('/api', express.json());
-// API for registration
-app.post('/register',urlencodedParser,(req,res) => {
-md.then(conn =>{
-      const username = req.body.username;
-      const email = req.body.email;
-      const password = req.body.password;
-      const saltRounds = 10; //this should allow ~10 hashes a sec
 
-      bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(password, salt, function(err, hash) {
-          const result= conn.query(`insert into users values ("${username}","${email}","${hash}");`);
-          console.log(result);
-          res.send(null)
-        });
-      }); 
+
+let md = mariadb.createConnection({
+  host: process.env.MD_HOST,
+  user: process.env.MD_USER,
+  password: process.env.MD_PASSWORD,
+  port: process.env.MD_PORT,
+  database: process.env.MD_DATABASE  
+})
+//Midleware
+app.use(express.static("../TUX4STARTERS", options));
+const exJson = app.use('/', express.json());
+
+//for registration
+app.post('/register',(req,res) => {
+  console.log("received!!")
+  console.log(req.body)
+  res.json("Some texts")
+md.then(conn =>{
+
+      // const username = req.body.username;
+      // const email = req.body.email;
+      // const password = req.body.password;
+      const saltRounds = 10; //this should allow ~10 hashes a sec
+     
+
+      //first check if the username or email already exists
+      conn.query(`select username, email from users where username = "${username}" or email = "${email}"; `)
+      .then(rows => {
+        conn.end;
+        if(rows[0]){
+          console.log("Username or Email already exists");
+          res.send({message:"sername or Email already exists"});
+        }
+        else{
+          bcrypt.genSalt(saltRounds, function(err, salt) {
+            bcrypt.hash(password, salt, function(err, hash) {
+              conn.query(`insert into users values ("${username}","${email}","${hash}");`)
+              .then(rows =>{
+                conn.end;
+                console.log(rows);
+                res.sendFile(path.join(__dirname + '../../index.html'));
+              }).catch(err =>{
+                console.log("ERROR = "+err)
+              })
+              
+              
+            });
+          }); 
+        }
+      })
+
+
 }).catch(err =>{
   console.log(err);
 });
 
 })
 
-//API for signing in
-app.post('/signin',urlencodedParser,(req,res) => {
-  md.then(conn =>{
-        const username = req.body.username;
-        const password = req.body.password;
-        let hashPassword = "";
+//for signing in
+app.post('/signin', urlencodedParser, (req, res) => {
+  try {
+      md.then(conn => {
+          const username = req.body.username;
+          const password = req.body.password;
+          let hashPassword = "";
 
-        const result= conn.query(`select convert(password using utf8) as password from users where username = "${username}";`)
-                      .then(rows => {
-                        
-                        hashPassword = rows[0].password;
-                        conn.end;
+          conn.query(`select convert(password using utf8) as password from users where username = "${username}";`)
+              .then(rows => {
 
-                        checkUser(username,password,hashPassword);
+                  hashPassword = rows[0].password;
+                  conn.end;
 
-                        async function checkUser (username, password,hashPassword){
-                        const match = await bcrypt.compare(password,hashPassword);
-                        console.log("match = "+ match);
-            
-                        } 
-                      })
-        res.send(null) 
+                  checkUser(username, password, hashPassword);
+
+                  async function checkUser(username, password, hashPassword) {
+                      const match = await bcrypt.compare(password, hashPassword);
+                      console.log("match = " + match);
+                      if (match) {
+                          res.sendFile(path.join(__dirname + '../../index.html'));
+                      } else {
+                          res.send("Incorrect Password!")
+                      }
+
+                  }
+              }).catch(err => {
+                  console.log("ERROR = " + err);
+              })
 
 
 
 
-  }).catch(err =>{
-    console.log(err);
-  });
-  
-  
-  })
+      }).catch(err => {
+          console.log(err);
+      });
+  } catch (err) {
+      throw err;
+  }
+
+})
 
 app.get('/', (req, res) => {
   //res.send("some texts");
