@@ -1,0 +1,6 @@
+# Environment credentials
+.env
+
+# Key files for servers
+*.pem
+*.ppk
