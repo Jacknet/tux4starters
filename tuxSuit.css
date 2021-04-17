@@ -39,6 +39,12 @@ body {
     cursor: pointer !important;
 }
 
+.navbar-nav a.currA {
+    background-color: #2E4057 !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+}
+
 
 .navbar-nav a:hover {
     background-color: #2E4057 !important;
