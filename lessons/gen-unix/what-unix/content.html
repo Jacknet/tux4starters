@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tux For Starters | Basic Commands | rm</title>
+    <title>Tux For Starters | Basic Commands | pwd</title>
     <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
  
     <link rel="icon" href="/images/tux4start-favicon.png">
@@ -13,10 +13,8 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="/xterm/css/xterm.css">
 
-    <script src="/xterm/lib/xterm.js"></script>
     <script src="/jquery/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/term.js"></script>
     <script src="parser.js"></script>
 </head>
 <body>
@@ -60,74 +58,34 @@
     <main>
         
         <div class="container" id="questionContainer">
-            <h2>Basic Commands | rm</h2>
+            <h2>General UNIX | What is UNIX?</h2>
             <div class="lessonContent">
                 <!-- Place your lesson content here -->
-                
-                <p>
-                    <strong>rm</strong> (Remove) command allows you to remove files. By default this command cannot remove directories.
-                </p>
-                    <p>1) To remove a file use this command.</p>
-                    Command :
+                <p>In this site, we will be working with another operating system type called UNIX-like operating systems.  UNIX is an operating system that was created in the 1960s by Ken Thompson and Dennis Ritchie that was written
+                    in what is called assembly language.</p>
                     <br>
-                    <code>
-                        $ rm my_file
-                    </code>
-                    <br><br>
-                    <p>If you want to see if your file still exist then use the ls command.</p>
-                    Command :
+                    <p>Assembly language is written with numbers, symbols, and abbreviations to represent what you would want the computer to do, but also make it easier for people to understand than
+                    machine language.  Machine language is written in binary code, meaning that it is written in 1s and 0s for the machine or computer to understand but difficult for human beings to understand.</p>
                     <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        
-                    </code>
-
-                    <br><br>                    
-                       <p>2) To remove more than one file enter the command like so</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ rm my_file1 my_file2
-                    </code>
-                    <br><br>
-                    <p>If you want to see your files still exist then use the ls command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        
-                    </code>
-
-                    <br><br>
-                    Source:
-                    <cite>https://www.geeksforgeeks.org/rm-command-linux-examples/</cite>
-                    
-    
+                    <p>UNIX allowed programmers (or software developers), people who make computer software, to create word editors and other programs. As time went on, it evolved into letting multiple users on a system, similar to with how
+                    today we can have multiple people using the same computer but having different profiles. UNIX kept evolving and many developers created their own versions of them called distributions.</p>
             </div>
             <div class="questionContent">
                 <!-- Place your questions and answers here -->
                 <h3>Question</h3>
                 <p>
-                    Which of the following commands will remove a file named contactInfo?
+                    <!--Place your question here-->
+                    What will this site be focusing on?
                 </p>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
-                    <input id="ans1" type="radio" name="command" value="rm">
-                    <label for="rm">&ensp; rm contactInfo </label><br>
-                    <input id="ans2" type="radio" name="command" value="removedir">
-                    <label for="removedir">&ensp;removedir contactInfo</label><br>
-                    <input id="ans3" type="radio" name="command" value="removefile">
-                    <label for="removefile">&ensp;removefile contactInfo</label>
+                    <!--Place your answes here-->
+                    <input id="ans1" type="radio" name="command" value="assem">
+                    <label for="assem">&ensp; Assembly language Learning</label><br>
+                    <input id="ans2" type="radio" name="command" value="unix-like">
+                    <label for="unix-like">&ensp; UNIX-like Learning</label><br>
+                    <input id="ans3" type="radio" name="command" value="program">
+                    <label for="program">&ensp; Learning about Programming</label>
                     <br>
                     <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>
@@ -135,12 +93,10 @@
                 <p id="result"></p>
                 <p id="suggestionsArea"></p>
             </div>
-            
         </div>
     </main>
 
     <footer>
-
     </footer>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tux For Starters | Basic Commands | rm</title>
+    <title>Tux For Starters | Basic Commands | pwd</title>
     <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
  
     <link rel="icon" href="/images/tux4start-favicon.png">
@@ -60,74 +60,36 @@
     <main>
         
         <div class="container" id="questionContainer">
-            <h2>Basic Commands | rm</h2>
+            <h2>General UNIX | What is an Operating System?</h2>
             <div class="lessonContent">
                 <!-- Place your lesson content here -->
                 
                 <p>
-                    <strong>rm</strong> (Remove) command allows you to remove files. By default this command cannot remove directories.
-                </p>
-                    <p>1) To remove a file use this command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ rm my_file
-                    </code>
-                    <br><br>
-                    <p>If you want to see if your file still exist then use the ls command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        
-                    </code>
-
-                    <br><br>                    
-                       <p>2) To remove more than one file enter the command like so</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ rm my_file1 my_file2
-                    </code>
-                    <br><br>
-                    <p>If you want to see your files still exist then use the ls command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        
-                    </code>
-
-                    <br><br>
-                    Source:
-                    <cite>https://www.geeksforgeeks.org/rm-command-linux-examples/</cite>
-                    
-    
+                    When you turn on your computer or phone, the thing that has all of the apps that you use is called an <strong>operating system</strong>. <strong>Operating Systems</strong> are the software that support what your computer does,
+                    whether it is doing math, playing games, or even making phone calls. Some examples of operating systems that you may have heard of are:
+                    <ul>
+                        <li><strong>Windows</strong> - A family of operating systems created by Microsoft and used primarily on personal computers (PCs)</li>
+                        <li><strong>macOS</strong> - A family of operating systems created by Apple and used on Apple Mac computers</li>
+                        <li><strong>Android</strong> - A mobile operating system created by Google and the Open Handset Alliance that is used on Android phones</li>
+                        <li><strong>iOS</strong> - A mobile operating system created by Apple and used on iPhones</li>
+                    </ul>
             </div>
             <div class="questionContent">
                 <!-- Place your questions and answers here -->
                 <h3>Question</h3>
                 <p>
-                    Which of the following commands will remove a file named contactInfo?
+                    <!--Place your question here-->
+                    Which operating system is used on Apple Mac computers?
                 </p>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
-                    <input id="ans1" type="radio" name="command" value="rm">
-                    <label for="rm">&ensp; rm contactInfo </label><br>
-                    <input id="ans2" type="radio" name="command" value="removedir">
-                    <label for="removedir">&ensp;removedir contactInfo</label><br>
-                    <input id="ans3" type="radio" name="command" value="removefile">
-                    <label for="removefile">&ensp;removefile contactInfo</label>
+                    <!--Place your answes here-->
+                    <input id="ans1" type="radio" name="command" value="iOS">
+                    <label for="iOS">&ensp; iOS</label><br>
+                    <input id="ans2" type="radio" name="command" value="Windows">
+                    <label for="Windows">&ensp; Windows</label><br>
+                    <input id="ans3" type="radio" name="command" value="macOS">
+                    <label for="macOS">&ensp; macOS</label>
                     <br>
                     <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>
@@ -135,12 +97,10 @@
                 <p id="result"></p>
                 <p id="suggestionsArea"></p>
             </div>
-            
         </div>
     </main>
 
     <footer>
-
     </footer>
 </body>
 </html>
