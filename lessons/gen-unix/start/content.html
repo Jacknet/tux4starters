@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tux For Starters | General UNIX | What is UNIX?</title>
+    <title>Tux For Starters | General UNIX | Where do I start?</title>
     <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
  
     <link rel="icon" href="/images/tux4start-favicon.png">
@@ -60,34 +60,74 @@
     <main>
         
         <div class="container" id="questionContainer">
-            <h2>General UNIX | What is UNIX?</h2>
+            <h2>General UNIX | Where do I start?</h2>
             <div class="lessonContent">
                 <!-- Place your lesson content here -->
-                <p>In this site, we will be working with another operating system type called UNIX-like operating systems.  UNIX is an operating system that was created in the 1960s by Ken Thompson and Dennis Ritchie that was written
-                    in what is called assembly language.</p>
-                    <br>
-                    <p>Assembly language is written with numbers, symbols, and abbreviations to represent what you would want the computer to do, but also make it easier for people to understand than
-                    machine language.  Machine language is written in binary code, meaning that it is written in 1s and 0s for the machine or computer to understand but difficult for human beings to understand.</p>
-                    <br>
-                    <p>UNIX allowed programmers (or software developers), people who make computer software, to create word editors and other programs. As time went on, it evolved into letting multiple users on a system, similar to with how
-                    today we can have multiple people using the same computer but having different profiles. UNIX kept evolving and many developers created their own versions of them called distributions.</p>
+                <p>When you start a Linux distribution, such as Ubuntu, you would perform the following steps:</p>
+                <ol>
+                    <li>Download the software</li>
+                    <li>Set the software up on a flash drive, disk | Set the software up on a Virtual Machine</li>
+                    <li>Install the software on a separate machine or virtual machine</li>
+                    <li>Create a user account with a username and password (don't forget it!)</li>
+                    <li>Begin using your Linux distribution!</li>
+                </ol>
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+                  
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                      <div class="item active">
+                        <img src="/images/lesson-content/start-1.png" alt="Ubuntu Login Screen">
+                        <div class="carousel-caption">
+                          Ubuntu Login Screen
+                        </div>
+                      </div>
+                      <div class="item">
+                        <img src="/images/lesson-content/start-2.png" alt="Ubuntu Home Screen">
+                        <div class="carousel-caption">
+                          Ubuntu Home Screen
+                        </div>
+                      </div>
+                      <div class="item">
+                        <img src="/images/lesson-content/start-3.png" alt="Ubuntu Home Screen">
+                        <div class="carousel-caption">
+                          Ubuntu Applications
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
             </div>
             <div class="questionContent">
                 <!-- Place your questions and answers here -->
                 <h3>Question</h3>
                 <p>
                     <!--Place your question here-->
-                    What will this site be focusing on?
+                    Which Linux distribution was used as an example for this lesson?
                 </p>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
                     <!--Place your answes here-->
-                    <input id="ans1" type="radio" name="command" value="assem">
-                    <label for="assem">&ensp; Assembly language Learning</label><br>
-                    <input id="ans2" type="radio" name="command" value="unix-like">
-                    <label for="unix-like">&ensp; UNIX-like Learning</label><br>
-                    <input id="ans3" type="radio" name="command" value="program">
-                    <label for="program">&ensp; Learning about Programming</label>
+                    <input id="ans1" type="radio" name="command" value="macOS">
+                    <label for="macOS">&ensp; macOS</label><br>
+                    <input id="ans2" type="radio" name="command" value="ubuntu">
+                    <label for="ubuntu">&ensp; Ubuntu</label><br>
+                    <input id="ans3" type="radio" name="command" value="red">
+                    <label for="red">&ensp; Red Hat</label>
                     <br>
                     <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>
