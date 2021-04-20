@@ -65,7 +65,7 @@ function termParse(cmdIn) {
         // Mark step 1 as done
         stepOneDone = true;
         // Print result
-        return "";
+        return "\r\nYou copied all of the file ABC into DEF, list everything next.\r\n";
     } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Remember, the ABC file is already created, all you need to do is copy the file into another file named DEF.";

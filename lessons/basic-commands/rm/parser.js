@@ -89,7 +89,7 @@ function termParse(cmdIn) {
         stepOneDone = true;
         stepTwoDone = true;
         // Change working directory
-        return "";
+        return "\r\nYou removed ABC, list everything next.\r\n";
     } else if ((stepOneDone) && !(stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The second step is to remove the file named ABC.";

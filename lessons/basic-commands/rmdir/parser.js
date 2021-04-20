@@ -87,7 +87,7 @@ function termParse(cmdIn) {
         stepOneDone = true;
         stepTwoDone = true;
         // Print nothing
-        return "";
+        return "\r\ndelFolder has been removed. List all of the files and folders next.\r\n";
     } else if ((stepOneDone) && !(stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The remove command is needed right after listing all the files and folders.";

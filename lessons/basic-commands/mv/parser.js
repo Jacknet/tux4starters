@@ -65,7 +65,7 @@ function termParse(cmdIn) {
         // Mark step 1 as done
         stepOneDone = true;
         // Print result
-        return "";
+        return "\r\nYou moved DEF into Pictures, now change into that directory.\r\n";
     } else if (!(stepOneDone) & !(stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The first step is to move the DEF file into the Pictures folder.";
@@ -160,30 +160,5 @@ function checkMultipleChoice(){
         if (attemptCount >= 3) {
             giveHint("The answer will have three additions following the command, the two files and the folder.");
         }
-    }
-}
-
-//Parser for mv
-
-function checkMultipleChoice(){
-
-    // Get pointer of valid response
-    // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
-    var ansChoice = $("#ans1")[0];
-
-    // Check if the valid radio button is marked
-    if (ansChoice.checked) {
-        // Mark that the question has been solved
-        isSolved = true;
-        // Show star rating based on attempts
-        //this will also show "Correct!"
-        giveStarsMult(attemptCount);
-    } else {
-        // Increment attempt if invalid response is given
-        attemptCount++;
-        // Show a hint after a failed attempts
-        //this will also show "incorrect!"
-        giveHint("Review section 1 again");
-        
     }
 }

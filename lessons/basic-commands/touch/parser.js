@@ -65,7 +65,7 @@ function termParse(cmdIn) {
         // Mark step 1 as done
         stepOneDone = true;
         // Print result
-        return "";
+        return "\r\nYou have created a file called ABC, next list everything.\r\n";
     } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Remember to use the command to quickly create empty files. Remember that the file will be called ABC.";
@@ -120,7 +120,7 @@ function checkMultipleChoice(){
 
     // Get pointer of valid response
     // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
-    var ansChoice = $("#ans2")[0];
+    var ansChoice = $("#ans3")[0];
 
 
 

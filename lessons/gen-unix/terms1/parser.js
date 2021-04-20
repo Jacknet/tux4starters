@@ -22,7 +22,7 @@ function checkMultipleChoice(){
         // Show star rating based on attempts
         giveStarsMult(attemptCount);
         // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"/terms2/content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"../terms2/content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;

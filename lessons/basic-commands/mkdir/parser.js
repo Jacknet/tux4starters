@@ -67,7 +67,7 @@ function termParse(cmdIn) {
         // Mark step 1 as done
         stepOneDone = true;
         // Print nothing
-        return "";
+        return "\r\nCompleted the first step! You created a directory called folderB.\r\n";
     } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The mkdir command creates a new directory.";

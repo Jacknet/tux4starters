@@ -65,53 +65,40 @@
                 <!-- Place your lesson content here -->
                 
                 <p>
-                    <strong>rmdir</strong> (Remove directory) command allows you to remove directories. This command will remove all specified directories that are empty.
+                    <strong>rmdir</strong> (Remove directory) command allows you to remove empty directories.
                 </p>
-                    <p>1) To remove a directory use this command.</p>
-                    Command :
+                <p>
+                    The <strong>ls</strong> command shows you all of the files and folders (also called directories) in a location.
                     <br>
+                </p>
+                    <p>1) Let's start by typing <strong>ls</strong> to see what's in the directory.</p>
                     <code>
-                        $ rmdir my_directory
+                        student@tux4starters:~$ ls
                     </code>
                     <br><br>
-                    <p>If you want to see if your directory still exist then use the ls command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
                         Output :
                     <br>
                     <code>
-                        
+                        Documents ExampleF Music Pictures
                     </code>
-
-                    <br><br>                    
-                       <p>2) To remove more than one directory enter the command like so</p>
-                        Command :
-                    <br>
+                    <br/>
+                    <p>Here we see the folders for Documents, Music, and Pictures. There is also an empty folder called <i>ExampleF</i></p>
+                    <br><br>
+                    <p>2) Let's use the <strong>rmdir</strong> to go ahead and remove the directory named <i>ExampleF</i></p>
                     <code>
-                        $ mkdir my_directory1 my_directory2
+                        student@tux4starters:~$ rmdir ExampleF
                     </code>
                     <br><br>
-                    <p>If you want to see your directories still exist then use the ls command.</p>
-                    Command :
-                    <br>
+                    <p>3) Use the <strong>ls</strong> command to view the contents of the root directory.</i></p>
                     <code>
-                        $ ls
+                        student@tux4starters:~$ ls
                     </code>
-                    <br>
+                    <br><br>
                         Output :
                     <br>
                     <code>
-                        
+                        Documents Music Pictures
                     </code>
-
-                    <br><br>
-                    Source:
-                    <cite>https://www.geeksforgeeks.org/rmdir-command-in-linux-with-examples/</cite>
-                    
     
             </div>
             <div class="questionContent">
