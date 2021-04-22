@@ -42,7 +42,7 @@ function postMult(result) {
     // POST multiple choice star rating, with module and lesson to store at.
     // The window.location.pathname DOM parameter has the site path.
     // We just strip the current module and lesson.
-    $.post("/post",
+    $.post("/post.html",
         {
             "multStarRating": result,
             "module": window.location.pathname.split("/")[2],
@@ -54,7 +54,7 @@ function postTerm(result) {
     // POST terminal star rating, with module and lesson to store at.
     // The window.location.pathname DOM parameter has the site path.
     // We just strip the current module and lesson.
-    $.post("/post",
+    $.post("/post.html",
         {
             "termStarRating": result,
             "module": window.location.pathname.split("/")[2],
