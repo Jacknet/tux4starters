@@ -59,7 +59,7 @@ function termParse(cmdIn) {
     */
     if (/^\s*cd ((.|~)\/)?newlesson\/?\s*$/.exec(cmdIn)) {
         // Append star rating
-        giveStarsTerm(attemptCount);
+        postTerm(giveStarsTerm(attemptCount));
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
@@ -104,8 +104,8 @@ function checkMultipleChoice(){
     if (ansChoice.checked) {
         // Mark that the question has been solved
         isSolved = true;
-        // Show star rating based on attempts
-        giveStarsMult(attemptCount);
+        // Show and POST star rating based on attempts
+        postMult(giveStarsMult(attemptCount));
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;

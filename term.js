@@ -37,6 +37,32 @@ function giveHint(hintMsg){
     $("#result")[0].innerHTML ="Incorrect!";
 }
 
+// Functions that will POST a star rating to the server to be stored, as long as a session is active
+function postMult(result) {
+    // POST multiple choice star rating, with module and lesson to store at.
+    // The window.location.pathname DOM parameter has the site path.
+    // We just strip the current module and lesson.
+    $.post("/post",
+        {
+            "multStarRating": result,
+            "module": window.location.pathname.split("/")[2],
+            "lesson": window.location.pathname.split("/")[3]
+        }
+    );
+}
+function postTerm(result) {
+    // POST terminal star rating, with module and lesson to store at.
+    // The window.location.pathname DOM parameter has the site path.
+    // We just strip the current module and lesson.
+    $.post("/post",
+        {
+            "termStarRating": result,
+            "module": window.location.pathname.split("/")[2],
+            "lesson": window.location.pathname.split("/")[3]
+        }
+    );
+}
+
 // Function that will assign stars given the amount of attempts made for a multiple choice quiz
 function giveStarsMult(count) {
     // Clear any prior messages
@@ -49,21 +75,23 @@ function giveStarsMult(count) {
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
-            // Break switch
-            break;
+            // Return 3 stars
+            return 3;
         case 3: // Three attempts
         case 4: // Four attempts
             // Two stars if three to four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
-            // Break switch
-            break;
+            // Return 2 stars
+            return 2;
         default: // Other number of attempts
             // One star for five or more attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
+            // Return 1 star
+            return 1;
     }
 }
 
@@ -77,17 +105,19 @@ function giveStarsTerm(count) {
         case 2: // Two attempts
             // Three stars if one or less attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-            // Break switch
-            break;
+            // Return 3 stars
+            return 3;
         case 3: // Three attempts
         case 4: // Four attempts
             // Two stars if three to four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-            // Break switch
-            break;
+            // Return 2 stars
+            return 2;
         default: // Other number of attempts
             // One star for five or more attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
+            // Return 1 star
+            return 1;
     }
 }
 

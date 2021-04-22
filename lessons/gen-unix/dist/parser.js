@@ -19,8 +19,8 @@ function checkMultipleChoice(){
     if (ansChoice.checked) {
         // Mark that the question has been solved
         isSolved = true;
-        // Show star rating based on attempts
-        giveStarsMult(attemptCount);
+        // Show and POST star rating based on attempts
+        postMult(giveStarsMult(attemptCount));
         // Append next button
         $("#suggestionsArea")[0].innerHTML += " <a href=\"../open-source/content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
