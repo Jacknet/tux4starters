@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tux For Starters - TEMPLATE LESSON</title>
+    <title>Tux For Starters | General UNIX | Applications</title>
     <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
  
     <link rel="icon" href="/images/tux4start-favicon.png">
@@ -34,15 +34,7 @@
             <div class="collapse navbar-collapse" id="mainBar">
                 <ul class="nav navbar-nav">
                     <li><a href="/about.html">About</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
-                            <li><a href="index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
-                            <li><a href="MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
-                        </ul>
-                    </li>
+                    <li><a class="currA" href="../../index.html">Lessons</a></li>
                     <li><a href="/resources.html">Resources</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -66,18 +58,48 @@
     </nav>
 
     <main>
-        <div class="container">
-            <h2>Lesson ## - Console Template</h2>
-            <div id="terminal"></div>
-            <script>
-                newTerm();
-            </script>
-            <p id="suggestionsArea"></p>
+        
+        <div class="container" id="questionContainer">
+            <h2>General UNIX | Applications</h2>
+            <div class="lessonContent">
+                <!-- Place your lesson content here -->
+                <p>The distributions we've covered use a whole assortment of open source applications to get tasks done. You can
+                  use these free applications like you would the applications on your Windows or macOS computer. The only difference
+                here is that all of these programs come pre-packaged with the distribution you installed.</p>
+                <br>
+                <p>You can use Mozilla Firefox or any other internet browser to use the Internet, LibreOffice Writer or 
+                  other word editors to edit documents.
+                </p>
+                <br>
+                <p>Packaged with these applications is a way for users to interact with what is going on behind the scenes, interacting with
+                  the <strong>shell</strong> through the use of the <strong>terminal</strong>. The shell performs different commands used by
+                the system through the use of <strong>scripts</strong>. We'll learn more about these in the next lesson.</p>
+            </div>
+            <div class="questionContent">
+                <!-- Place your questions and answers here -->
+                <h3>Question</h3>
+                <p>
+                    <!--Place your question here-->
+                    Does Ubuntu come prepackaged with applications?
+                </p>
+                <!-- Multiple choice container -->
+                <div class="multipleChoice">
+                    <!--Place your answes here-->
+                    <input id="ans1" type="radio" name="command" value="true">
+                    <label for="true">&ensp; True</label><br>
+                    <input id="ans2" type="radio" name="command" value="false">
+                    <label for="false">&ensp; False</label><br>
+                    <br>
+                    <button type="button" onclick="checkMultipleChoice()">Submit</button>
+                </div>
+                <br>
+                <p id="result"></p>
+                <p id="suggestionsArea"></p>
+            </div>
         </div>
     </main>
 
     <footer>
-
     </footer>
 </body>
 </html>

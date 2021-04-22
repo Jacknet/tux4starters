@@ -34,15 +34,7 @@
             <div class="collapse navbar-collapse" id="mainBar">
                 <ul class="nav navbar-nav">
                     <li><a href="/about.html">About</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
-                            <li><a href="/index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
-                            <li><a href="/MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
-                        </ul>
-                    </li>
+                    <li><a class="currA" href="../../index.html">Lessons</a></li>
                     <li><a href="/resources.html">Resources</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -73,53 +65,39 @@
                 <!-- Place your lesson content here -->
                 
                 <p>
-                    <strong>mkdir</strong> (make directory) command allows you to create directories. A <strong>Directory</strong> 
-                    is sometimes refered to as a folder on some operating systems.
+                    The <strong>mkdir</strong> (Make Directory) command allows you to create directories. A directory is another name for
+                    a folder.  Folders will usually have files associated with them. A <i>Pictures</i> folder will more than likely contain
+                    pictures of something, could be cats or family photos or something you drew.
                 </p>
-                    <p>1) To create a new directory use this command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ mkdir new_directory
-                    </code>
-                    <br><br>
-                    <p>If you want to see your new directory then use the ls command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        new_directory
-                    </code>
-
-                    <br><br>                    
-                       <p>2) To create more than one directory enter the command like so</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ mkdir new_directory1 new_directory2
-                    </code>
-                    <br><br>
-                    <p>If you want to see your new directories then use the ls command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        new_directory1 new_directory2
-                    </code>
-                    
-                    <br><br>
-                    Source:
-                    <cite>https://www.geeksforgeeks.org/mkdir-command-in-linux-with-examples/</cite>
+            </p>
+            <p>1) Let's start by typing <strong>ls</strong> to see what's in the example directory.</p>
+            <code>
+                student@tux4starters:~$ ls
+            </code>
+            <br><br>
+                Output :
+            <br>
+            <code>
+                Documents Music Pictures 
+            </code>
+            <br/>
+            <p>Here we see the folders for Documents, Music, and Pictures.</p>
+            <br><br>
+            <p>2) Use <strong>mkdir</strong> to create a folder named ExampleF in the directory.</p>
+            <code>
+                student@tux4starters:~$ mkdir ExampleF
+            </code>
+            <br><br>
+            <p>3) Finally, use <strong>ls</strong> to list everything in the root directory.</p>
+            <code>
+                student@tux4starters:~$ ls
+            </code>
+            <br><br>
+                Output :
+            <br>
+            <code>
+                Documents ExampleF Music Pictures
+            </code>
                     
     
             </div>
@@ -129,7 +107,6 @@
                 <p>
                     Which of the following commands will create a directory named myHomework?
                 </p>
-                <br>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
                     <!--Place your answers here-->
@@ -142,6 +119,7 @@
                     <br>
                     <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>
+                <br>
                 <p id="result"></p>
                 <p id="suggestionsArea"></p>
             </div>

@@ -34,15 +34,7 @@
             <div class="collapse navbar-collapse" id="mainBar">
                 <ul class="nav navbar-nav">
                     <li><a href="/about.html">About</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
-                            <li><a href="/index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
-                            <li><a href="/MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
-                        </ul>
-                    </li>
+                    <li><a class="currA" href="../../index.html">Lessons</a></li>
                     <li><a href="/resources.html">Resources</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -105,19 +97,19 @@
                     <!--Place your question here-->
                     What does <strong>pwd</strong> stand for?
                 </p>
-                <br>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
                     <!--Place your answes here-->
-                    <input id="ans1" type="radio" name="command" value="copy">
-                    <label for="new">&ensp; Pro Wrestling Dude</label><br>
-                    <input id="ans2" type="radio" name="command" value="append">
-                    <label for="create">&ensp; Print Working Directory</label><br>
-                    <input id="ans3" type="radio" name="command" value="view">
-                    <label for="touch">&ensp; Print Working Dollars</label>
+                    <input id="ans1" type="radio" name="command" value="pwd1">
+                    <label for="pwd1">&ensp; Pro Wrestling Dude</label><br>
+                    <input id="ans2" type="radio" name="command" value="pwd2">
+                    <label for="pwd2">&ensp; Print Working Directory</label><br>
+                    <input id="ans3" type="radio" name="command" value="pwd3">
+                    <label for="pwd3">&ensp; Print Working Dollars</label>
                     <br>
                     <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>
+                <br>
                 <p id="result"></p>
                 <p id="suggestionsArea"></p>
             </div>

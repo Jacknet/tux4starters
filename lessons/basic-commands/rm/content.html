@@ -34,15 +34,7 @@
             <div class="collapse navbar-collapse" id="mainBar">
                 <ul class="nav navbar-nav">
                     <li><a href="/about.html">About</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
-                            <li><a href="/index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
-                            <li><a href="/MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
-                        </ul>
-                    </li>
+                    <li><a class="currA" href="../../index.html">Lessons</a></li>
                     <li><a href="/resources.html">Resources</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -73,52 +65,38 @@
                 <!-- Place your lesson content here -->
                 
                 <p>
-                    <strong>rm</strong> (Remove) command allows you to remove files. By default this command cannot remove directories.
+                   The <strong>rm</strong> command removes a files or directories. Previously we saw that <strong>rmdir</strong> removes only
+                   empty directories.
                 </p>
-                    <p>1) To remove a file use this command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ rm my_file
-                    </code>
-                    <br><br>
-                    <p>If you want to see if your file still exist then use the ls command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        
-                    </code>
-
-                    <br><br>                    
-                       <p>2) To remove more than one file enter the command like so</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ rm my_file1 my_file2
-                    </code>
-                    <br><br>
-                    <p>If you want to see your files still exist then use the ls command.</p>
-                    Command :
-                    <br>
-                    <code>
-                        $ ls
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        
-                    </code>
-
-                    <br><br>
-                    Source:
-                    <cite>https://www.geeksforgeeks.org/rm-command-linux-examples/</cite>
+            </p>
+                <p>1) Let's start by typing <strong>ls</strong> to see what's in the example directory.</p>
+                <code>
+                    student@tux4starters:~$ ls
+                </code>
+                <br><br>
+                    Output :
+                <br>
+                <code>
+                    Documents Example Music Pictures
+                </code>
+                <br/>
+                <p>Here we see the folders for Documents, Music, and Pictures. There is also a file named <i>Example</i> as well.</p>
+                <br><br>
+                <p>2) Let's use <strong>rm</strong> to remove the <i>Example</i> file from the root directory.</p>
+                <code>
+                    student@tux4starters:~$ rm Example
+                </code>
+                <br><br>
+                <p>3) Finally, use <strong>ls</strong> to list everything in the root directory.</p>
+                <code>
+                    student@tux4starters:~$ ls
+                </code>
+                <br><br>
+                    Output :
+                <br>
+                <code>
+                    Documents Music Pictures
+                </code>
                     
     
             </div>
@@ -128,7 +106,6 @@
                 <p>
                     Which of the following commands will remove a file named contactInfo?
                 </p>
-                <br>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
                     <input id="ans1" type="radio" name="command" value="rm">
@@ -140,6 +117,7 @@
                     <br>
                     <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>
+                <br>
                 <p id="result"></p>
                 <p id="suggestionsArea"></p>
             </div>

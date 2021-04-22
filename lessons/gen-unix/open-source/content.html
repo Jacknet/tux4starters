@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tux For Starters - TEMPLATE LESSON</title>
+    <title>Tux For Starters | General UNIX | What is Open Source?</title>
     <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
  
     <link rel="icon" href="/images/tux4start-favicon.png">
@@ -34,15 +34,7 @@
             <div class="collapse navbar-collapse" id="mainBar">
                 <ul class="nav navbar-nav">
                     <li><a href="/about.html">About</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <!--li><a href=""><span class="glyphicon glyphicon-ok"></span> Page 1-1</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-2</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-play-circle"></span> Page 1-3</a></li-->
-                            <li><a href="index.html"><span class="glyphicon glyphicon-play-circle"></span> Demo Lesson</a></li>
-                            <li><a href="MultipleChoiceTemp.html"><span class="glyphicon glyphicon-play-circle"></span> Multiple Choice Demo</a></li>
-                        </ul>
-                    </li>
+                    <li><a class="currA" href="../../index.html">Lessons</a></li>
                     <li><a href="/resources.html">Resources</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -66,18 +58,49 @@
     </nav>
 
     <main>
-        <div class="container">
-            <h2>Lesson ## - Console Template</h2>
-            <div id="terminal"></div>
-            <script>
-                newTerm();
-            </script>
-            <p id="suggestionsArea"></p>
+        
+        <div class="container" id="questionContainer">
+            <h2>General UNIX | What is Open Source?</h2>
+            <div class="lessonContent">
+                <!-- Place your lesson content here -->
+                <p>With the amount of distributions, you're probably wondering, "Is that legal?", and the answer is "Yes, but there's a catch".</p>
+                    <br>
+                <p>Distributions will usually be created by a group of people and will follow some or most of what was written previously by users.  Some of these distributions can have
+                    their own copyrights for certain items, but for the most part, most of these distributions are free for anyone to download, install, and play around with.
+                </p>
+                <br>
+                <p>Software that allows users to mess around with it, create different versions of, work with people online, and not charge one cent for, are called <strong>Open Source</strong>.</p>
+                <br>
+                <p><strong>Open Source</strong> is a different approach to software distribution. Instead of receiving just the final product, you are also supplied the source code that
+                    was used to construct it. The code is offered to you under an open source license, which is like a waiver of the author’s copyright to the software code.</p>
+            </div>
+            <div class="questionContent">
+                <!-- Place your questions and answers here -->
+                <h3>Question</h3>
+                <p>
+                    <!--Place your question here-->
+                    What would you receive aside from the final product of an Open Source application?
+                </p>
+                <!-- Multiple choice container -->
+                <div class="multipleChoice">
+                    <!--Place your answes here-->
+                    <input id="ans1" type="radio" name="command" value="source">
+                    <label for="source">&ensp; Source Code</label><br>
+                    <input id="ans2" type="radio" name="command" value="stick">
+                    <label for="stick">&ensp; Stickers</label><br>
+                    <input id="ans3" type="radio" name="command" value="flash">
+                    <label for="flash">&ensp; Flash Drive</label>
+                    <br>
+                    <button type="button" onclick="checkMultipleChoice()">Submit</button>
+                </div>
+                <br>
+                <p id="result"></p>
+                <p id="suggestionsArea"></p>
+            </div>
         </div>
     </main>
 
     <footer>
-
     </footer>
 </body>
 </html>

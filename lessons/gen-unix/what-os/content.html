@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tux For Starters | General UNIX | What is an Operating System?</title>
+    <meta name="description" content="An education platform for learning Linux through the use of interactive lessons.">
+ 
+    <link rel="icon" href="/images/tux4start-favicon.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/tuxSuit.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="/xterm/css/xterm.css">
+
+    <script src="/xterm/lib/xterm.js"></script>
+    <script src="/jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/term.js"></script>
+    <script src="parser.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index.html"><img src="/images/tux4start-headicon.png" alt="site logo" width="30">Tux For Starters</a>
+            </div>
+            <div class="collapse navbar-collapse" id="mainBar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/about.html">About</a></li>
+                    <li><a class="currA" href="../../index.html">Lessons</a></li>
+                    <li><a href="/resources.html">Resources</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/help.html">Help</a></li>
+                    <li style="display:inline-block;">
+                        <form class="navbar-form" action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li><a href="/signin.html">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        
+        <div class="container" id="questionContainer">
+            <h2>General UNIX | What is an Operating System?</h2>
+            <div class="lessonContent">
+                <!-- Place your lesson content here -->
+                
+                <p>
+                    When you turn on your computer or phone, the thing that has all of the apps that you use is called an <strong>operating system</strong>. <strong>Operating Systems</strong> are the software that support what your computer does,
+                    whether it is doing math, playing games, or even making phone calls. Some examples of operating systems that you may have heard of are:
+                    <ul>
+                        <li><strong>Windows</strong> - A family of operating systems created by Microsoft and used primarily on personal computers (PCs)</li>
+                        <li><strong>macOS</strong> - A family of operating systems created by Apple and used on Apple Mac computers</li>
+                        <li><strong>Android</strong> - A mobile operating system created by Google and the Open Handset Alliance that is used on Android phones</li>
+                        <li><strong>iOS</strong> - A mobile operating system created by Apple and used on iPhones</li>
+                    </ul>
+            </div>
+            <div class="questionContent">
+                <!-- Place your questions and answers here -->
+                <h3>Question</h3>
+                <p>
+                    <!--Place your question here-->
+                    Which operating system is used on Apple Mac computers?
+                </p>
+                <!-- Multiple choice container -->
+                <div class="multipleChoice">
+                    <!--Place your answes here-->
+                    <input id="ans1" type="radio" name="command" value="iOS">
+                    <label for="iOS">&ensp; iOS</label><br>
+                    <input id="ans2" type="radio" name="command" value="Windows">
+                    <label for="Windows">&ensp; Windows</label><br>
+                    <input id="ans3" type="radio" name="command" value="macOS">
+                    <label for="macOS">&ensp; macOS</label>
+                    <br>
+                    <button type="button" onclick="checkMultipleChoice()">Submit</button>
+                </div>
+                <br>
+                <p id="result"></p>
+                <p id="suggestionsArea"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+</body>
+</html>

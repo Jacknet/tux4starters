@@ -103,13 +103,13 @@ function termParse(cmdIn) {
     }
 
     // Step 3 code
-    if ((/^\s*cat Song Title Lyrics\s*$/.exec(cmdIn)) && (stepOneDone) && (stepTwoDone)) {
+    if ((/^\s*cat Song-Title Lyrics\s*$/.exec(cmdIn)) && (stepOneDone) && (stepTwoDone)) {
         // Append star rating
         giveStarsTerm(attemptCount);
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
-        $("#suggestionsArea")[0].innerHTML += " <a href=\"../rm/content.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
+        $("#suggestionsArea")[0].innerHTML += " <a href=\"/lessons\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
         // Mark solved
         isSolved = true;
         // Reset variables
