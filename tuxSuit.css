@@ -320,3 +320,13 @@ textarea {
     margin-top: 6px;
     display: block;
 }
+
+/* Image carousel styling */
+.carousel img, .carousel-control {
+    border-radius: 10px;
+}
+
+.carousel-caption {
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+}
