@@ -88,15 +88,16 @@
                                 <br/>
                             <button type="submit">Create Account</button>
                             </div>
-<!--
+
                             <div id="message">
-                                <h3>Password must contain the following:</h3>
+<!--                                <h3>Password must contain the following:</h3>
                                 <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
                                 <p id="capital" class="invalid">A <b>uppercase</b> letter</p>
                                 <p id="number" class="invalid">A <b>number</b></p>
                                 <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                              </div>
 -->
+                              </div>
+
                         </form>
                     </div>
                 </div>
@@ -114,7 +115,7 @@ async function register(e){
     console.log(username)
     console.log(email)
     console.log(password)
- /*  await fetch('/register', {
+  /* await fetch('/register', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -129,14 +130,14 @@ async function register(e){
                 } )
 
 */
-			
+	
 axios.post('/register', {
     "username": username,
     "email": email,
 	"password": password
   })
-  .then(function (response) {
-    console.log(response);
+  .then(function (res) {
+    document.getElementById("message").innerHTML = res.data.message;
   })
 			
 
