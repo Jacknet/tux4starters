@@ -18,9 +18,32 @@ var isSolved = false;
 // Current directory
 var currWd = "~";
 
+// Variable that will hold a user session ID
+var sessionId = "";
+
 /*
     Below is vital code to get stuff working properly.
 */
+
+// Code that will run on page ready to check session ID
+$(document).ready(
+    function() {
+        /*
+            PLACEHOLDER
+
+            A session token is stored as a cookie, which identifies a logged on user with the back-end.
+
+            Check for the cookie and that the server has the token logged on in the database.
+            If its active, then just store the token in a variable for POSTing and change the "sign in" text to say "sign out", otherwise clear the cookie.
+            Have it cleared when clicking sign out.
+            Have code that checks if you are in the sign in page or register page to clear session!
+            
+            Upon sign-out, reload the page!
+        */
+        // console.log("COOKIE CHECK GOES HERE");
+        // document.getElementById("sessionBtn").innerText = "Sign Out";
+    }
+);
 
 // This would be overwritten by the lesson. Default term parse returns nothing.
 function termParse(cmdIn) {
@@ -37,6 +60,34 @@ function giveHint(hintMsg){
     $("#result")[0].innerHTML ="Incorrect!";
 }
 
+// Functions that will POST a star rating to the server to be stored, as long as a session is active
+function postMult(result) {
+    // POST multiple choice star rating, with module and lesson to store at.
+    // The window.location.pathname DOM parameter has the site path.
+    // We just strip the current module and lesson.
+    $.post("/post.html",
+        {
+            "multStarRating": result,
+            "module": window.location.pathname.split("/")[2],
+            "lesson": window.location.pathname.split("/")[3],
+            "sessionId": sessionId
+        }
+    );
+}
+function postTerm(result) {
+    // POST terminal star rating, with module and lesson to store at.
+    // The window.location.pathname DOM parameter has the site path.
+    // We just strip the current module and lesson.
+    $.post("/post.html",
+        {
+            "termStarRating": result,
+            "module": window.location.pathname.split("/")[2],
+            "lesson": window.location.pathname.split("/")[3],
+            "sessionId": sessionId
+        }
+    );
+}
+
 // Function that will assign stars given the amount of attempts made for a multiple choice quiz
 function giveStarsMult(count) {
     // Clear any prior messages
@@ -49,21 +100,23 @@ function giveStarsMult(count) {
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
-            // Break switch
-            break;
+            // Return 3 stars
+            return 3;
         case 3: // Three attempts
         case 4: // Four attempts
             // Two stars if three to four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
-            // Break switch
-            break;
+            // Return 2 stars
+            return 2;
         default: // Other number of attempts
             // One star for five or more attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
+            // Return 1 star
+            return 1;
     }
 }
 
@@ -77,17 +130,19 @@ function giveStarsTerm(count) {
         case 2: // Two attempts
             // Three stars if one or less attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-            // Break switch
-            break;
+            // Return 3 stars
+            return 3;
         case 3: // Three attempts
         case 4: // Four attempts
             // Two stars if three to four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
-            // Break switch
-            break;
+            // Return 2 stars
+            return 2;
         default: // Other number of attempts
             // One star for five or more attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
+            // Return 1 star
+            return 1;
     }
 }
 

@@ -83,7 +83,7 @@ function termParse(cmdIn) {
     // Step 2 code
     if ((/^\s*ls\s*$/.exec(cmdIn)) && (stepOneDone)) {
         // Append star rating
-        giveStarsTerm(attemptCount);
+        postTerm(giveStarsTerm(attemptCount));
         // Append reset button
         $("#suggestionsArea")[0].innerHTML += "<button class=\"tuxButton\" id=\"Started\" onclick=\"resetTerm()\"><span>Reset Lesson</span></button></a>";
         // Append next button
@@ -128,8 +128,8 @@ function checkMultipleChoice(){
     if (ansChoice.checked) {
         // Mark that the question has been solved
         isSolved = true;
-        // Show star rating based on attempts
-        giveStarsMult(attemptCount);
+        // Show and POST star rating based on attempts
+        postMult(giveStarsMult(attemptCount));
         // Append next button
         $("#suggestionsArea")[0].innerHTML += " <a href=\"assignment.html\"><button class=\"tuxButton\"><span>Next Lesson</span></button></a>";
     } else {
