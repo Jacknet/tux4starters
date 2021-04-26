@@ -53,60 +53,38 @@
                 <!-- Place your lesson content here -->
                 
                 <p>
-                    <strong>mv</strong> (move) command allows you to move one or more files or directories from one place 
-                    to another in file system like Unix. <br>
-                    It can rename a file or a folder. It can also move group of files to a different directory.
-
+                    The <strong>mv</strong> (move) command allows you to move files or directories into a different directory.<br>
+                    <strong>mv</strong> also renames files or directories as well.
                 </p>
-                    <p>1) Below we rename a file from a.txt to b.txt</p>
+                    <p>1) So if we wanted to move a file named ABC.txt into the Documents folder we would need to do the following:</p>
+                    <code>
+                        student@tux4starters:~$ mv ABC.txt Documents
+                    </code>
+                    <br><br>
+                    <p>The formatting for the <strong>mv</strong> command is: mv [Location/File] [Location/File]</p>
+                    <p>So we can move files or directories into other directories or rename them.</p>
+                    <br>
+                    <p>2) Let's assume that we're in the Documents folder, here we can rename the ABC file into DEF.txt using the same <strong>mv</strong> command.</p>
                     Command :
                     <br>
                     <code>
-                        $ mv a.txt b.txt
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        The file with name a.txt will be renamed to b.txt if a file with b.txt does not exist. 
-                    </code>
-                    <br><br>                    
-                       <p>2) We can move one file into another file that already exists. This does replace the content that already exist 
-                           in another file
-                       </p>
-                        Command :
-                    <br>
-                    <code>
-                        $ mv file1 file2
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        Whatever was in file1 will be moved to file2. If there was content in file2, it will be overwritten. 
+                        student@tux4starters:~/Documents$ mv ABC.txt DEF.txt
                     </code>
                     <br><br>
-                        <p>3) This command also allows us to move a folder into anothe folder. In the example below we will move a folder named "notes" into 
-                            a folder name "backup".</p>
-                        Command :
+                    Command :
                     <br>
                     <code>
-                        $ mv notes backup
+                        student@tux4starters:~/Documents$ ls
                     </code>
-                    <br>
+                    <br><br>
                         Output :
                     <br>
                     <code>
-                        All the files in the notes folder will be moved to backup folder.
+                        DEF.txt
                     </code>
-               
-
-
-
                     <br><br>
-                    Source:
-                    <cite>https://www.geeksforgeeks.org/mv-command-linux-examples/</cite>
-                    
+                    <p>3) Be aware that if there is a file or directory with the same name and there is content within it, it could <strong>overwrite</strong> or <strong>remove</strong> the item altogether,
+                        so consider it good practice to make sure that if you wish to rename files or directories that they do not already exist within the directory you are working in.
     
             </div>
             <div class="questionContent">

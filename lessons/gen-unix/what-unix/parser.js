@@ -26,6 +26,7 @@ function checkMultipleChoice(){
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
+        giveHint("Try again!");
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("Take a look at the top left of the lesson to see what we will be working with.");

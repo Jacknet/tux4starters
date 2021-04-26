@@ -110,6 +110,7 @@ function checkMultipleChoice(){
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
+        giveHint("Try again!");
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("In the examples on the page, 'Documents' was a folder and 'Example' was a file.");

@@ -112,6 +112,7 @@ function checkMultipleChoice(){
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
+        giveHint("Try again!");
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("Take a look at the name of the folder you are trying to move to");

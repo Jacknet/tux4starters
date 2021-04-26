@@ -158,6 +158,7 @@ function checkMultipleChoice(){
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
+        giveHint("Try again!");
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("Remember that to remove a directory, you do not need to spell out remove.");
