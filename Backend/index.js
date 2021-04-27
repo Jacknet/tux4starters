@@ -9,6 +9,31 @@ const {connect} = require("http2");
 const nodemon = require("nodemon");
 require("dotenv").config()
 
+
+//----------------------
+// using Twilio SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const msg = {
+  to: 'test@example.com', // Change to your recipient
+  from: 'test@example.com', // Change to your verified sender
+  subject: 'Sending with SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+}
+sgMail
+  .send(msg)
+  .then(() => {
+    console.log('Email sent')
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+  //--------------------------
+
+
 //this is for node1
 const pool = mariadb.createPool({
   host: process.env.MD_HOST,
@@ -97,23 +122,22 @@ const exJson = app.use('/', express.json());
 
 //for registration
 app.post('/register',(req,res) => {
-  console.log(req.body)
-  res.json("Some texts")
+
 md.then(conn =>{
 
-      // const username = req.body.username;
-      // const email = req.body.email;
-      // const password = req.body.password;
+      const username = req.body.username;
+      const email = req.body.email;
+      const password = req.body.password;
       const saltRounds = 10; //this should allow ~10 hashes a sec
      
-
+      if(username && email && password){
       //first check if the username or email already exists
       conn.query(`select username, email from users where username = "${username}" or email = "${email}"; `)
       .then(rows => {
         conn.end;
         if(rows[0]){
           console.log("Username or Email already exists");
-          res.send({message:"sername or Email already exists"});
+          res.send({message:"Username or Email already exists! Please try again..."});
         }
         else{
           bcrypt.genSalt(saltRounds, function(err, salt) {
@@ -122,7 +146,9 @@ md.then(conn =>{
               .then(rows =>{
                 conn.end;
                 console.log(rows);
-                res.sendFile(path.join(__dirname + '../../index.html'));
+                //res.sendFile(path.join(__dirname + '../../index.html'));
+                //res.redirect("../../index.html")  //this is to redirect the user to a page - does not work atm. 
+                res.send({message:"Successfully registered! Please login"})
               }).catch(err =>{
                 console.log("ERROR = "+err)
               })
@@ -132,7 +158,7 @@ md.then(conn =>{
           }); 
         }
       })
-
+    }
 
 }).catch(err =>{
   console.log(err);
