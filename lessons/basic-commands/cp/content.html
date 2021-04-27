@@ -53,58 +53,55 @@
                 <!-- Place your lesson content here -->
                 
                 <p>
-                    <strong>cp</strong> (copy) command allows you to copy files or group of files or directory. It creates a exact copy of the file with different file name.
-                    This command requres atleast two file names, the name of the file you want to copy (source) and the name of the new file that will be created (destination).
-                    you can also specify a directory where you want to copy the new file to.
-
+                    The <strong>cp</strong> (copy) command is used to copy files and paste them into directories. It can be used to create backup files in case you are working on something and 
+                    want to make sure that it you can go back to it in case of any issues. To use it, you would need the original file name, that is the file you want to copy, a name for what
+                    you want the new file to be called, and as an option you can even include a folder to put the new file.
                 </p>
-                    <p>1) Below we copy file1 into a new file called file2.</p>
+                <p><strong>cp [file name] [new file name] [directory]</strong></p>
+                    <p>1) Let's copy the ABC.txt file's contents into a file called XYZ.txt</p>
                     Command :
                     <br>
                     <code>
-                        $ cp file1 file2
+                        student@tux4starters:~$ cp ABC.txt XYZ.txt
+                    </code>
+                    <br>
+                    Command :
+                    <br>
+                    <code>
+                        student@tux4starters:~$ ls
                     </code>
                     <br>
                         Output :
                     <br>
                     <code>
-                        Content of the file1 will be copied to file2. file2 will be created if it does not exist.
-                        If file2 does exist then its content will be overwritten.
+                        ABC.txt Documents Music Pictures XYZ.txt
                     </code>
                     <br><br>                    
-                       <p>2) We can more file(s) to a folder in our directory</p>
-                        Command :
+                    <p>2) Let's move a copy of ABC.txt into our Documents folder.</p>
+                    <br>
+                    Command :
                     <br>
                     <code>
-                        $ cp file1 file2 backup
+                        student@tux4starters:~$ cp ABC.txt Documents
                     </code>
+                    <br><br>
+                    Command :
                     <br>
+                    <code>
+                        student@tux4starters:~$ cd Documents
+                    </code>
+                    <br><br>
+                    Command :
+                    <br>
+                    <code>
+                        student@tux4starters:~/Documents$ ls
+                    </code>
+                    <br><br>
                         Output :
                     <br>
                     <code>
-                        file1 and file2 will be copied to a folder called backup if it exist within our directory.
+                        ABC.txt
                     </code>
-                    <br><br>
-                        <p>3) cp also allows us to copy a folder to another folder by using the <strong>-R</strong> option. The -R option tells it to 
-                        recursively copy all the files that are in folder1 to folder2.</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ cp -R folder1 folder2
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        folder1 and all of its files will be copied to folder2.
-                    </code>
-               
-
-
-
-                    <br><br>
-                    Source:
-                    <cite>https://www.geeksforgeeks.org/cp-command-linux-examples/</cite>
                     
     
             </div>

@@ -161,6 +161,8 @@ function checkMultipleChoice(){
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("Remember that to remove a directory, you do not need to spell out remove.");
+        } else {
+            giveHint("Try again!");
         }
     }
 }

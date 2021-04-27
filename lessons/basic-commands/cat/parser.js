@@ -184,7 +184,7 @@ function checkMultipleChoice(){
         attemptCount++;
         // Show a hint after a failed attempts
         //this will also show "incorrect!"
-        giveHint("Review section 7 again");
+        giveHint("Review the beginning of the lesson.");
         
     }
 }

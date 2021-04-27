@@ -29,6 +29,8 @@ function checkMultipleChoice(){
         // Show a hint after three failed attempts
         if (attemptCount >= 1) {
             giveHint("If Ubuntu is a Linux distribution that has software packaged with it, then...");
+        } else {
+            giveHint("Try again!");
         }
     }
 }

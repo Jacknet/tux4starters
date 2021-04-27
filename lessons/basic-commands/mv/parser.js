@@ -159,6 +159,8 @@ function checkMultipleChoice(){
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("The answer will have three additions following the command, the two files and the folder.");
+        } else {
+            giveHint("Try again!");
         }
     }
 }

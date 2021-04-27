@@ -162,6 +162,8 @@ function checkMultipleChoice(){
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("Remember that the command to remove a directory, it is rmdir, so removing a file would be that command without the 'dir'.");
+        } else {
+            giveHint("Try again!");
         }
     }
 }

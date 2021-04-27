@@ -114,6 +114,8 @@ function checkMultipleChoice(){
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("pwd stands for Print ____ _______");
+        } else {
+            giveHint("Try again!");
         }
     }
 }

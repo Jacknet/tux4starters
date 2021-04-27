@@ -113,6 +113,8 @@ function checkMultipleChoice(){
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("In the examples on the page, 'Documents' was a folder and 'Example' was a file.");
+        } else {
+            giveHint("Try again!");
         }
     }
 }

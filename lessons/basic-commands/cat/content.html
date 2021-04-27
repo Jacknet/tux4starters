@@ -53,158 +53,35 @@
                 <!-- Place your lesson content here -->
                 
                 <p>
-                    <strong>cat</strong> (concatenate) command allows you to view the content of a file. It reads the data from a file that you
-                    specify and then outputs its content. It is useful when creating, viewing, and concatenating files. <strong>Concatenate</strong> means to 
-                    combine two things together -  files in this case. 
+                    The <strong>cat</strong> (concatenate) command displays the contents of a file. You can use it to determine what is inside of, for example, a text file, and even
+                    use it to concatenate files. To concatenate a file means to combine them together, so we can display the content of two files at the same time.
                 </p>
-                    <p>1) To view the content of a file you can use this simple command.</p>
+                    <p>1) Let's use <strong>cat</strong> to see what's inside a file called, ABC.txt that has the words, "Tux for Starters" in it.</p>
                     Command :
                     <br>
                     <code>
-                        $ cat filename
+                        student@tux4starters:~$ cat ABC.txt
                     </code>
                     <br>
                         Output :
                     <br>
                     <code>
-                        Content of the file
+                        Tux for Starters
                     </code>
                     <br><br>                    
-                       <p>2) To view more then one file you can simply add another file's name to the command like so</p>
+                       <p>2) In the same directory, we have another file named DEF.txt, let's use <strong>cat</strong> to display ABC.txt and DEF.txt.</p>
                         Command :
                     <br>
                     <code>
-                        $ cat filename1 filename2
+                        student@tux4starters:~$ cat ABC.txt DEF.txt
                     </code>
                     <br>
                         Output :
                     <br>
                     <code>
-                        Content of the file1 and file2
+                        Tux for Starters
+                        Let's Start Learning
                     </code>
-                    <br><br>
-                        <p>3) To view the file content with number lines, use the <strong>-n</strong> option like so</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ cat -n filename1
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        1 This is line one <br>
-                    </code>
-                    <code>
-                        2 This is line two
-                    </code>
-                    <br><br>
-                        <p>4) We can also use this command to create a new file like so</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ cat > newfilename
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        A new file will be created with the name you provide.
-                    </code>
-                    <br><br>
-                    <p>5) We can also use the cat command to copy content from one file to another. 
-                        The example below copies the information from file1 to file2.<br>
-                        Note that we can copy multiple files into file2 at the same time just by adding it after file1.
-                    </p>
-                        Command :
-                    <br>
-                    <code>
-                        $ cat file1 > file2
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        The content of file1 will be copied into file2
-                    </code>
-                    <br><br>
-                    <p>6) Cat command can suppress repeated empty lines in the output if they are exist in the file. For example, if the content of the file are as follows <br></p>
-                    <code>
-                        this is line one.<br>
-                        (emptyline)<br>
-                        (emptyline)<br>
-                        (emptyline)<br>
-                        this is line two.
-                    </code>
-                    <br>
-                        Command :
-                    <br>
-                    <code>
-                        $ cat -s filename
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        this is line one.<br>
-                            (emptyline)<br>
-                            this is line two.
-                    </code>
-                    <br><br>
-                    <p>7) We can also use the cat command to write content to an existing file that already has content in it already. This is called appending to a file.
-                        we can do this by using the following command.
-                    </p>
-                        Command :
-                    <br>
-                    <code>
-                        $ cat file1 >> file2
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        this is the content from file2<br>
-                        this is the content from file1
-                    </code>
-                    <br>
-                    <p>8) Spelling the cat command backword (<strong>tac</strong>) will output the content of the file in a reverse order.</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ tac filename
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        this is line two.<br>
-                        this is line one.
-                    </code>
-                    <br>
-                    <p>9) Using the opetion <strong>"-E"</strong> will indicate end of each line by adding "<strong>$</strong>"
-                     at the end of each sentence</p>
-                        Command :
-                    <br>
-                    <code>
-                        $ cat -e filename
-                    </code>
-                    <br>
-                        Output :
-                    <br>
-                    <code>
-                        this is line one.$<br>
-                        this is line one.$
-                    </code>
-                    <br>
-
-
-
-
-
-
-                    <br><br>
-                    Source:
-                    <cite>https://www.geeksforgeeks.org/cat-command-in-linux-with-examples/</cite>
                     
     
             </div>
@@ -213,17 +90,17 @@
                 <h3>Question</h3>
                 <p>
                     <!--Place your question here-->
-                    which of the following command will append to content of file1 to file2?
+                    What does it mean to concatenate files?
                 </p>
                 <!-- Multiple choice container -->
                 <div class="multipleChoice">
                     <!--Place your answes here-->
-                    <input id="ans1" type="radio" name="command" value="copy">
-                    <label for="copy">&ensp; cat file1 > file2</label><br>
-                    <input id="ans2" type="radio" name="command" value="append">
-                    <label for="append">&ensp;cat file1 >> file2</label><br>
-                    <input id="ans3" type="radio" name="command" value="view">
-                    <label for="view">&ensp;cat file1 file2</label>
+                    <input id="ans1" type="radio" name="command" value="read">
+                    <label for="read">&ensp; To read them.</label><br>
+                    <input id="ans2" type="radio" name="command" value="combine">
+                    <label for="combine">&ensp; To combine them.</label><br>
+                    <input id="ans3" type="radio" name="command" value="file">
+                    <label for="file">&ensp; To file them.</label>
                     <br>
                     <button type="button" onclick="checkMultipleChoice()">Submit</button>
                 </div>

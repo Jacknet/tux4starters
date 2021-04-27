@@ -29,6 +29,8 @@ function checkMultipleChoice(){
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("Take a look in the first line of the lesson to see the answer.");
+        } else {
+            giveHint("Try again!");
         }
     }
 }
