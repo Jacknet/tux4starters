@@ -70,7 +70,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Remember to use the command to quickly create empty files. Remember that the file will be called ABC.";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>touch</strong> command to create an empty file.";
         }
@@ -99,7 +99,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Use the command to list all the files and folders in this directory.";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>ls</strong> to list all the files.";
         }
@@ -136,7 +136,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             giveHint("Remember that the command starts with a 't'.");
         } else {
             giveHint("Try again!");

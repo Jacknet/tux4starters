@@ -70,7 +70,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Remember, the ABC file is already created, all you need to do is copy the file into another file named DEF.";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>cp</strong> command to copy all of ABC into DEF.";
         }
@@ -99,7 +99,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Use the command to list all the files and folders in this directory.";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>ls</strong> to list all the files.";
         }
@@ -136,7 +136,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             giveHint("The answer will have three additions following the command, the two files and the folder.");
         } else {
             giveHint("Try again!");

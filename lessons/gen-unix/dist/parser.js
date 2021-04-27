@@ -27,7 +27,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             giveHint("If Linux is a UNIX-like system and BSD is based on UNIX then...");
         } else {
             giveHint("Try again!");
