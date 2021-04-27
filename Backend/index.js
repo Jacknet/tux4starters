@@ -92,7 +92,7 @@ let md = mariadb.createConnection({
   database: process.env.MD_DATABASE  
 })
 //Midleware
-app.use(express.static("../TUX4STARTERS", options));
+app.use(express.static("../tux4starters", options));
 const exJson = app.use('/', express.json());
 
 //for registration
