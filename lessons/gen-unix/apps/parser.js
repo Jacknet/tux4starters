@@ -26,10 +26,11 @@ function checkMultipleChoice(){
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
-        giveHint("Try again!");
         // Show a hint after three failed attempts
         if (attemptCount >= 1) {
             giveHint("If Ubuntu is a Linux distribution that has software packaged with it, then...");
+        } else {
+            giveHint("Try again!");
         }
     }
 }

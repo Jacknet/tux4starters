@@ -26,10 +26,11 @@ function checkMultipleChoice(){
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
-        giveHint("Try again!");
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("The iPhone uses iOS, so the Mac should use ___OS.");
+        } else {
+            giveHint("Try again!");
         }
     }
 }

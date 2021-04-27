@@ -135,10 +135,11 @@ function checkMultipleChoice(){
     } else {
         // Increment attempt if invalid response is given
         attemptCount++;
-        giveHint("Try again!");
         // Show a hint after three failed attempts
         if (attemptCount >= 3) {
             giveHint("Remember that the command starts with a 't'.");
+        } else {
+            giveHint("Try again!");
         }
     }
 }
