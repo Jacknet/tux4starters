@@ -71,7 +71,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The first step is to change the directory to the Music folder.";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>cd</strong> command to go to the Music folder.";
         }
@@ -92,7 +92,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The second step is to list everything in the Music folder.";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>cd</strong> to go into a directory.";
         }
@@ -122,7 +122,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The last step is to show the content of both of these files.";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>cat</strong> command and the name of the two files starting with Song-Title.";
         }
@@ -157,7 +157,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             giveHint("In the examples on the page, 'Documents' was a folder and 'Example' was a file.");
         }
     }

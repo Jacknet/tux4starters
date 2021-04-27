@@ -74,7 +74,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Suggestion stuff.";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Appended hint.";
         } else {
@@ -110,7 +110,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             giveHint("Suggestion stuff.");
         }
     }

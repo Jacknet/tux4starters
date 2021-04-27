@@ -75,7 +75,7 @@ function termParse(cmdIn) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Use the command that stands for &#39;<strong>Change Directory</strong>&#39;";
         // If attempt is 3 or over
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Make sure that you spell the folder name exactly as spelled above.";
         } else {
@@ -113,7 +113,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount >= 3) {
+        if (attemptCount > 3) {
             giveHint("Take a look at the name of the folder you are trying to move to");
         } else {
             giveHint("Try again!");
