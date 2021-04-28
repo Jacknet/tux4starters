@@ -95,22 +95,23 @@ function giveStarsMult(count) {
     // Switch that will add the appropriate star rating
     switch (count){
         case 1: // One attempt
-            // Three stars if one attempt
+        case 2: // Two attempts
+            // Three stars if one or two attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
             // Return 3 stars
             return 3;
-        case 2: // Two attempts
         case 3: // Three attempts
-            // Two stars if two or three attempts
+        case 4: // Three attempts
+            // Two stars if three or four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
             // Return 2 stars
             return 2;
         default: // Other number of attempts
-            // One star for more than three attempts
+            // One star for more than four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
             //show answer is correct
             $("#result")[0].innerHTML ="Correct!";
@@ -126,18 +127,19 @@ function giveStarsTerm(count) {
     // Switch that will add the appropriate star rating
     switch (count){
         case 1: // One attempt
-            // Three stars if one attempt
+        case 2: // Two attempts
+            // Three stars if one or two attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             // Return 3 stars
             return 3;
-        case 2: // Two attempts
         case 3: // Three attempts
-            // Two stars if two or three attempts
+        case 4: // Three attempts
+            // Two stars if three or four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span> <span class=\"glyphicon glyphicon-star\"></span></h1>";
             // Return 2 stars
             return 2;
         default: // Other number of attempts
-            // One star for more than three attempts
+            // One star for more than four attempts
             $("#suggestionsArea")[0].innerHTML = "<h1><span class=\"glyphicon glyphicon-star\"></span></h1>";
             // Return 1 star
             return 1;
