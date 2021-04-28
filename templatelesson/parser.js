@@ -73,13 +73,12 @@ function termParse(cmdIn) {
     } else {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Suggestion stuff.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Appended hint.";
-        } else {
-            // Otherwise increment attempt counter
-            attemptCount++;
         }
         // Print error
         return "\r\nUnknown command";
