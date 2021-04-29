@@ -8,7 +8,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 const {connect} = require("http2");
 const nodemon = require("nodemon");
 require("dotenv").config()
-var crpyto = require('crypto');
+var crypto = require('crypto');
 //this is for node1
 const pool = mariadb.createPool({
   host: process.env.MD_HOST,
@@ -96,11 +96,6 @@ app.use(express.static("../tux4starters", options));
 const exJson = app.use('/', express.json());
 
 
-app.post('crypto', (req,res) => {
-  let sessionId = crypto.randomBytes(24).toString('hex')
-  res.send(sessionId)
-})
-
 
 //for registration
 app.post('/register',(req,res) => {
@@ -168,7 +163,8 @@ app.post('/signin', urlencodedParser, (req, res) => {
                       const match = await bcrypt.compare(password, hashPassword);
                       console.log("match = " + match);
                       if (match) {
-                          res.send({sessionId:""})
+                        let sessionId = crypto.randomBytes(24).toString('hex')
+                        res.send({sessionId:sessionId})
                       } else {
                           res.send({message:"Incorrect Password or Username"})
                       }

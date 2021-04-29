@@ -92,9 +92,10 @@
           .then(function (res) {
               //const accessToken =res.data.accessToken
               const message = res.data.message
+              const sessionId = res.data.sessionId
+              console.log(res)
               //console.log(res.data.accessToken);
               if(!message){
-                //getHomePage(accessToken)
                 window.location.href = "/"
               }
               else{
