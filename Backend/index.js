@@ -95,8 +95,6 @@ let md = mariadb.createConnection({
 app.use(express.static("../tux4starters", options));
 const exJson = app.use('/', express.json());
 
-
-
 //for registration
 app.post('/register',(req,res) => {
 
@@ -113,7 +111,6 @@ md.then(conn =>{
       .then(rows => {
         conn.end;
         if(rows[0]){
-          console.log("Username or Email already exists");
           res.send({message:"Username or Email already exists! Please try again..."});
         }
         else{
@@ -184,7 +181,7 @@ app.post('/signin', urlencodedParser, (req, res) => {
 
 //user progression tracking
 
-app.post("userTracking",urlencodedParser, (req, res) =>{
+app.post("/post",urlencodedParser, (req, res) =>{
 
 })
 
