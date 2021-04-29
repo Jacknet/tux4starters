@@ -69,13 +69,13 @@ function termParse(cmdIn) {
     } else if (!(stepOneDone) & !(stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The first step is to move the DEF file into the Pictures folder.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>mv</strong> command to move DEF into Pictures.";
         }
-        // Increment attempt counter
-        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -90,13 +90,13 @@ function termParse(cmdIn) {
     } else if ((stepOneDone) && !(stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The second step is to go into the Pictures folder.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>cd</strong> to go into a directory.";
         }
-        // Increment attempt counter
-        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -120,13 +120,13 @@ function termParse(cmdIn) {
     } else if ((stepOneDone) && (stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Finally, list all the files and folders again.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the same <strong>ls</strong> command you used in the first step.";
         }
-        // Increment attempt counter
-        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -157,7 +157,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount > 3) {
+        if (attemptCount >= 3) {
             giveHint("The answer will have three additions following the command, the two files and the folder.");
         } else {
             giveHint("Try again!");

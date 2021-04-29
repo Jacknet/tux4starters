@@ -71,13 +71,13 @@ function termParse(cmdIn) {
     } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The mkdir command creates a new directory.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use mkdir to create folderB";
         }
-        // Increment attempt counter
-        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -101,13 +101,13 @@ function termParse(cmdIn) {
     } else if (stepOneDone) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The cd command changes your current directory.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use cd to go to folderB";
         }
-        // Increment attempt counter
-        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -138,7 +138,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount > 3) {
+        if (attemptCount >= 3) {
             giveHint("Making a directory requires the command that starts with 'mk'.");
         } else {
             giveHint("Try again!");

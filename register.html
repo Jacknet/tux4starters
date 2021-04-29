@@ -56,10 +56,10 @@
                         
                             <div class="inputWrapper">
                             <label for="username"><b>Username</b></label>
-                            <input id="username" type="text" placeholder="Enter Username" name="username" required>
+                            <input id="username" type="text" placeholder="Enter Username" name="username" pattern="^[a-zA-Z\d]+$" title="Username may only contain Upper case, Lower case, or numeric values" required>
                                 <br/>
                             <label for="email"><b>Email</b></label>
-                            <input id= "email" type="text" placeholder="Enter Email" name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required>
+                            <input id= "email" type="text" placeholder="Enter Email" name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="Must be a valid email address" required>
                                 <br/>
                             <label for="password"><b>Password</b></label>
                             <input id="password" type="password" placeholder="Enter Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>

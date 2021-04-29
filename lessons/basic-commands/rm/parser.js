@@ -73,13 +73,13 @@ function termParse(cmdIn) {
     } else if (!(stepOneDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "List all of the files in the root directory first.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the <strong>ls</strong> command to list everything in the directory.";
         }
-        // Increment attempt counter
-        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -93,13 +93,13 @@ function termParse(cmdIn) {
     } else if ((stepOneDone) && !(stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "The second step is to remove the file named ABC.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use <strong>rm</strong> to remove the file.";
         }
-        // Increment attempt counter
-        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -123,13 +123,13 @@ function termParse(cmdIn) {
     } else if ((stepOneDone) && (stepTwoDone)) {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Finally, list all the files and folders again.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Use the same <strong>ls</strong> command you used in the first step.";
         }
-        // Increment attempt counter
-        attemptCount++;
         // Print error
         return "\r\nUnknown command";
     }
@@ -160,7 +160,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount > 3) {
+        if (attemptCount >= 3) {
             giveHint("Remember that the command to remove a directory, it is rmdir, so removing a file would be that command without the 'dir'.");
         } else {
             giveHint("Try again!");

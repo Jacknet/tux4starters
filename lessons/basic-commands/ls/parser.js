@@ -73,13 +73,12 @@ function termParse(cmdIn) {
     } else {
         // Otherwise, set a suggestion
         $("#suggestionsArea")[0].innerHTML = "Listing everything normally would just have you type <strong>ls</strong>.";
+        // Increment attempt counter
+        attemptCount++;
         // If attempt is 3 or over
         if (attemptCount > 3) {
             // Add hint
             $("#suggestionsArea")[0].innerHTML += "<br/><br/>Remember that -r is the parameter for having everything listed in reverse order.";
-        } else {
-            // Otherwise increment attempt counter
-            attemptCount++;
         }
         // Print error
         return "\r\nUnknown command";
@@ -111,7 +110,7 @@ function checkMultipleChoice(){
         // Increment attempt if invalid response is given
         attemptCount++;
         // Show a hint after three failed attempts
-        if (attemptCount > 3) {
+        if (attemptCount >= 3) {
             giveHint("In the examples on the page, 'Documents' was a folder and 'Example' was a file.");
         } else {
             giveHint("Try again!");
