@@ -14,6 +14,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/term.js"></script>
 </head>
 <body>
@@ -48,28 +49,73 @@
                 <div class="col tuxSpace">
                     <h2 style="text-align:center;">Sign In</h2>
                     <br/>
-                    <form action="/signin" method="post">
+                    <form id="signinForm" action="" method="post">
                         <div class="imgcontainer">
                             <img src="/images/tux4start-index.png" alt="site logo" class="logo" width="50%">
                         </div>
                       
                         <div class="inputWrapper">
                           <label for="username"><b>Username</b></label>
-                          <input type="text" placeholder="Enter Username" name="username" required>
+                          <input id="username"type="text" placeholder="Enter Username" name="username" required>
                             <br/>
                           <label for="password"><b>Password</b></label>
-                          <input type="password" placeholder="Enter Password" name="password" required>
+                          <input id="password" type="password" placeholder="Enter Password" name="password" required>
                             <br/>
                           <button type="submit">Login</button>
                           <span class="password"><a href="#">Forgot password?</a></span>
                           <span class="signup">New user? <a href="register.html">Sign up!</a></span>
                         </div>
+                        <div id="message">
+
+                         </div>
                       </form>
                 </div>
             </div>
         </div>
     </main>
+    <script>
+        var form = document.getElementById("signinForm");
+        form.addEventListener("submit", signin);
+        
+        async function signin(e){
+            e.preventDefault()
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            console.log(username)
+            console.log(password)
 
+            
+        axios.post('/signin', {
+            "username": username,
+            "password": password
+          })
+          .then(function (res) {
+              //const accessToken =res.data.accessToken
+              const message = res.data.message
+              //console.log(res.data.accessToken);
+              if(!message){
+                //getHomePage(accessToken)
+                window.location.href = "/"
+              }
+              else{
+                document.getElementById("message").innerHTML = "Incorrect user name or password";
+              }
+          })
+                    
+        
+        }
+        async function getHomePage(accessToken){
+            axios.get('/login', {
+            "username": username,
+            "password": password
+          })
+          .then(function (res) {
+            console.log(res.data.accessToken);
+          })
+
+        }
+        
+        </script>
 
     <footer>
 

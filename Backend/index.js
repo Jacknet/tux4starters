@@ -9,31 +9,6 @@ const {connect} = require("http2");
 const nodemon = require("nodemon");
 require("dotenv").config()
 
-
-//----------------------
-// using Twilio SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-const msg = {
-  to: 'test@example.com', // Change to your recipient
-  from: 'test@example.com', // Change to your verified sender
-  subject: 'Sending with SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-}
-sgMail
-  .send(msg)
-  .then(() => {
-    console.log('Email sent')
-  })
-  .catch((error) => {
-    console.error(error)
-  })
-  //--------------------------
-
-
 //this is for node1
 const pool = mariadb.createPool({
   host: process.env.MD_HOST,
@@ -168,6 +143,7 @@ md.then(conn =>{
 
 //for signing in
 app.post('/signin', urlencodedParser, (req, res) => {
+  console.log("sigin received")
   try {
       md.then(conn => {
           const username = req.body.username;
@@ -186,19 +162,15 @@ app.post('/signin', urlencodedParser, (req, res) => {
                       const match = await bcrypt.compare(password, hashPassword);
                       console.log("match = " + match);
                       if (match) {
-                          res.sendFile(path.join(__dirname + '../../index.html'));
+                          res.send()
                       } else {
-                          res.send("Incorrect Password!")
+                          res.send({message:"Incorrect Password or Username"})
                       }
 
                   }
               }).catch(err => {
                   console.log("ERROR = " + err);
               })
-
-
-
-
       }).catch(err => {
           console.log(err);
       });
