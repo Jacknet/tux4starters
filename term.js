@@ -31,11 +31,18 @@ var sessionId = "";
     Below is vital code to get stuff working properly.
 */
 
+// Function that stores a given session ID to the client after successful log-on.
+function signIn(sessionId) {
+    // Store session ID as a cookie
+    document.cookie = "sessid=" + sessionId + ";SameSite=Strict";
+    // Refresh client, sending back to the homepage
+    window.location.href = "/"
+}
 // Function that devalidates the current client session.
 // User must log in again and obtain a new session ID.
 function signOut() {
     // Blank session ID cookie and make it expire immediately (Midnight 01/01/1970 is 0 in UNIX time!)
-    document.cookie="sessid=;expires=Thu, 01 Jan 1970";
+    document.cookie = "sessid=;expires=Thu, 01 Jan 1970";
     // Refresh client, sending back to the homepage
     window.location.href = "/"
 }
@@ -93,10 +100,12 @@ $(document).ready(
 
                 // Store cookie value to global sessionId variable
                 sessionId = cookie.split("=")[1];
+                // Get "Sign In" button from navbar
+                var sessionBtn = document.getElementById("sessionBtn");
                 // Replace "Sign In" button with "Sign Out"
-                document.getElementById("sessionBtn").innerText = "Sign Out";
-                document.getElementById("sessionBtn").href = "#";
-                document.getElementById("sessionBtn").onclick = signOut;
+                sessionBtn.innerText = "Sign Out";
+                sessionBtn.href = "#";
+                sessionBtn.onclick = signOut;
                 // Break for loop
                 break;
             }

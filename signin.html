@@ -91,14 +91,20 @@
           })
           .then(function (res) {
               //const accessToken =res.data.accessToken
+
+              // Get message and session ID if they exist
               const message = res.data.message
               const sessionId = res.data.sessionId
               console.log(res)
+
               //console.log(res.data.accessToken);
+
+              // If an error message was not provided
               if(!message){
-                window.location.href = "/"
-              }
-              else{
+                // Then sign in was successful. Store ID.
+                signIn(sessionId);
+              } else {
+                // Else set error message given
                 document.getElementById("message").innerHTML = "Incorrect user name or password";
               }
           })                    
