@@ -3,9 +3,4 @@ GET http://locahost:5000/POST
 
 ###
 
-POST  http://localhost:5000/login
-Content-Type: application/json
-
-{
-    "username": "mayank"
-}
+POST  http://localhost:5000/crypto
