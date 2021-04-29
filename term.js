@@ -58,8 +58,6 @@ $(document).ready(
         var cookieName = "sessid=";
         // Split each cookie into an array
         var cookieArray = decodeURIComponent(document.cookie).split(';');
-        // Store actual cookie here, default blank
-        var sessionCookie = "";
         // For each cookie
         for(var i = 0; i < cookieArray.length; i++) {
             // Get current cookie to check
@@ -72,8 +70,7 @@ $(document).ready(
             // If cookie is found by name
             if (cookie.indexOf(cookieName) == 0) {
                 // DEBUG
-                console.log("COOKIE FOUND");
-                console.log(cookie);
+                console.log("COOKIE FOUND: " + cookie.split("=")[1]);
 
                 // PLACEHOLDER: SERVER CHECK CODE GOES HERE.
                 // WILL BLANK OUT sessionCookie VARIABLE IF CHECK FAILS.
@@ -92,12 +89,14 @@ $(document).ready(
                 //     signOut();
                 // }
 
+                // document.cookie="sessid=12345;SameSite=Strict";
+
                 // Store cookie value to global sessionId variable
-                sessionId = cookie;
+                sessionId = cookie.split("=")[1];
                 // Replace "Sign In" button with "Sign Out"
                 document.getElementById("sessionBtn").innerText = "Sign Out";
                 document.getElementById("sessionBtn").href = "#";
-                document.getElementById("sessionBtn").onclick = "signOut();";
+                document.getElementById("sessionBtn").onclick = signOut;
                 // Break for loop
                 break;
             }
@@ -125,7 +124,7 @@ function postMult(result) {
     // POST multiple choice star rating, with module and lesson to store at.
     // The window.location.pathname DOM parameter has the site path.
     // We just strip the current module and lesson.
-    $.post("/post.html",
+    $.post("/post",
         {
             "multStarRating": result,
             "module": window.location.pathname.split("/")[2],
@@ -138,7 +137,7 @@ function postTerm(result) {
     // POST terminal star rating, with module and lesson to store at.
     // The window.location.pathname DOM parameter has the site path.
     // We just strip the current module and lesson.
-    $.post("/post.html",
+    $.post("/post",
         {
             "termStarRating": result,
             "module": window.location.pathname.split("/")[2],
