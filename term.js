@@ -3,8 +3,14 @@
     Under GPLv3
 */
 
-// Instnatiate new terminal variable
-var term = new Terminal();
+// Try instantiating terminal
+try {
+    // Instantiate new terminal variable
+    var term = new Terminal();
+} catch (e) {
+    // Log that terminal did not load, possibly due to being in a page without terminal.
+    console.log("Terminal simulation not loaded (" + e + ")");
+}
 
 // Command buffer
 var cmdBuff = "";
@@ -53,7 +59,7 @@ $(document).ready(
         // Split each cookie into an array
         var cookieArray = decodeURIComponent(document.cookie).split(';');
         // Store actual cookie here, default blank
-        var sessionCookie = ""
+        var sessionCookie = "";
         // For each cookie
         for(var i = 0; i < cookieArray.length; i++) {
             // Get current cookie to check
