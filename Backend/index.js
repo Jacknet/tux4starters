@@ -180,6 +180,14 @@ app.post('/signin', urlencodedParser, (req, res) => {
 
 })
 
+//user progression tracking
+
+app.post("userTracking",urlencodedParser, (req, res) =>{
+  
+})
+
+
+
 /*
 app.post("/forgot", (req, res) => {
   const thisEmail = getEmail(req.body.email);
