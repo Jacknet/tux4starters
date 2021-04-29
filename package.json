@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Jacknet/tux4starters#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^8.2.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "mariadb": "^2.5.3",
