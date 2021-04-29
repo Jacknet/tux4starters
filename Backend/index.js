@@ -8,7 +8,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 const {connect} = require("http2");
 const nodemon = require("nodemon");
 require("dotenv").config()
-var crpyto = require('crypto');
+var crypto = require('crypto');
 //this is for node1
 const pool = mariadb.createPool({
   host: process.env.MD_HOST,
