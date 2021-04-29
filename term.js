@@ -79,22 +79,27 @@ $(document).ready(
                 // DEBUG
                 console.log("COOKIE FOUND: " + cookie.split("=")[1]);
 
-                // PLACEHOLDER: SERVER CHECK CODE GOES HERE.
+                // SERVER CHECK CODE GOES HERE.
                 // WILL BLANK OUT sessionCookie VARIABLE IF CHECK FAILS.
-                // If a session cookie is valid
-                // if (cookie) {
-                //     // Store cookie value to global sessionId variable
-                //     sessionId = cookie;
-                //     // Replace "Sign In" button with "Sign Out"
-                //     document.getElementById("sessionBtn").innerText = "Sign Out";
-                //     document.getElementById("sessionBtn").href = "#";
-                //     document.getElementById("sessionBtn").onclick = "signOut();";
-                //     // Break for loop
-                //     break;
-                // } else {
-                //     // If blank, run sign out to devalidate session
-                //     signOut();
-                // }
+                //// Post to server if session is valid in the database
+                // axios.post('/api', {
+                //     "sessionId": cookie.split("=")[1]
+                // }).then(function(res) {
+                //     // If server responded "OK"
+                //     if (res == "OK") {
+                //         // Store cookie value to global sessionId variable
+                //         sessionId = cookie.split("=")[1];
+                //         // Get "Sign In" button from navbar
+                //         var sessionBtn = document.getElementById("sessionBtn");
+                //         // Replace "Sign In" button with "Sign Out"
+                //         sessionBtn.innerText = "Sign Out";
+                //         sessionBtn.href = "#";
+                //         sessionBtn.onclick = signOut;
+                //     } else {
+                //         // Sign out if server did not respond with "OK"
+                //         signOut();
+                //     }
+                // });
 
                 // document.cookie="sessid=12345;SameSite=Strict";
 
@@ -106,6 +111,7 @@ $(document).ready(
                 sessionBtn.innerText = "Sign Out";
                 sessionBtn.href = "#";
                 sessionBtn.onclick = signOut;
+
                 // Break for loop
                 break;
             }

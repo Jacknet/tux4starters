@@ -78,36 +78,35 @@
         form.addEventListener("submit", signin);
         
         async function signin(e){
-            e.preventDefault()
+            e.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            console.log(username)
-            console.log(password)
+            console.log(username);
+            console.log(password);
 
             
-        axios.post('/signin', {
-            "username": username,
-            "password": password
-          })
-          .then(function (res) {
-              //const accessToken =res.data.accessToken
+            axios.post('/signin', {
+                "username": username,
+                "password": password
+            }).then(function (res) {
+                //const accessToken =res.data.accessToken
 
-              // Get message and session ID if they exist
-              const message = res.data.message
-              const sessionId = res.data.sessionId
-              console.log(res)
+                // Get message and session ID if they exist
+                const message = res.data.message
+                const sessionId = res.data.sessionId
+                console.log(res)
 
-              //console.log(res.data.accessToken);
+                //console.log(res.data.accessToken);
 
-              // If an error message was not provided
-              if(!message){
-                // Then sign in was successful. Store ID.
-                signIn(sessionId);
-              } else {
-                // Else set error message given
-                document.getElementById("message").innerHTML = "Incorrect user name or password";
-              }
-          })                    
+                // If an error message was not provided
+                if(!message){
+                    // Then sign in was successful. Store ID.
+                    signIn(sessionId);
+                } else {
+                    // Else set error message given
+                    document.getElementById("message").innerHTML = "Incorrect user name or password";
+                }
+            });                    
         }
         
         </script>
