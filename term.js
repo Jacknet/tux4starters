@@ -25,12 +25,19 @@ var sessionId = "";
     Below is vital code to get stuff working properly.
 */
 
+// Function that devalidates the current client session.
+// User must log in again and obtain a new session ID.
+function signOut() {
+    // Blank session ID cookie and make it expire immediately (Midnight 01/01/1970 is 0 in UNIX time!)
+    document.cookie="sessid=;expires=Thu, 01 Jan 1970";
+    // Refresh client, sending back to the homepage
+    window.location.href = "/"
+}
+
 // Code that will run on page ready to check session ID
 $(document).ready(
     function() {
         /*
-            PLACEHOLDER
-
             A session token is stored as a cookie, which identifies a logged on user with the back-end.
 
             Check for the cookie and that the server has the token logged on in the database.
@@ -40,8 +47,55 @@ $(document).ready(
             
             Upon sign-out, reload the page!
         */
-        // console.log("COOKIE CHECK GOES HERE");
-        // document.getElementById("sessionBtn").innerText = "Sign Out";
+
+        // Cookie name is "sessid"
+        var cookieName = "sessid=";
+        // Split each cookie into an array
+        var cookieArray = decodeURIComponent(document.cookie).split(';');
+        // Store actual cookie here, default blank
+        var sessionCookie = ""
+        // For each cookie
+        for(var i = 0; i < cookieArray.length; i++) {
+            // Get current cookie to check
+            var cookie = cookieArray[i];
+            // For any spaces preceeding the cookie string
+            while (cookie.charAt(0) == ' ') {
+                // Remove it
+                cookie = cookie.substring(1);
+            }
+            // If cookie is found by name
+            if (cookie.indexOf(cookieName) == 0) {
+                // DEBUG
+                console.log("COOKIE FOUND");
+                console.log(cookie);
+
+                // PLACEHOLDER: SERVER CHECK CODE GOES HERE.
+                // WILL BLANK OUT sessionCookie VARIABLE IF CHECK FAILS.
+                // If a session cookie is valid
+                // if (cookie) {
+                //     // Store cookie value to global sessionId variable
+                //     sessionId = cookie;
+                //     // Replace "Sign In" button with "Sign Out"
+                //     document.getElementById("sessionBtn").innerText = "Sign Out";
+                //     document.getElementById("sessionBtn").href = "#";
+                //     document.getElementById("sessionBtn").onclick = "signOut();";
+                //     // Break for loop
+                //     break;
+                // } else {
+                //     // If blank, run sign out to devalidate session
+                //     signOut();
+                // }
+
+                // Store cookie value to global sessionId variable
+                sessionId = cookie;
+                // Replace "Sign In" button with "Sign Out"
+                document.getElementById("sessionBtn").innerText = "Sign Out";
+                document.getElementById("sessionBtn").href = "#";
+                document.getElementById("sessionBtn").onclick = "signOut();";
+                // Break for loop
+                break;
+            }
+        }
     }
 );
 
