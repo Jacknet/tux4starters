@@ -160,10 +160,36 @@ app.post('/signin', urlencodedParser, (req, res) => {
                       const match = await bcrypt.compare(password, hashPassword);
                       console.log("match = " + match);
                       if (match) {
-                        let sessionId = crypto.randomBytes(24).toString('hex')
-                        res.send({sessionId:sessionId})
+                          let sessionId = crypto.randomBytes(24).toString('hex') //"e4bbd030d578ce1148b75763d1040dd556a65f476dbff5f7"
+                          let doesExist = false
+                          do {
+                              await conn.query(`select sessionId from users where sessionId = "${sessionId}";`)
+                                  //conn.query(`update users set sessionId = "${sessionId}" where username = "${username}";`)
+                                  .then(row => {
+                                      conn.end;
+                                      let result = JSON.stringify(row)
+                                      console.log(row)
+                                      console.log(result.length)
+                                      if (result.length <= 2) {
+                                        console.log("sessionId not exists")
+                                        doesExist = false  
+                                        res.send({sessionId: sessionId}) 
+                                      }
+                                      else{
+                                          
+                                        console.log("exists "+sessionId)
+                                        sessionId = crypto.randomBytes(24).toString('hex')
+                                        console.log("new "+sessionId)
+                                        doesExist = true  
+                                      }
+
+                                  }).catch(err => {
+                                      console.log(err)
+                                  }) 
+                          } while (doesExist)
+                          
                       } else {
-                          res.send({message:"Incorrect Password or Username"})
+                          res.send({message: "Incorrect Password or Username"})
                       }
 
                   }
@@ -178,7 +204,6 @@ app.post('/signin', urlencodedParser, (req, res) => {
   }
 
 })
-
 //user progression tracking
 
 app.post("/post",urlencodedParser, (req, res) =>{
