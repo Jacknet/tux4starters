@@ -31,11 +31,18 @@ var sessionId = "";
     Below is vital code to get stuff working properly.
 */
 
+// Function that stores a given session ID to the client after successful log-on.
+function signIn(sessionId) {
+    // Store session ID as a cookie
+    document.cookie = "sessid=" + sessionId + ";SameSite=Strict";
+    // Refresh client, sending back to the homepage
+    window.location.href = "/"
+}
 // Function that devalidates the current client session.
 // User must log in again and obtain a new session ID.
 function signOut() {
     // Blank session ID cookie and make it expire immediately (Midnight 01/01/1970 is 0 in UNIX time!)
-    document.cookie="sessid=;expires=Thu, 01 Jan 1970";
+    document.cookie = "sessid=;expires=Thu, 01 Jan 1970";
     // Refresh client, sending back to the homepage
     window.location.href = "/"
 }
@@ -72,31 +79,39 @@ $(document).ready(
                 // DEBUG
                 console.log("COOKIE FOUND: " + cookie.split("=")[1]);
 
-                // PLACEHOLDER: SERVER CHECK CODE GOES HERE.
+                // SERVER CHECK CODE GOES HERE.
                 // WILL BLANK OUT sessionCookie VARIABLE IF CHECK FAILS.
-                // If a session cookie is valid
-                // if (cookie) {
-                //     // Store cookie value to global sessionId variable
-                //     sessionId = cookie;
-                //     // Replace "Sign In" button with "Sign Out"
-                //     document.getElementById("sessionBtn").innerText = "Sign Out";
-                //     document.getElementById("sessionBtn").href = "#";
-                //     document.getElementById("sessionBtn").onclick = "signOut();";
-                //     // Break for loop
-                //     break;
-                // } else {
-                //     // If blank, run sign out to devalidate session
-                //     signOut();
-                // }
+                //// Post to server if session is valid in the database
+                // axios.post('/api', {
+                //     "sessionId": cookie.split("=")[1]
+                // }).then(function(res) {
+                //     // If server responded "OK"
+                //     if (res == "OK") {
+                //         // Store cookie value to global sessionId variable
+                //         sessionId = cookie.split("=")[1];
+                //         // Get "Sign In" button from navbar
+                //         var sessionBtn = document.getElementById("sessionBtn");
+                //         // Replace "Sign In" button with "Sign Out"
+                //         sessionBtn.innerText = "Sign Out";
+                //         sessionBtn.href = "#";
+                //         sessionBtn.onclick = signOut;
+                //     } else {
+                //         // Sign out if server did not respond with "OK"
+                //         signOut();
+                //     }
+                // });
 
                 // document.cookie="sessid=12345;SameSite=Strict";
 
                 // Store cookie value to global sessionId variable
                 sessionId = cookie.split("=")[1];
+                // Get "Sign In" button from navbar
+                var sessionBtn = document.getElementById("sessionBtn");
                 // Replace "Sign In" button with "Sign Out"
-                document.getElementById("sessionBtn").innerText = "Sign Out";
-                document.getElementById("sessionBtn").href = "#";
-                document.getElementById("sessionBtn").onclick = signOut;
+                sessionBtn.innerText = "Sign Out";
+                sessionBtn.href = "#";
+                sessionBtn.onclick = signOut;
+
                 // Break for loop
                 break;
             }
