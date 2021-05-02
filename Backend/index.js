@@ -91,7 +91,7 @@ let md = mariadb.createConnection({
   port: process.env.MD_PORT,
   database: process.env.MD_DATABASE  
 })
-//Midleware
+//Middleware
 app.use(express.static("../tux4starters", options));
 const exJson = app.use('/', express.json());
 
