@@ -204,6 +204,35 @@ app.post('/signin', urlencodedParser, (req, res) => {
   }
 
 })
+
+//check if the session is still active
+
+app.post("/check-session",urlencodedParser, (req, res) =>{
+  try{
+    md.then(conn => {
+      const sessionId = req.body
+      console.log("sessionId "+ sessionId)
+      // conn.query(`select sessionId where sessionId = "${sessionId}"`)
+      // .then(row =>{
+      //   conn.end;
+      //   let result = JSON.stringify(row)
+      //   if(result.length >= 2){
+      //     console.log("sessionId exists")
+      //     res.send("OK");
+      //   }
+      //   else{
+      //     console.log("sessionId does not exists")
+      //     res.send("Not Found")
+      //   }
+      // })
+    })
+
+  }
+  catch(err){
+    throw err;
+  }
+})
+
 //user progression tracking
 
 app.post("/post",urlencodedParser, (req, res) =>{
