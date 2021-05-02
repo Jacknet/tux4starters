@@ -138,6 +138,7 @@ function postMult(result) {
     $.post("/post",
         {
             "multStarRating": result,
+            "termStarRating": "",
             "module": window.location.pathname.split("/")[2],
             "lesson": window.location.pathname.split("/")[3],
             "sessionId": sessionId
@@ -150,6 +151,7 @@ function postTerm(result) {
     // We just strip the current module and lesson.
     $.post("/post",
         {
+            "multStarRating": "",
             "termStarRating": result,
             "module": window.location.pathname.split("/")[2],
             "lesson": window.location.pathname.split("/")[3],
