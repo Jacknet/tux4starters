@@ -117,12 +117,27 @@ $(document).ready(
 
 // This would be overwritten by the lesson. Default term parse returns nothing.
 function termParse(cmdIn) {
+    // If no session ID is stored
+    if (!sessionId) {
+        // Send client to login page
+        window.location.href = "/signin.html"
+        // Return, ensuring function does not execute
+        return "";
+    }
     // Return no string
     return "";
 }
 
-// This blank multiple choice check would also be overwritten. 
-function checkMultipleChoice() {}
+// This default multiple choice check would also be overwritten. 
+function checkMultipleChoice() {
+    // If no session ID is stored
+    if (!sessionId) {
+        // Send client to login page
+        window.location.href = "/signin.html"
+        // Return, ensuring function does not execute
+        return "";
+    }
+}
 
 // Function that will assign a hint to the suggestion area
 function giveHint(hintMsg){

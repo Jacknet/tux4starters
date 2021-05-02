@@ -19,6 +19,13 @@ function termInstr(term) {
 
 // Check function
 function termParse(cmdIn) {
+    // If no session ID is stored
+    if (!sessionId) {
+        // Send client to login page
+        window.location.href = "/signin.html"
+        // Return, ensuring function does not execute
+        return "";
+    }
     // If command entered is empty
     if (cmdIn == "") {
         // Return no string
@@ -91,6 +98,13 @@ function termParse(cmdIn) {
 
 // This function will check the radio buttons and determine if the correct answer was chosen. 
 function checkMultipleChoice(){
+    // If no session ID is stored
+    if (!sessionId) {
+        // Send client to login page
+        window.location.href = "/signin.html"
+        // Return, ensuring function does not execute
+        return "";
+    }
 
 
 
