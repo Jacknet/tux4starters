@@ -79,6 +79,13 @@ $(document).ready(
                 // DEBUG
                 console.log("COOKIE FOUND: " + cookie.split("=")[1]);
 
+                // Get "Sign In" button from navbar
+                var sessionBtn = document.getElementById("sessionBtn");
+
+                // Disable link
+                sessionBtn.innerText = "Checking...";
+                sessionBtn.href = "#";
+
                 // SERVER CHECK CODE GOES HERE.
                 // WILL BLANK OUT sessionCookie VARIABLE IF CHECK FAILS.
                 // Post to server if session is valid in the database
@@ -86,14 +93,11 @@ $(document).ready(
                     "sessionId": cookie.split("=")[1]
                 }).then(function(res) {
                     // If server responded "OK"
-                    if (res == "OK") {
+                    if (res.data == "OK") {
                         // Store cookie value to global sessionId variable
                         sessionId = cookie.split("=")[1];
-                        // Get "Sign In" button from navbar
-                        var sessionBtn = document.getElementById("sessionBtn");
-                        // Replace "Sign In" button with "Sign Out"
+                        // Replace text with "Sign Out" and enable button for log off
                         sessionBtn.innerText = "Sign Out";
-                        sessionBtn.href = "#";
                         sessionBtn.onclick = signOut;
                     } else {
                         // Sign out if server did not respond with "OK"
