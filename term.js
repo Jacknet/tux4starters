@@ -76,41 +76,37 @@ $(document).ready(
             }
             // If cookie is found by name
             if (cookie.indexOf(cookieName) == 0) {
-                // DEBUG
-                console.log("COOKIE FOUND: " + cookie.split("=")[1]);
-
-                // SERVER CHECK CODE GOES HERE.
-                // WILL BLANK OUT sessionCookie VARIABLE IF CHECK FAILS.
-                // Post to server if session is valid in the database
-                axios.post('/check-session', {
-                    "sessionId": cookie.split("=")[1]
-                }).then(function(res) {
-                    // If server responded "OK"
-                    if (res == "OK") {
-                        // Store cookie value to global sessionId variable
-                        sessionId = cookie.split("=")[1];
-                        // Get "Sign In" button from navbar
-                        var sessionBtn = document.getElementById("sessionBtn");
-                        // Replace "Sign In" button with "Sign Out"
-                        sessionBtn.innerText = "Sign Out";
-                        sessionBtn.href = "#";
-                        sessionBtn.onclick = signOut;
-                    } else {
-                        // Sign out if server did not respond with "OK"
-                        signOut();
-                    }
-                });
-
                 // document.cookie="sessid=12345;SameSite=Strict";
 
-                // Store cookie value to global sessionId variable
-                // sessionId = cookie.split("=")[1];
-                // Get "Sign In" button from navbar
-                // var sessionBtn = document.getElementById("sessionBtn");
-                // Replace "Sign In" button with "Sign Out"
-                // sessionBtn.innerText = "Sign Out";
-                // sessionBtn.href = "#";
-                // sessionBtn.onclick = signOut;
+                // If cookie has content
+                if (cookie.split("=")[1]) {
+                    // Get "Sign In" button from navbar
+                    var sessionBtn = document.getElementById("sessionBtn");
+
+                    // Disable link
+                    sessionBtn.innerText = "Checking...";
+                    sessionBtn.href = "#";
+
+                    // Post to server if session is valid in the database
+                    axios.post('/check-session', {
+                        "sessionId": cookie.split("=")[1]
+                    }).then(function(res) {
+                        // If server responded "OK"
+                        if (res.data == "OK") {
+                            // Store cookie value to global sessionId variable
+                            sessionId = cookie.split("=")[1];
+                            // Replace text with "Sign Out" and enable button for log off
+                            sessionBtn.innerText = "Sign Out";
+                            sessionBtn.onclick = signOut;
+                        } else {
+                            // Sign out if server did not respond with "OK"
+                            signOut();
+                        }
+                    });
+                } else {
+                    // Cookie is invalid if empty string. Don't do anything.
+                    console.log("Cookie is empty. Treat as logged off.")
+                }
 
                 // Break for loop
                 break;
