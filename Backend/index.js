@@ -212,19 +212,19 @@ app.post("/check-session",urlencodedParser, (req, res) =>{
     md.then(conn => {
       const sessionId = req.body
       console.log("sessionId "+ sessionId)
-      // conn.query(`select sessionId where sessionId = "${sessionId}"`)
-      // .then(row =>{
-      //   conn.end;
-      //   let result = JSON.stringify(row)
-      //   if(result.length >= 2){
-      //     console.log("sessionId exists")
-      //     res.send("OK");
-      //   }
-      //   else{
-      //     console.log("sessionId does not exists")
-      //     res.send("Not Found")
-      //   }
-      // })
+      conn.query(`select sessionId where sessionId = "${sessionId}"`)
+      .then(row =>{
+        conn.end;
+        let result = JSON.stringify(row)
+        if(result.length >= 2){
+          console.log("sessionId exists")
+          res.send("OK");
+        }
+        else{
+          console.log("sessionId does not exists")
+          res.send("Not Found")
+        }
+      })
     })
 
   }
