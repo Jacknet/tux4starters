@@ -164,7 +164,6 @@ app.post('/signin', urlencodedParser, (req, res) => {
                           let doesExist = false
                           do {
                               await conn.query(`select sessionId from users where sessionId = "${sessionId}";`)
-                                  //conn.query(`update users set sessionId = "${sessionId}" where username = "${username}";`)
                                   .then(row => {
                                       conn.end;
                                       let result = JSON.stringify(row)
@@ -173,6 +172,7 @@ app.post('/signin', urlencodedParser, (req, res) => {
                                       if (result.length <= 2) {
                                         console.log("sessionId not exists")
                                         doesExist = false  
+                                        conn.query(`update users set sessionId = "${sessionId}" where username = "${username}";`)
                                         res.send({sessionId: sessionId}) 
                                       }
                                       else{
@@ -210,13 +210,13 @@ app.post('/signin', urlencodedParser, (req, res) => {
 app.post("/check-session",urlencodedParser, (req, res) =>{
   try{
     md.then(conn => {
-      const sessionId = req.body
+      const sessionId = req.body.sessionId
       console.log("sessionId "+ sessionId)
-      conn.query(`select sessionId where sessionId = "${sessionId}"`)
+      conn.query(`select sessionId from users where sessionId = "${sessionId}"`)
       .then(row =>{
         conn.end;
         let result = JSON.stringify(row)
-        if(result.length >= 2){
+        if(result.length > 2){
           console.log("sessionId exists")
           res.send("OK");
         }
