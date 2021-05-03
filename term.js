@@ -72,7 +72,7 @@ function signIn(sessionId) {
 // User must log in again and obtain a new session ID.
 function signOut() {
     // Blank session ID cookie and make it expire immediately (Midnight 01/01/1970 is 0 in UNIX time!)
-    document.cookie = "sessid=;expires=Thu, 01 Jan 1970";
+    document.cookie = "sessid=;expires=Thu, 01 Jan 1970;SameSite=Strict";
     // Refresh client, sending back to the homepage
     window.location.href = "/"
 }
