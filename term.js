@@ -107,7 +107,7 @@ $(document).ready(
             // If cookie is found by name
             if (cookie.indexOf(cookieName) == 0) {
                 // If cookie has content
-                if (cookie.split("=")[1]) {
+                if (cookie.split("=")[1].length > 0) {
                     // Get "Sign In" button from navbar
                     var sessionBtn = document.getElementById("sessionBtn");
 
