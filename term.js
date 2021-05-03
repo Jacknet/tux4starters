@@ -39,12 +39,11 @@ function appendToAccordion(res) {
         for (moduleName in res.data) {
             // For every lesson
             for (lessonName in res.data[moduleName]) {
-                
                 // For each part
                 for (partName in res.data[moduleName][lessonName]) {
                     // If part rating is greater than 0
                     if (res.data[moduleName][lessonName][partName] > 0) {
-                        // Use yellow design color for background to completed module
+                        // Use yellow design color for background to completed lesson
                         $(
                             "#" + moduleName + " ." + lessonName + " ." + partName
                         )[0].style.backgroundColor = "#F9DC5C";
@@ -117,7 +116,7 @@ $(document).ready(
                     sessionBtn.href = "#";
 
                     // Post to server if session is valid in the database
-                    axios.post('/check-session', {
+                    axios.get('/check-session', {
                         "sessionId": cookie.split("=")[1]
                     }).then(function(res) {
                         // If server responded "OK"
@@ -131,7 +130,7 @@ $(document).ready(
                             // If in main lessons page ("lessons or lessons/index.html")
                             if (/^\/?lessons\/?(index\.html)?\/?$/.test(window.location.pathname)) {
                                 // Check progress with server
-                                axios.post('/check-progress', {
+                                axios.get('/check-progress', {
                                     "sessionId": cookie.split("=")[1]
                                 }).then(function(res) {
                                     // Append data to accordion
