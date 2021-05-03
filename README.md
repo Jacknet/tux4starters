@@ -18,7 +18,7 @@ If you are unable to use HTTPS, either due to the lack of key files or HTTPS is 
 
 Reminder: Not using HTTPS may be considered unsafe, so it is strongly recommended that you generate a private key and certificate file using a utility like [Certbot](https://certbot.eff.org/) and use HTTPS service.
 
-Create a `.env` file containing a database endpoint running MariaDB. A `PORT` parameter may also be provided to override the default service port.
+Create a `.env` file defining a MariaDB endpoint with a database with committed DDL. A `PORT` parameter may also be provided to override the default service port, such as the standard ports "443" (HTTPS) or "80" (HTTP).
 ```
 MD_HOST = 0.0.0.0
 MD_USER = username

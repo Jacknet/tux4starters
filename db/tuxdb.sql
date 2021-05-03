@@ -38,6 +38,7 @@ CREATE TABLE `genUnix` (
 -- Create the "basicCommands" lessons module table,
 -- dropping any that already exist
 --
+
 DROP TABLE IF EXISTS `basicCommands`;
 
 CREATE TABLE `basicCommands` (
