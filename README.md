@@ -34,6 +34,9 @@ Afterwards, execute the backend script by using the following command.
 node Backend/index.js
 ```
 
+## Errata:
+There might be issues when using the Node module for `bcrypt` on Linux deployments of Tux For Starters. We suggest using Node version 14.15.1 for these deployments by installing it through `nvm` then running `nvm use 14.15.1`, followed by `npm install bcrypt`.
+
 ## External Dependencies:
 * [MariaDB](https://mariadb.org/)
 * [Bootstrap](https://getbootstrap.com/)
