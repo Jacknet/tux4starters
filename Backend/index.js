@@ -124,7 +124,7 @@ md.then(conn =>{
         else{
           bcrypt.genSalt(saltRounds, function(err, salt) {
             bcrypt.hash(password, salt, function(err, hash) {
-              conn.query(`insert into users values ("${username}","${email}","${hash}");`)
+              conn.query(`insert into users (username, email, password) values ("${username}","${email}","${hash}");`)
               .then(rows =>{
                 conn.end;
                 console.log(rows);
