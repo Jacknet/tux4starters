@@ -4,3 +4,12 @@ GET http://locahost:5000/POST
 ###
 
 get  http://localhost:5000/crypto
+
+###
+post http://localhost:5000/check-progress 
+
+Content-Type: application/json
+
+{
+    "sessionId" : "e764c257343b3041508be5e54cda6f5657d6397bec4ae6b3"
+}

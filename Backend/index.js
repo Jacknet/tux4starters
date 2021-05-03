@@ -11,11 +11,11 @@ require("dotenv").config()
 var crypto = require('crypto');
 
 // HTTPS constants
-const https = require('https');
-const fs = require('fs');
+//const https = require('https');
+//const fs = require('fs');
 // Open private key and certificate for HTTPS
-var privateKey = fs.readFileSync('privkey.pem');
-var certificate = fs.readFileSync('cert.pem');
+//var privateKey = fs.readFileSync('privkey.pem');
+//var certificate = fs.readFileSync('cert.pem');
 
 //this is for node1
 const pool = mariadb.createPool({
@@ -258,7 +258,6 @@ app.post("/post",urlencodedParser, (req, res) =>{
     termStarRating = null;
   }
   
-
   // Get Module Name, split into sections for every "-"
 var moduleNameSplit = req.body.module.split("-");
 
@@ -280,7 +279,6 @@ moduleNameSplit.forEach(function(item, index) {
 
 try{
 
-
   md.then(conn => {
     conn.query(`select username from users where sessionId = "${sessionId}"`)
     .then(row => {
@@ -291,7 +289,7 @@ try{
       console.log("username")
       console.log(username)
       if(multiStarRating != null){
-    conn.query(`update ${tableName} set username = "${username}", multiStarRating = "${multiStarRating}" where lessonName = "${lesson}";`)
+    conn.query(`update ${tableName} set username = "${username}", multiStarRating = "${multiStarRating}", completed = "yes" where lessonName = "${lesson}";`)
     .then(result => {
       conn.end;
       console.log(result);
@@ -300,7 +298,7 @@ try{
     })
   }
   else{
-    conn.query(`update ${tableName} set username = "${username}", termStarRating = "${termStarRating}" where lessonName = "${lesson}";`)
+    conn.query(`update ${tableName} set username = "${username}", termStarRating = "${termStarRating}", completed = "yes" where lessonName = "${lesson}";`)
     .then(result => {
       conn.end;
       console.log(result);
@@ -317,9 +315,77 @@ try{
 catch(err){
   throw err;
 }
-
 })
 
+
+//get user progress
+app.post("/check-progress", urlencodedParser,(req,res) =>{
+  console.log("check prog")
+  const sessionId = req.body.sessionId;
+  console.log(req.body)
+  try{
+      md.then(conn => {
+        conn.query(`select username from users where sessionId = "${sessionId}"`)
+        //conn.query(`select username from users where sessionId = "06e2211468a7341fecb2d4f4b6eb0f582d0b65297924d740"`)
+
+        .then(result =>{
+          let username = ''
+          console.log(result)
+          console.log((JSON.stringify(result)).length)
+          if(result.username != ''){
+            username = result[0].username;
+            console.log(username)
+            conn.query(`select lessonName, multiStarRating, termStarRating from basicCommands where username = "${username}";`)
+            .then(result =>{
+              let basicCommands = result
+              
+              conn.query(`select lessonName, multiStarRating, termStarRating from genUnix where username = "${username}";`)
+              .then(result =>{
+                let genUnix = result
+                console.log(basicCommands)
+                console.log(genUnix)
+                var genUnixLessons = {};
+                  for (lesson in genUnix) {
+                    if(lesson != 'meta'){
+                      genUnixLessons[genUnix[lesson].lessonName] = {
+                          "multStarRating": genUnix[lesson].multiStarRating,
+                          "termStarRating": genUnix[lesson].termStarRating
+                      };
+                    }
+                  }
+
+                  var basicCommandsLessons = {};
+                  for (lesson in basicCommands) {
+                    
+                    if(lesson != 'meta'){
+                      basicCommandsLessons[basicCommands[lesson].lessonName] = {
+                          "multStarRating": basicCommands[lesson].multiStarRating,
+                          "termStarRating": basicCommands[lesson].termStarRating
+                      };
+                    }
+                  }
+
+                  res.send({
+                      "genUnix": genUnixLessons,
+                      "basicCommands": basicCommandsLessons
+                  })
+                //console.log(genUnixLessons)
+                //console.log(basicCommandsLessons)
+              })
+            }).catch(err =>{
+              console.log(err);
+        })
+          }
+          else{
+            console.log("no username")
+            res.send("no username")
+          }
+        })
+      })
+  }catch(err){
+    throw err;
+  }
+})
 
 app.get('/', (req, res) => {
   //res.send("some texts");
@@ -365,13 +431,13 @@ app.get("/api", (req, res) => {
 const port = process.env.PORT || 5000; //use a evironment port variable if available else use 5000
 
 // HTTP for fallback
-//app.listen(port, () => console.log("app is listening on port " + port));
+app.listen(port, () => console.log("app is listening on port " + port));
 
 // Initialize using HTTPS
-https.createServer({
-  key: privateKey,
-  cert: certificate
-}, app).listen(port, () => console.log("app is listening on port " + port));
+// https.createServer({
+//   key: privateKey,
+//   cert: certificate
+// }, app).listen(port, () => console.log("app is listening on port " + port));
 
 //connectToDB();
 //node();
