@@ -116,7 +116,7 @@ $(document).ready(
                     sessionBtn.href = "#";
 
                     // Post to server if session is valid in the database
-                    axios.get('/check-session', {
+                    axios.post('/check-session', {
                         "sessionId": cookie.split("=")[1]
                     }).then(function(res) {
                         // If server responded "OK"
@@ -130,7 +130,7 @@ $(document).ready(
                             // If in main lessons page ("lessons or lessons/index.html")
                             if (/^\/?lessons\/?(index\.html)?\/?$/.test(window.location.pathname)) {
                                 // Check progress with server
-                                axios.get('/check-progress', {
+                                axios.post('/check-progress', {
                                     "sessionId": cookie.split("=")[1]
                                 }).then(function(res) {
                                     // Append data to accordion
