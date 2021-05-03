@@ -9,6 +9,14 @@ const {connect} = require("http2");
 const nodemon = require("nodemon");
 require("dotenv").config()
 var crypto = require('crypto');
+
+// HTTPS constants
+const https = require('https');
+const fs = require('fs');
+// Open private key and certificate for HTTPS
+var privateKey = fs.readFileSync('privkey.pem');
+var certificate = fs.readFileSync('cert.pem');
+
 //this is for node1
 const pool = mariadb.createPool({
   host: process.env.MD_HOST,
@@ -296,6 +304,15 @@ app.get("/api", (req, res) => {
 })
 
 const port = process.env.PORT || 5000; //use a evironment port variable if available else use 5000
-app.listen(port, () => console.log("app is listening on port " + port));
+
+// HTTP for fallback
+//app.listen(port, () => console.log("app is listening on port " + port));
+
+// Initialize using HTTPS
+https.createServer({
+  key: privateKey,
+  cert: certificate
+}, app).listen(port, () => console.log("app is listening on port " + port));
+
 //connectToDB();
 //node();
