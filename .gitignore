@@ -4,3 +4,11 @@
 # Key files for servers
 *.pem
 *.ppk
+
+# API endpoint stub files created during local testing
+/register
+/signin
+/check-session
+/post
+/forgot
+/api

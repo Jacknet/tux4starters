@@ -20,6 +20,13 @@ function termInstr(term) {
 
 // Check function
 function termParse(cmdIn) {
+    // If no session ID is stored
+    if (!sessionId) {
+        // Send client to login page
+        window.location.href = "/signin.html"
+        // Return, ensuring function does not execute
+        return "";
+    }
     // If command entered is empty
     if (cmdIn == "") {
         // Return no string
@@ -137,6 +144,13 @@ function termParse(cmdIn) {
 
 //Parser for cat
 function checkMultipleChoice(){
+    // If no session ID is stored
+    if (!sessionId) {
+        // Send client to login page
+        window.location.href = "/signin.html"
+        // Return, ensuring function does not execute
+        return "";
+    }
 
     // Get pointer of valid response
     // Replace "#ans2" with the ID of the valid answer, such as "#ans6" and what not
