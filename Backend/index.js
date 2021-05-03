@@ -290,14 +290,16 @@ app.get('/register.html', (req, res) => {
   res.sendFile(path.join(__dirname + '../../register.html'));
 });
 
-app.get('/demolesson1/index.html', (req, res) => {
-  //res.send("some texts");
-  res.sendFile(path.join(__dirname + '../../demolesson1/index.html'));
-});
-app.get('/demolesson1/MultipleChoiceTemp.html', (req, res) => {
-  //res.send("some texts");
-  res.sendFile(path.join(__dirname + '../../demolesson1/MultipleChoiceTemp.html'));
-});
+// BETA PAGES
+// app.get('/demolesson1/index.html', (req, res) => {
+//   //res.send("some texts");
+//   res.sendFile(path.join(__dirname + '../../demolesson1/index.html'));
+// });
+// app.get('/demolesson1/MultipleChoiceTemp.html', (req, res) => {
+//   //res.send("some texts");
+//   res.sendFile(path.join(__dirname + '../../demolesson1/MultipleChoiceTemp.html'));
+// });
+
 app.get("/api", (req, res) => {
 
   console.log(req);
