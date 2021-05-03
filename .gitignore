@@ -9,6 +9,7 @@
 /register
 /signin
 /check-session
+/check-progress
 /post
 /forgot
 /api

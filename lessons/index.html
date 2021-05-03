@@ -14,9 +14,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="../acc.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/term.js"></script>
+    <script src="/acc.js"></script>
 </head>
 <body>
 
@@ -52,135 +52,94 @@
                     <p>Choose from the sections below to begin or continue your journey of learning about UNIX and the command line.</p>
                      <br>
                     <button class="less-acc">General UNIX</button>
-                      <div class="panel">
+                      <div id="genUnix" class="panel">
                           <button class="par-acc">What is an Operating System?</button>
-                            <div class="panel">
-                              <a href="gen-unix/what-os/content.html"><div class="child-acc">Content</div></a>
+                            <div class="panel what-os">
+                              <a href="gen-unix/what-os/content.html"><div class="child-acc multStarRating">Content</div></a>
                             </div>
                           <button class="par-acc">What is UNIX?</button>
-                            <div class="panel">
-                              <a href="gen-unix/what-unix/content.html"><div class="child-acc">Content</div></a>
+                            <div class="panel what-unix">
+                              <a href="gen-unix/what-unix/content.html"><div class="child-acc multStarRating">Content</div></a>
                             </div>
                           <button class="par-acc">Distributions</button>
-                            <div class="panel">
-                              <a href="gen-unix/dist/content.html"><div class="child-acc">Content</div></a>
+                            <div class="panel dist">
+                              <a href="gen-unix/dist/content.html"><div class="child-acc multStarRating">Content</div></a>
                             </div>
                             <button class="par-acc">What is Open Source?</button>
-                            <div class="panel">
-                              <a href="gen-unix/open-source/content.html"><div class="child-acc">Content</div></a>
+                            <div class="panel open-source">
+                              <a href="gen-unix/open-source/content.html"><div class="child-acc multStarRating">Content</div></a>
                             </div>
                             <button class="par-acc">Where do I start?</button>
-                            <div class="panel">
-                              <a href="gen-unix/start/content.html"><div class="child-acc">Content</div></a>
+                            <div class="panel start">
+                              <a href="gen-unix/start/content.html"><div class="child-acc multStarRating">Content</div></a>
                             </div>
                             <button class="par-acc">Applications</button>
-                            <div class="panel">
-                              <a href="gen-unix/apps/content.html"><div class="child-acc">Content</div></a>
+                            <div class="panel apps">
+                              <a href="gen-unix/apps/content.html"><div class="child-acc multStarRating">Content</div></a>
                             </div>
                             <button class="par-acc">The Terminal</button>
-                            <div class="panel">
-                              <a href="gen-unix/terms1/content.html"><div class="child-acc">Content</div></a>
+                            <div class="panel terms1">
+                              <a href="gen-unix/terms1/content.html"><div class="child-acc multStarRating">Content</div></a>
                             </div>
                             <button class="par-acc">The Terminal Continued</button>
-                            <div class="panel">
-                              <a href="gen-unix/terms2/content.html"><div class="child-acc">Content</div></a>
+                            <div class="panel terms2">
+                              <a href="gen-unix/terms2/content.html"><div class="child-acc multStarRating">Content</div></a>
                             </div>
                       </div>
                     <br><br>
                     <button class="less-acc">Basic Commands</button>
-                      <div class="panel">
+                      <div id="basicCommands" class="panel">
                           <button class="par-acc">pwd</button>
-                            <div class="panel">
-                              <a href="basic-commands/pwd/content.html"><div class="child-acc">Content</div></a>
-                                <a href="basic-commands/pwd/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel pwd">
+                              <a href="basic-commands/pwd/content.html"><div class="child-acc multStarRating">Content</div></a>
+                                <a href="basic-commands/pwd/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">cd</button>
-                            <div class="panel">
-                              <a href="basic-commands/cd/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/cd/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel cd">
+                              <a href="basic-commands/cd/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/cd/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">ls</button>
-                            <div class="panel">
-                              <a href="basic-commands/ls/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/ls/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel ls">
+                              <a href="basic-commands/ls/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/ls/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">mkdir</button>
-                            <div class="panel">
-                              <a href="basic-commands/mkdir/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/mkdir/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel mkdir">
+                              <a href="basic-commands/mkdir/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/mkdir/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">rmdir</button>
-                            <div class="panel">
-                              <a href="basic-commands/rmdir/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/rmdir/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel rmdir">
+                              <a href="basic-commands/rmdir/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/rmdir/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">touch</button>
-                            <div class="panel">
-                              <a href="basic-commands/touch/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/touch/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel touch">
+                              <a href="basic-commands/touch/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/touch/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">cp</button>
-                            <div class="panel">
-                              <a href="basic-commands/cp/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/cp/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel cp">
+                              <a href="basic-commands/cp/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/cp/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">mv</button>
-                            <div class="panel">
-                              <a href="basic-commands/mv/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/mv/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel mv">
+                              <a href="basic-commands/mv/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/mv/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">rm</button>
-                            <div class="panel">
-                              <a href="basic-commands/rm/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/rm/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel rm">
+                              <a href="basic-commands/rm/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/rm/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                           <button class="par-acc">cat</button>
-                            <div class="panel">
-                              <a href="basic-commands/cat/content.html"><div class="child-acc">Content</div></a>
-                              <a href="basic-commands/cat/assignment.html"><div class="child-acc">Assignment</div></a>
+                            <div class="panel cat">
+                              <a href="basic-commands/cat/content.html"><div class="child-acc multStarRating">Content</div></a>
+                              <a href="basic-commands/cat/assignment.html"><div class="child-acc termStarRating">Assignment</div></a>
                             </div>
                     </div>
-
-                    <!--
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                          <div class="panel-heading" role="tab" id="headingOne">
-                            <h4 class="panel-title">
-                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#genu" aria-expanded="false" aria-controls="genu">
-                                General UNIX
-                              </a>
-                            </h4>
-                          </div>
-                          <div id="genu" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="panel-body">
-                              <div class="panel-group" id="bc" role="tablist" aria-multiselectable="false">
-                                  <div class="panel panel-default">
-                                      <div class="panel-heading" role="tab" id="pwd">
-                                        pwd
-                                      </div>
-                                  </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="panel panel-default">
-                          <div class="panel-heading" role="tab" id="headingTwo">
-                            <h4 class="panel-title">
-                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#basiccom" aria-expanded="false" aria-controls="basiccom">
-                                Basic Commands
-                              </a>
-                            </h4>
-                          </div>
-                          <div id="basiccom" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="panel-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      -->
-                      <script>
-                        startAccordion();
-                      </script>
                 </div>
             </div>
         </div>

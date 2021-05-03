@@ -31,6 +31,33 @@ var sessionId = "";
     Below is vital code to get stuff working properly.
 */
 
+// Function that will append star rating to accordion objects.
+function appendToAccordion(res) {
+    // If data was received
+    if (res.data) {
+        // For every module
+        for (moduleName in res.data) {
+            // For every lesson
+            for (lessonName in res.data[moduleName]) {
+                // For each part
+                for (partName in res.data[moduleName][lessonName]) {
+                    // Use yellow design color for background to completed module
+                    $(
+                        "#" + moduleName + " ." + lessonName + " ." + partName
+                    )[0].style.backgroundColor = "#F9DC5C";
+
+                    // Append X amount of stars to lesson name given the data
+                    $(
+                        "#" + moduleName + " ." + lessonName + " ." + partName
+                    )[0].innerHTML += " " + "<span class=\"glyphicon glyphicon-star\"></span>".repeat(
+                        res.data[moduleName][lessonName][partName]
+                    );
+                }
+            }
+        }
+    }
+}
+
 // Function that stores a given session ID to the client after successful log-on.
 function signIn(sessionId) {
     // Store session ID as a cookie
@@ -76,8 +103,6 @@ $(document).ready(
             }
             // If cookie is found by name
             if (cookie.indexOf(cookieName) == 0) {
-                // document.cookie="sessid=12345;SameSite=Strict";
-
                 // If cookie has content
                 if (cookie.split("=")[1]) {
                     // Get "Sign In" button from navbar
@@ -98,6 +123,17 @@ $(document).ready(
                             // Replace text with "Sign Out" and enable button for log off
                             sessionBtn.innerText = "Sign Out";
                             sessionBtn.onclick = signOut;
+
+                            // If in main lessons page ("lessons or lessons/index.html")
+                            if (/^\/?lessons\/?(index\.html)?$/.test(window.location.pathname)) {
+                                // Check progress with server
+                                axios.post('/check-progress', {
+                                    "sessionId": cookie.split("=")[1]
+                                }).then(function(res) {
+                                    // Append data to accordion
+                                    appendToAccordion(res);
+                                });
+                            }
                         } else {
                             // Sign out if server did not respond with "OK"
                             signOut();

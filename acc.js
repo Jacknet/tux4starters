@@ -48,3 +48,6 @@ function startAccordion() {
         }
     }
 }
+
+// Start accordion when document is ready
+$(document).ready(startAccordion);
