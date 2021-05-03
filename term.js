@@ -39,19 +39,23 @@ function appendToAccordion(res) {
         for (moduleName in res.data) {
             // For every lesson
             for (lessonName in res.data[moduleName]) {
+                
                 // For each part
                 for (partName in res.data[moduleName][lessonName]) {
-                    // Use yellow design color for background to completed module
-                    $(
-                        "#" + moduleName + " ." + lessonName + " ." + partName
-                    )[0].style.backgroundColor = "#F9DC5C";
+                    // If part rating is greater than 0
+                    if (res.data[moduleName][lessonName][partName] > 0) {
+                        // Use yellow design color for background to completed module
+                        $(
+                            "#" + moduleName + " ." + lessonName + " ." + partName
+                        )[0].style.backgroundColor = "#F9DC5C";
 
-                    // Append X amount of stars to lesson name given the data
-                    $(
-                        "#" + moduleName + " ." + lessonName + " ." + partName
-                    )[0].innerHTML += " " + "<span class=\"glyphicon glyphicon-star\"></span>".repeat(
-                        res.data[moduleName][lessonName][partName]
-                    );
+                        // Append X amount of stars to lesson name given the data
+                        $(
+                            "#" + moduleName + " ." + lessonName + " ." + partName
+                        )[0].innerHTML += " " + "<span class=\"glyphicon glyphicon-star\"></span>".repeat(
+                            res.data[moduleName][lessonName][partName]
+                        );
+                    }
                 }
             }
         }
@@ -125,7 +129,7 @@ $(document).ready(
                             sessionBtn.onclick = signOut;
 
                             // If in main lessons page ("lessons or lessons/index.html")
-                            if (/^\/?lessons\/?(index\.html)?$/.test(window.location.pathname)) {
+                            if (/^\/?lessons\/?(index\.html)?\/?$/.test(window.location.pathname)) {
                                 // Check progress with server
                                 axios.post('/check-progress', {
                                     "sessionId": cookie.split("=")[1]
@@ -139,13 +143,9 @@ $(document).ready(
                             signOut();
                         }
                     });
-                } else {
-                    // Cookie is invalid if empty string. Don't do anything.
-                    console.log("Cookie is empty. Treat as logged off.")
+                    // Break for loop
+                    break;
                 }
-
-                // Break for loop
-                break;
             }
         }
     }
