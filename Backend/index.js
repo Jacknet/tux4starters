@@ -160,7 +160,7 @@ app.post('/signin', urlencodedParser, (req, res) => {
                       const match = await bcrypt.compare(password, hashPassword);
                       console.log("match = " + match);
                       if (match) {
-                          let sessionId = crypto.randomBytes(24).toString('hex') //"e4bbd030d578ce1148b75763d1040dd556a65f476dbff5f7"
+                          let sessionId = crypto.randomBytes(24).toString('hex')
                           let doesExist = false
                           do {
                               await conn.query(`select sessionId from users where sessionId = "${sessionId}";`)
@@ -236,26 +236,83 @@ app.post("/check-session",urlencodedParser, (req, res) =>{
 //user progression tracking
 
 app.post("/post",urlencodedParser, (req, res) =>{
+  console.log(req.body)
+
+  let multiStarRating = req.body.multStarRating;
+  let termStarRating = req.body.termStarRating;
+  let lesson = req.body.lesson;
+  let sessionId = req.body.sessionId;
+
+  if(multiStarRating == ''){
+    multiStarRating = null;
+  }
+  else if (termStarRating == ''){
+    termStarRating = null;
+  }
+  
+
+  // Get Module Name, split into sections for every "-"
+var moduleNameSplit = req.body.module.split("-");
+
+// Variable to store table name
+var tableName = "";
+
+// For each part of the name
+moduleNameSplit.forEach(function(item, index) {
+    // If index is over 0
+    if (index > 0) {
+        // Store first char upper case, then the rest of the string in lower case
+        tableName += item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
+    } else {
+        // Store just the first part as normal in lower case
+        tableName += item.toLowerCase();
+    }
+  });
+  //get the user name coresponding to the current session ID. 
+
+try{
+
+
+  md.then(conn => {
+    conn.query(`select username from users where sessionId = "${sessionId}"`)
+    .then(row => {
+      conn.end
+      let username = row[0].username;
+
+    md.then(conn => {
+      console.log("username")
+      console.log(username)
+      if(multiStarRating != null){
+    conn.query(`update ${tableName} set username = "${username}", multiStarRating = "${multiStarRating}" where lessonName = "${lesson}";`)
+    .then(result => {
+      conn.end;
+      console.log(result);
+    }).catch(err =>{
+      console.log(err);
+    })
+  }
+  else{
+    conn.query(`update ${tableName} set username = "${username}", termStarRating = "${termStarRating}" where lessonName = "${lesson}";`)
+    .then(result => {
+      conn.end;
+      console.log(result);
+    }).catch(err =>{
+      console.log(err);
+    })
+  }
+  }).catch (err=>{
+      console.log(err)
+  })
+})
+})
+}
+catch(err){
+  throw err;
+}
 
 })
 
 
-
-/*
-app.post("/forgot", (req, res) => {
-  const thisEmail = getEmail(req.body.email);
-  if (thisEmail){
-    const id = uuidv1();
-    const request = {
-      id,
-      email: thisEmail.email,
-    };
-    createResetRequest(requset);
-    sendResentLink(thisUser.email, id);
-  }
-  res.status(200).json();
-});
-*/
 app.get('/', (req, res) => {
   //res.send("some texts");
   res.sendFile(path.join(__dirname + '../../index.html'));
